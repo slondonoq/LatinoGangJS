@@ -8,7 +8,13 @@ services:
       - "5001:5001"
     networks:
       - latinogangjs-net
-
+  latinogangjs-be:
+    build: LatinoGangJS_BE/.
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    networks:
+      - latinogangjs-net
 networks:
   latinogangjs-net:
       
