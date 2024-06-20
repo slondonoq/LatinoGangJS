@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  latinogangjs-fe:
+    build: LatinoGangJS_FE/.
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    networks:
+      - latinogangjs-net
+
+networks:
+  latinogangjs-net:
+      
