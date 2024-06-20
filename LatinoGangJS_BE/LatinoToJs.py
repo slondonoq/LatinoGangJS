@@ -246,5 +246,5 @@ class LatinoToJs(LatinoGrammarListener):
         exitForRangeBlockRule(self, ctx)
 
     def exitSource(self, ctx:LatinoGrammarParser.SourceContext):
-        print("----------------------JS CODE----------------------")
+        # print("----------------------JS CODE----------------------")
         print(self.jsCode)
