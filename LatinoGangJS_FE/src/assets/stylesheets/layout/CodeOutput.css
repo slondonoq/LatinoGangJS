@@ -1,0 +1,5 @@
+#code-output {
+  background-color: var(--background_color-light);
+  color: var(--text_color-dark);
+  overflow: scroll;
+}

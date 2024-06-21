@@ -1,0 +1,5 @@
+#block-selection {
+  background-color: var(--background_color-light-dark);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

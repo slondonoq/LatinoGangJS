@@ -1,15 +1,17 @@
 import '@assets/stylesheets/App.css'
-import BlockStackingEditor from '@layout/BlockStackingEditor'
+import Playground from '@layout/Playground'
 import CodeBlockSelection from '@layout/CodeBlocksSelection'
 import CodeOutput from '@layout/CodeOutput'
+import TopBar from '@layout/TopBar'
 
 function App() {
 
 
   return (
     <>
+      <TopBar />
       <CodeBlockSelection />
-      <BlockStackingEditor />
+      <Playground />
       <CodeOutput />
     </>
   )

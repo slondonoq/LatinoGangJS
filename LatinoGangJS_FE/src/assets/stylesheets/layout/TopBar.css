@@ -1,0 +1,29 @@
+#topbar {
+  background-color: var(--primary_color-400);
+  padding: 1em 2em;
+  font-weight: 600;
+  grid-column: 1/4;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+#topbar h1 {
+  margin: 0;
+  font-size: 1.75em;
+}
+
+#topbar img {
+  height: 2em;
+}
+
+#topbar a {
+  color: var(--text_color-light);
+  flex-grow: 1;
+  padding-right: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  justify-content: end;
+  font-size: 1.125em;
+}
