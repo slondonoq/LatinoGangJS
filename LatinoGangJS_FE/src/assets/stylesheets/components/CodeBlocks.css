@@ -1,0 +1,136 @@
+.block {
+  position: relative;
+  width: max-content;
+  height: max-content;
+  padding: 0.5em 0.5em;
+  border-radius: 0.25em;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.block input {
+  max-width: 5.25em;
+}
+
+.block select {
+  border-color: var(--text_color-dark);
+  border-radius: 0.25em;
+}
+
+.block--nested {
+  border: solid 0.08em var(--text_color-dark);
+}
+
+.block__assign {
+  background-color: #346dc2;
+}
+
+.block__assign select{
+  background-color: #346dc2;
+}
+
+.block__operator {
+  background-color: #d46714;
+}
+
+.block__operator select{
+  background-color: #d46714;
+}
+
+.block__operator--logic {
+  background-color: #6600F5;
+}
+
+.block__operator--logic select{
+  background-color: #6600F5;
+}
+
+.block__iterator {
+  background-color: #2e7c22;
+  border-radius: 0.25em 0.25em 0.25em 0;
+}
+
+.block__iterator--container {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.block__iterator--nested-block {
+  position: relative;
+  padding-left: 1em;
+  min-height: 1em;
+}
+
+.block__iterator--nested-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 100%;
+  background-color: #2e7c22;
+}
+
+.block__iterator--end {
+  border-radius: 0em 0.25em 0.25em 0;
+  min-width: 8em;
+}
+
+.block__iterator--range {
+  border-radius: 0.25em;
+}
+
+.block__sentence {
+  padding: 0.65em 0.5em;
+}
+
+.block__sentence::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75em;
+  border-top: 0.4em solid var(--background_color-light-dark);
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  height: 0;
+  width: 0.8em;
+  z-index: 0;
+}
+
+.block__sentence::after {
+  content: '';
+  position: absolute;
+  bottom: -0.38em;
+  left: 0.75em;
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  height: 0;
+  width: 0.8em;
+  z-index: 10;
+}
+
+.block__sentence--inPlayground::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75em;
+  border-top: 0.4em solid var(--background_color-dark);
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  height: 0;
+  width: 0.8em;
+}
+
+.block__assign::after {
+  border-top: 0.4em solid #346dc2;
+}
+
+.block__iterator::after {
+  border-top: 0.4em solid #2e7c22;
+}
+
+.block__iterator--end::before, .block__iterator::after {
+  left: 1.75em;
+}
