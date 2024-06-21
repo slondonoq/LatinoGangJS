@@ -4,11 +4,10 @@ import {
   dracula,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useState } from "react";
-import MoonIcon from "../assets/icons/moon.svg";
-import SunIcon from "../assets/icons/sun.svg";
-import PlayIcon from "../assets/icons/play.svg";
-import CopyIcon from "../assets/icons/copy.svg";
-import CheckIcon from "../assets/icons/check.svg";
+import MoonIcon from "@assets/icons/moon.svg";
+import SunIcon from "@assets/icons/sun.svg";
+import CopyIcon from "@assets/icons/copy.svg";
+import CheckIcon from "@assets/icons/check.svg";
 import "@assets/stylesheets/layout/CodeOutput.css";
 
 const codeJs = `
@@ -45,12 +44,7 @@ const CodeOutput = () => {
   };
   return (
     <section id="code-output">
-      {/* <button id="play-btn">
-        Run
-        <img src={PlayIcon} alt="" />
-      </button> */}
-      
-      <div id="code-header">
+      <div id="section-header">
         <div>
           <input type="checkbox" id="darkmode-toggle" onChange={isCheck} />
           <label htmlFor="darkmode-toggle">

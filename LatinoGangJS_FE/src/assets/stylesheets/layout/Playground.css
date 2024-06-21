@@ -16,3 +16,30 @@
   opacity: 0.25;
   pointer-events: none;
 }
+.btn-section {
+  width: 6em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5em;
+  cursor: pointer;
+  gap: 0.5em;
+  font-weight: 600;
+  font-size: 1em;
+  margin: 1em ;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+.clean{
+  background: var(--secondary_color-400);
+}
+.clean:hover{
+  background: var(--secondary_color-500);
+}
+.play{
+  background: var(--tertiary_color-300);
+}
+.play:hover{
+  background: var(--tertiary_color-400);
+}
