@@ -1,7 +1,5 @@
-import React from "react";
-
 export interface CodeBlock {
   id?:string;
-  content: React.ReactNode;
+  children:  JSX.Element;
   index?:number;
 }

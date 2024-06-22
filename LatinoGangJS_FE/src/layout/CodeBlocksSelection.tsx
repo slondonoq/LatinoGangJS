@@ -50,8 +50,7 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
       </aside>
       <div className='blocks-container'>
         <h3 id='variables'>Variables</h3>
-      <Block content={<AssignBlock />}/>
-
+      <Block children={<AssignBlock />}/>
       <OperationAssignBlock />
       <h3 id='operadores'>Operadores</h3>
       <BinaryOperator />

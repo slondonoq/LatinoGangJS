@@ -8,6 +8,7 @@ import {useState} from "react";
 import {CodeBlock} from "@components/types.tsx";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+import { v4 } from 'uuid';
 // import {BlockProps} from "@components/types.tsx";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     if (id !== undefined){
       setBlocks((prevBlocks) => prevBlocks.filter((block) => block.id !== id));
     }
+    console.log(id,blocks)
   };
 
   //Agregar o Modificar bloque
@@ -30,9 +32,22 @@ function App() {
         updatedBlocks[blockIndex] = block;
         return updatedBlocks;
       } else {
-        return [...prevBlocks, { ...block, id:"block"+prevBlocks.length, index: prevBlocks.length }];
+        return [...prevBlocks, { ...block, id:v4(), index: prevBlocks.length }];
       }
     });
+  };
+
+  const moveBlock = (dragIndex: number, hoverIndex: number) => {
+    const updatedBlocks = [...blocks];
+    const [removed] = updatedBlocks.splice(dragIndex, 1);
+    updatedBlocks.splice(hoverIndex, 0, removed);
+
+    const reindexedBlocks = updatedBlocks.map((block, index) => ({
+      ...block,
+      index,
+    }));
+
+    setBlocks(reindexedBlocks);
   };
 
 
@@ -55,7 +70,7 @@ function App() {
       <DndProvider backend={HTML5Backend}>
         <TopBar />
         <CodeBlockSelection onDrop={handleRemoveBlock}/>
-        <Playground blocks={blocks} onDrop={handleAddOrUpdateBlock} />
+        <Playground blocks={blocks} onDrop={handleAddOrUpdateBlock} moveBlock={moveBlock} />
         <CodeOutput />
       </DndProvider>
     </>

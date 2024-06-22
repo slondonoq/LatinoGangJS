@@ -12,24 +12,11 @@ import {ItemTypes} from "@components/ItemTypes.tsx";
 interface PlaygroundProps {
   blocks: CodeBlock[];
   onDrop: (block: CodeBlock) => void;
+  moveBlock:(dragIndex: number, hoverIndex: number) => void;
 }
 
-const Playground: React.FC<PlaygroundProps>= ({blocks,onDrop}) => {
+const Playground: React.FC<PlaygroundProps>= ({blocks,onDrop,moveBlock}) => {
   // TODO: implement layout section
-
-
-  // const moveBlock = (dragIndex: number, dropIndex: number) => {
-  //   const updatedBlocks = [...blocks];
-  //   const draggedBlock = updatedBlocks[dragIndex];
-  //
-  //   // Remove the dragged block from its current position
-  //   updatedBlocks.splice(dragIndex, 1);
-  //
-  //   // Insert the dragged block at the dropped index
-  //   updatedBlocks.splice(dropIndex, 0, draggedBlock);
-  //
-  //   setBlocks(updatedBlocks);
-  // };
 
   const [,drop] = useDrop({
 
@@ -45,11 +32,12 @@ const Playground: React.FC<PlaygroundProps>= ({blocks,onDrop}) => {
         <p>Block stacking editor goes here</p>
         <div className="blocks" >
           {blocks.map((block, index) => (
-            <div key={index}>
+            <div key={block.id}>
               <Block
                 id={block.id}
-                content={block.content}
+                children={block.children}
                 index = {index}
+                moveBlock = {moveBlock}
               />
             </div>
           ))}
