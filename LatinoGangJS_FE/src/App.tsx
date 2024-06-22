@@ -4,10 +4,38 @@ import Playground from '@layout/Playground'
 import CodeBlockSelection from '@layout/CodeBlocksSelection'
 import CodeOutput from '@layout/CodeOutput'
 import TopBar from '@layout/TopBar'
-import DndContext from "@components/DndContext.tsx";
+import {useState} from "react";
+import {CodeBlock} from "@components/types.tsx";
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 // import {BlockProps} from "@components/types.tsx";
 
 function App() {
+  const [blocks, setBlocks] = useState<CodeBlock[]>([]);
+
+  // Eliminación de bloques
+  const handleRemoveBlock = (id?: string) => {
+    if (id !== undefined){
+      setBlocks((prevBlocks) => prevBlocks.filter((block) => block.id !== id));
+    }
+  };
+
+  //Agregar o Modificar bloque
+  const handleAddOrUpdateBlock = (block: CodeBlock) => {
+    setBlocks((prevBlocks) => {
+      const blockIndex = prevBlocks.findIndex(b => b.id === block.id);
+      console.log(blocks)
+      if (blockIndex !== -1) {
+        const updatedBlocks = [...prevBlocks];
+        updatedBlocks[blockIndex] = block;
+        return updatedBlocks;
+      } else {
+        return [...prevBlocks, { ...block, id:"block"+prevBlocks.length, index: prevBlocks.length }];
+      }
+    });
+  };
+
+
 
 
   // const handleDrop = (item: {type:string}) => {
@@ -24,12 +52,12 @@ function App() {
 
   return (
     <>
-      <DndContext>
+      <DndProvider backend={HTML5Backend}>
         <TopBar />
-        <CodeBlockSelection />
-        <Playground />
+        <CodeBlockSelection onDrop={handleRemoveBlock}/>
+        <Playground blocks={blocks} onDrop={handleAddOrUpdateBlock} />
         <CodeOutput />
-      </DndContext>
+      </DndProvider>
     </>
   )
 }

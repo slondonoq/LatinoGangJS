@@ -14,11 +14,24 @@ import React from "react";
 // import {ItemTypes} from "@components/ItemTypes.tsx";
 // import {CodeBlock} from "@components/types.tsx";
 import Block from "../Block.tsx";
+import {ItemTypes} from "@components/ItemTypes.tsx";
+import {CodeBlock} from "@components/types.tsx";
+import {useDrop} from "react-dnd";
 
-const CodeBlockSelection:React.FC = () => {
+interface CodeBlockSelectionProps {
+  onDrop: (id?:string) => void;
+}
+
+const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
+  const [,drop] = useDrop({
+    accept: ItemTypes.BLOCK,
+    drop: (block: CodeBlock) => {
+      onDrop(block.id);
+    },
+  });
     // TODO: implement layout section
   return(
-    <section id="block-selection">
+    <section id="block-selection" ref={drop}>
       <aside id="block-type-nav">
         <ul>
           <li>
