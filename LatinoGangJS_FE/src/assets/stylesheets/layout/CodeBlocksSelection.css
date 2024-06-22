@@ -91,3 +91,13 @@
 #block-selection aside a#bucles-tag::before {
   background-color: #2e7c22;
 }
+#block-selection aside a#funciones-tag::before {
+  background-color: #f5a623;
+}
+#block-selection aside a#listas-tag::before {
+  background-color: #cf3917;
+}
+#block-selection aside a#diccionarios-tag::before {
+  background-color: #cf1797;
+}
+
