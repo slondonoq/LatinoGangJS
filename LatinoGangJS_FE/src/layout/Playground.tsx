@@ -11,19 +11,23 @@ import {ItemTypes} from "@components/ItemTypes.tsx";
 
 interface PlaygroundProps {
   blocks: CodeBlock[];
-  onDrop: (block: CodeBlock) => void;
-  moveBlock:(dragIndex: number, hoverIndex: number) => void;
+  // onDrop: (block: CodeBlock) => void;
+  moveBlock:(id: string, atIndex: number) => void;
+  findBlock:(id:string)=>{index:number};
 }
 
-const Playground: React.FC<PlaygroundProps>= ({blocks,onDrop,moveBlock}) => {
+const Playground: React.FC<PlaygroundProps>= ({blocks,moveBlock,findBlock}) => {
   // TODO: implement layout section
 
   const [,drop] = useDrop({
-
     accept: ItemTypes.BLOCK,
-    drop: (block: CodeBlock) => {
-      onDrop(block);
-    },
+    drop:() =>{
+      console.log("bloques en Playground:",blocks)
+
+    }
+    // drop: (block: CodeBlock) => {
+    //   onDrop(block);
+    // },
   });
 
   return(
@@ -31,13 +35,14 @@ const Playground: React.FC<PlaygroundProps>= ({blocks,onDrop,moveBlock}) => {
         <img src={logo_no_bg} id='watermark'/>
         <p>Block stacking editor goes here</p>
         <div className="blocks" >
-          {blocks.map((block, index) => (
+          {blocks.map((block) => (
             <div key={block.id}>
               <Block
+                key={block.id}
                 id={block.id}
                 children={block.children}
-                index = {index}
                 moveBlock = {moveBlock}
+                findBlock = {findBlock}
               />
             </div>
           ))}

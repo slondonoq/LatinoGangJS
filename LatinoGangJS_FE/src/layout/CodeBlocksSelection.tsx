@@ -20,9 +20,11 @@ import {useDrop} from "react-dnd";
 
 interface CodeBlockSelectionProps {
   onDrop: (id?:string) => void;
+  moveBlock:(id: string, atIndex: number) => void;
+  findBlock:(id:string)=>{index:number};
 }
 
-const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
+const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop ,moveBlock,findBlock}) => {
   const [,drop] = useDrop({
     accept: ItemTypes.BLOCK,
     drop: (block: CodeBlock) => {
@@ -50,7 +52,7 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
       </aside>
       <div className='blocks-container'>
         <h3 id='variables'>Variables</h3>
-      <Block children={<AssignBlock />}/>
+      <Block children={<AssignBlock />} moveBlock={moveBlock} findBlock={findBlock}/>
       <OperationAssignBlock />
       <h3 id='operadores'>Operadores</h3>
       <BinaryOperator />
