@@ -5,37 +5,18 @@ import {CodeBlock} from "@components/types.tsx";
 import React from "react";
 import {ItemTypes} from "@components/ItemTypes.tsx";
 
-const Block: React.FC<CodeBlock> = ({ id,content,index }) => {
+const Block: React.FC<CodeBlock> = ({ id,content,index, delFunction, replaceFunction }) => {
   // const ref = useRef<HTMLDivElement>(null)
-  const [, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BLOCK,
-    item: {id,content,index},
+    item: {id,content,index, delFunction, replaceFunction},
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
-    // hover(item:CodeBlock,monitor:DragSourceMonitor){
-    //   if (!ref.current) {
-    //     return
-    //   }
-    //   const dragIndex = item.index
-    //   const hoverIndex = index
-    //
-    //   if (dragIndex === hoverIndex) {
-    //     return
-    //   }
-    //
-    //   const hoverBoundingRect = ref.current?.getBoundingClientRect()
-    //   const hoverMiddleY =
-    //     (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-    //
-    //   const clientOffset = monitor.getClientOffset()
-    //
-    //   const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
-    // }
   }));
 
   return (
-    <div ref={drag} id={id} className="code-block">
+    <div ref={drag} id={id} className={`code-block ${isDragging && 'code-block--dragged'}`}>
       {content}
     </div>
   );

@@ -24,7 +24,6 @@ function App() {
   const handleAddOrUpdateBlock = (block: CodeBlock) => {
     setBlocks((prevBlocks) => {
       const blockIndex = prevBlocks.findIndex(b => b.id === block.id);
-      console.log(blocks)
       if (blockIndex !== -1) {
         const updatedBlocks = [...prevBlocks];
         updatedBlocks[blockIndex] = block;
@@ -55,7 +54,7 @@ function App() {
       <DndProvider backend={HTML5Backend}>
         <TopBar />
         <CodeBlockSelection onDrop={handleRemoveBlock}/>
-        <Playground blocks={blocks} onDrop={handleAddOrUpdateBlock} />
+        <Playground />
         <CodeOutput />
       </DndProvider>
     </>

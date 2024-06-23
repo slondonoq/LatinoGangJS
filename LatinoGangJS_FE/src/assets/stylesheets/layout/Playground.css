@@ -1,8 +1,6 @@
 #playground {
   position: relative;
   background-color: var(--background_color-dark);
-  overflow-y: scroll;
-  overflow-x: scroll;
 }
 
 #watermark {
@@ -15,4 +13,17 @@
   transform: translate(-50%, -50%);
   opacity: 0.25;
   pointer-events: none;
+}
+
+#playground .blocks {
+  overflow-y: scroll;
+  overflow-x: scroll;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
 }

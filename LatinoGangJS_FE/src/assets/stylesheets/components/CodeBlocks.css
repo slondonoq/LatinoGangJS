@@ -102,7 +102,7 @@
 .block__sentence::after {
   content: '';
   position: absolute;
-  bottom: -0.38em;
+  bottom: -0.29em;
   left: 0.75em;
   border-left: 0.3em solid transparent;
   border-right: 0.3em solid transparent;
@@ -133,4 +133,57 @@
 
 .block__iterator--end::before, .block__iterator::after {
   left: 1.75em;
+}
+
+.block__placeholder {
+  min-height: 1em;
+  background-color: aqua;
+}
+
+.block__placeholder--reduced {
+  min-height: 0.125em;
+}
+
+.block__placeholder--text {
+  background-color: var(--background_color-dark);
+  padding: 0.125em 0.5em;
+  border-radius: 0.25em;
+  font-size: 0.9em;
+}
+
+.block--preview .block__placeholder,
+#block-selection .block__placeholder {
+  pointer-events: none;
+}
+
+.block--preview {
+  position: relative;
+  display: block;
+  width: max-content;
+}
+
+.block--preview .block {
+  background-color: var(--tertiary_color-100);
+}
+
+.block--preview .block__sentence::after {
+  border-top: 0.4em solid var(--tertiary_color-100);
+}
+
+.block--preview::after {
+  content: '';
+  position: absolute;
+  top: 0.25em;
+  left: 0.25em;
+  width: calc(100% - 0.5em);
+  height: calc(100% - 0.5em);
+  background-color: var(--tertiary_color-100);
+}
+
+.block__placeholder--block-container .block__sentence::before {
+  border-top: 0.4em solid var(--background_color-dark);
+}
+
+.code-block--dragged  * {
+  display: none;
 }

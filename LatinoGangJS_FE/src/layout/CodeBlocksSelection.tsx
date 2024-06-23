@@ -19,16 +19,23 @@ import {CodeBlock} from "@components/types.tsx";
 import {useDrop} from "react-dnd";
 
 interface CodeBlockSelectionProps {
-  onDrop: (id?:string) => void;
+  onDrop: (block:CodeBlock) => void;
 }
 
 const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
   const [,drop] = useDrop({
     accept: ItemTypes.BLOCK,
     drop: (block: CodeBlock) => {
-      onDrop(block.id);
+      onDrop(block);
     },
   });
+
+  onDrop = (block: CodeBlock) => {
+    if(block.delFunction) {
+      block.delFunction()
+    }
+  }
+
     // TODO: implement layout section
   return(
     <section id="block-selection" ref={drop}>
@@ -54,9 +61,9 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
 
       <OperationAssignBlock />
       <h3 id='operadores'>Operadores</h3>
-      <BinaryOperator />
+      <Block content={<BinaryOperator />}/>
       <h3 id='comparadores'>Comparadores</h3>
-      <BinaryLogicOperator />
+      <Block content={<BinaryLogicOperator />}/>
       <h3 id='bucles'>Bucles</h3>
       <p>Desde</p>
       <ForBlock />
