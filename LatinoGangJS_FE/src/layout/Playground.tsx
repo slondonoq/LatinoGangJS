@@ -4,18 +4,12 @@ import logo_no_bg from '@assets/img/logo_no_background.png'
 import {useDrop} from 'react-dnd'
 import { v4 } from 'uuid'
 import _ from 'lodash'
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {CodeBlock, Data, ElementsData} from "@components/types.tsx"
 
 import Block from "../Block.tsx"
 import {ItemTypes} from "@components/ItemTypes.tsx"
 import BlockPlaceholder from '@components/BlockPlaceholder.tsx'
-// import {ItemTypes} from "@components/ItemTypes.tsx";
-
-// interface PlaygroundProps {
-//   blocks: CodeBlock[];
-//   onDrop: (block: CodeBlock) => void;
-// }
 
 const Playground = () => {
   // TODO: implement layout section
@@ -25,11 +19,6 @@ const Playground = () => {
   })
 
   const[elements, setElements] = useState<ElementsData>({})
-
-  useEffect(() => {
-    console.log('Code data was changed')
-  }, [codeData])
-
 
   const [{ isOver },drop] = useDrop({
 
@@ -47,8 +36,6 @@ const Playground = () => {
   const onDrop = async (block: CodeBlock, blockParent?: string, changeRoot?: boolean) => {
     if(block.id && elements[block.id]) {
       if ((blockParent !== block.id)) {
-        console.log('Before entering function')
-        console.log(codeData)
         await moveElem(block, blockParent, changeRoot)
       }
     }
@@ -60,7 +47,6 @@ const Playground = () => {
 
   const createElem = async (block: CodeBlock, blockParent?: string, changeRoot?: boolean) => {
     const newId = v4()
-    console.log('Added:', newId)
     const newData: Data = _.cloneDeep(codeData)
     
 
@@ -106,11 +92,7 @@ const Playground = () => {
   }
 
   const moveElem = async (block: CodeBlock, newBlockParent?: string, changeRoot?: boolean) => {
-    console.log('Data before cloning inside function')
-    console.log(codeData)
     const newData: Data = _.cloneDeep(codeData)
-    console.log('Just after entering move')
-    console.log(newData)
 
     // Deleting block from previous relation
     if (newData.rootElems.findIndex(elem => elem == block.id) != -1) {
@@ -136,7 +118,6 @@ const Playground = () => {
       if (currentRootIndex != -1) {
         // Adding old root to the end of block
         newData.sentence_relations[currentBlockEnd ?? ''].sent_child = newBlockParent
-        console.log(newData)
 
         newData.rootElems = newData.rootElems.slice(0, currentRootIndex)
           .concat([block.id ?? '']).concat(newData.rootElems.slice(currentRootIndex+1))
@@ -145,22 +126,20 @@ const Playground = () => {
         newData.sentence_relations[newBlockParent ?? ''].sent_parent = currentBlockEnd
         // Seting new elem relations
         newData.sentence_relations[block.id ?? ''].sent_parent = undefined
-        // setCodeData(newData)
       }
     }
     else if (newBlockParent) {
       //Save parent's previous child
       const oldChild = newData.sentence_relations[newBlockParent].sent_child
-      console.log(currentBlockEnd)
       // Change relations
       newData.sentence_relations[newBlockParent].sent_child = block.id
       newData.sentence_relations[block.id ?? ''].sent_parent = newBlockParent
       newData.sentence_relations[currentBlockEnd ?? ''].sent_child = oldChild
+      newData.sentence_relations[oldChild ?? ''].sent_parent = currentBlockEnd
     }
     else {
       // This option is left here in case we plan to allow x,y movement of pieces
       newData.rootElems = newData.rootElems.concat([block.id ?? ''])
-      // setCodeData(newData)
     }
     setCodeData(newData)
 
@@ -196,10 +175,7 @@ const Playground = () => {
               <div key={`rootContainer-${elemId}`}>
                 <BlockPlaceholder
                   key={`root-${elemId}`}
-                  onDrop={(block: CodeBlock) => {
-                    onDrop(block, elemId, true)
-                    // console.log(codeData)
-                  }} 
+                  onDrop={(block: CodeBlock) => onDrop(block, elemId, true)} 
                 />
                 {renderElem(elemId)}
               </div>
