@@ -2,7 +2,7 @@ import { useDrop } from 'react-dnd'
 import {ItemTypes} from "@components/ItemTypes.tsx"
 import { CodeBlock, PlaceholderBlock } from "@components/types.tsx"
 import React, { useEffect, useState } from 'react'
-import Block from '../Block'
+import Block from './Block'
 
 const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderText, defaultContent, onDrop }) => {
 

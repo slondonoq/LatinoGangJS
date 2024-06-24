@@ -1,4 +1,4 @@
-import BlockPlaceholder from '@components/BlockPlaceholder'
+import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
 
 const AssignBlock = () => {
   

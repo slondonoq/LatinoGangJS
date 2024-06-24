@@ -26,7 +26,7 @@
 }
 
 .block__function--end {
-  border-radius: 0em 0.25em 0.25em 0;
+  border-radius: 0em 0.25em 0.25em 0.25em;
   min-width: 8em;
 }
 
@@ -37,4 +37,12 @@
 .block__function--end::before,
 .block__function::after {
   left: 1.75em;
+}
+
+.block__function--end::after {
+  left: 0.75em;
+}
+
+.block__function--call {
+  border-radius: 0.25em;
 }

@@ -20,7 +20,7 @@ import DicElement from '@components/structures/DicElement'
 import React from "react";
 // import {ItemTypes} from "@components/ItemTypes.tsx";
 // import {CodeBlock} from "@components/types.tsx";
-import Block from "../Block.tsx";
+import Block from "@components/dragNdrop/Block.tsx";
 import {ItemTypes} from "@components/ItemTypes.tsx";
 import {CodeBlock} from "@components/types.tsx";
 import {useDrop} from "react-dnd";
@@ -29,19 +29,13 @@ interface CodeBlockSelectionProps {
   onDrop: (block:CodeBlock) => void;
 }
 
-const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
+const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({  onDrop }) => {
   const [,drop] = useDrop({
     accept: ItemTypes.BLOCK,
     drop: (block: CodeBlock) => {
       onDrop(block);
     },
   });
-
-  onDrop = (block: CodeBlock) => {
-    if(block.delFunction) {
-      block.delFunction()
-    }
-  }
 
     // TODO: implement layout section
   return(
@@ -82,7 +76,7 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
       <Block content={<BinaryLogicOperator />}/>
       <h3 id='bucles'>Bucles</h3>
       <p>Desde</p>
-      <ForBlock />
+      <Block content={<ForBlock />} />
       <p>Para ... en rango</p>
       <RangeBlock range_n_values={1}/>
       <RangeBlock range_n_values={2}/>
