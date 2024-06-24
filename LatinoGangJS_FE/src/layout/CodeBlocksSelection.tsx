@@ -8,6 +8,13 @@ import BinaryLogicOperator from '@components/operators/BinaryLogicOperator'
 import BinaryOperator from '@components/operators/BinaryOperator'
 import AssignBlock from '@components/variables/AssignBlock'
 import OperationAssignBlock from '@components/variables/OperationAssignBlock'
+import ReturnBlock from '@components/functions/ReturnBlock'
+import FunctionBlock from '@components/functions/FunctionBlock'
+import AnonymousFunBlock from '@components/functions/AnonymousFunBlock'
+import FunCall from '@components/functions/FunCall'
+import Lists from '@components/structures/Lists'
+import Dictionaries from '@components/structures/Dictionaries'
+import DicElement from '@components/structures/DicElement'
 
 // import { useDrop } from 'react-dnd';
 import React from "react";
@@ -53,6 +60,15 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
           <li>
             <a href="#bucles" id="bucles-tag"> Bucles </a>
           </li>
+          <li>
+            <a href="#funciones" id='funciones-tag'> Funciones </a>
+          </li>
+          <li>
+            <a href="#listas" id='listas-tag'> Listas </a>
+          </li>
+          <li>
+            <a href="#diccionarios" id='diccionarios-tag'> Diccionarios </a>
+          </li>
         </ul>
       </aside>
       <div className='blocks-container'>
@@ -76,7 +92,24 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({onDrop}) => {
       <WhileBlock />
       <p>Repetir ... hasta</p>
       <DoWhileBlock />
+      <h3 id='funciones'>Funciones</h3>
+      <p>Función</p>
+      <FunctionBlock />
+      <p>Función anónima</p>
+      <AnonymousFunBlock />
+      <p>Retorno</p>
+      <ReturnBlock />
+      <p>Llamado</p>
+      <FunCall />
+      <h3 id='listas'>Listas</h3>
+      <Lists />
+      <h3 id='diccionarios'>Diccionarios</h3>
+      <p>Diccionario</p>
+      <Dictionaries />
+      <p>Clave - Valor</p>
+      <DicElement />
       </div>
+
     </section>
   )
 }
