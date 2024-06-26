@@ -40,6 +40,8 @@
 
 #block-selection aside {
   background-color: rgb(73, 60, 93);
+  height: calc(100vh - 4em);
+  overflow-y: scroll;
   /* background-color: var(--primary_color-600); */
 }
 
