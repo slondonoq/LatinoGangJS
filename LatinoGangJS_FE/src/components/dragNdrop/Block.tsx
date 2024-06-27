@@ -18,6 +18,7 @@ const Block: React.FC<CodeBlock> = ({ id,content,index, delFunction, replaceFunc
   return (
     <div ref={drag} id={id} className={`code-block ${isDragging && 'code-block--dragged'}`}>
       {content}
+      {/* TODO: fin block separation can go here when diff block types are defined */}
     </div>
   );
 };
