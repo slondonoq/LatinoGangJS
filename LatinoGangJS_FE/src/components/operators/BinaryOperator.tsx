@@ -1,3 +1,6 @@
+import { ItemTypes } from "@components/ItemTypes"
+import BlockPlaceholder from "@components/dragNdrop/BlockPlaceholder"
+
 const BinaryOperator = (props:any) => {
 
   return(
@@ -22,7 +25,7 @@ const BinaryOperator = (props:any) => {
           </select>
         </>
       }
-      <input type="text" placeholder='valor'/>
+      <BlockPlaceholder placeholderText="valor" itemsTypes={[ItemTypes.SENTENCE]}/>
     </span>
   )
 }

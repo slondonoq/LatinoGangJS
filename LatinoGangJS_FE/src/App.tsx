@@ -18,12 +18,14 @@ function App() {
 
   const [codeData, setCodeData] = useState<Data>({
     rootElems: [],
-    sentence_relations: {}
+    sentence_relations: {},
+    nested_relations: {}  
   })
 
   const[elements, setElements] = useState<ElementsData>({})
 
   const onDrop = (block: CodeBlock, blockParent?: string, changeRoot?: boolean) => {
+    console.log('Dropping item', block)
     if(block.id && elements[block.id]) {
       if ((blockParent !== block.id)) {
         moveElem(block, blockParent, changeRoot)
@@ -35,16 +37,19 @@ function App() {
   }
 
   const createElem = (block: CodeBlock, blockParent?: string, changeRoot?: boolean) => {
+    console.log('Creating elem')
     const newId = v4()
     const newData: Data = _.cloneDeep(codeData)
     
 
     if(!blockParent) {
+      console.log('No parent')
       newData.rootElems = newData.rootElems.concat([newId]),
       newData.sentence_relations[newId] = {
         sent_parent: undefined,
         sent_child: undefined
       }
+
     }
     else{
       if(changeRoot) {
@@ -69,6 +74,7 @@ function App() {
           sent_child: oldSentenceChild,
           sent_parent: blockParent
         }
+        console.log(newData.sentence_relations[newId])
         //Setting child for parent
         newData.sentence_relations[blockParent].sent_child = newId
       }
@@ -78,6 +84,7 @@ function App() {
       [newId]: <>{block.content}</>
     })
     setCodeData(newData)
+    console.log(elements, codeData)
   }
 
   const moveElem = (block: CodeBlock, newBlockParent?: string, changeRoot?: boolean) => {
@@ -130,6 +137,10 @@ function App() {
       // This option is left here in case we plan to allow x,y movement of pieces
       newData.rootElems = newData.rootElems.concat([block.id ?? ''])
     }
+
+   /*  const nestedBlock = Object.keys(codeData.nested_relations).filter(key => codeData.nested_relations[key] === block.id)
+ */
+
     setCodeData(newData)
 
     return newData

@@ -147,6 +147,10 @@
 .block__placeholder--reduced {
   min-height: 0.125em;
 }
+.block__placeholder--sentence {
+  min-height: 0;
+
+}
 
 .block__placeholder--text {
   background-color: var(--background_color-dark);

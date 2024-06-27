@@ -4,15 +4,47 @@ import { CodeBlock, PlaceholderBlock } from "@components/types.tsx"
 import React, { useEffect, useState } from 'react'
 import Block from './Block'
 
-const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderText, defaultContent, onDrop }) => {
-
+const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderText, defaultContent, onDrop, itemsTypes=[ItemTypes.BLOCK, ItemTypes.SENTENCE] }) => {
+  
   const [{ isOver, hoveredBlock },drop] = useDrop({
-
-    accept: ItemTypes.BLOCK,
+    
+    accept: itemsTypes,
     drop: (block: CodeBlock) => {
+      console.log('Dropped')
       if(isOver) {
         onDrop ? onDrop(block) : () => console.log('No drop func');
+        !(itemsTypes.includes(ItemTypes.BLOCK)) ?
+        (setReplacementBlock(
+          <>
+            <Block
+              content={
+                <>
+                  {block.content}
+                  {replacementBlock.props?.children}
+                </>
+              }
+              delFunction={delFunction}
+              replaceFunction={replaceFunction}
+            />  
+          </>
+         ) )
+        : null
+        /* (setReplacementBlock(
+          <>
+            <Block
+              content={
+                <>
+                  {block.content}
+                  {replacementBlock.props?.children}
+                </>
+              }
+              delFunction={delFunction}
+              replaceFunction={replaceFunction}
+            />  
+          </>
+        );) */
       }
+      
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver({ shallow: true }),
@@ -24,7 +56,7 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
   const [ blockPreview, setBlockPreview ] = useState<JSX.Element>(<></>)
 
   useEffect(() => {
-    // console.log(defaultContent)
+    //console.log(defaultContent)
     if(defaultContent && !replacementBlock.props?.children) {
       setReplacementBlock(
         <>
@@ -95,6 +127,18 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
     //     />
     //   </>
     // )
+    setReplacementBlock(
+      <Block
+        content={
+          <>
+            {newTopContent}
+            <BlockPlaceholder defaultContent={replacementBlock}/>
+          </>
+        }
+        delFunction={delFunction}
+        replaceFunction={replaceFunction}
+      />
+    );
   }
 
   return (

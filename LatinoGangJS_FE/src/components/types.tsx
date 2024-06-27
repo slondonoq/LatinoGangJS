@@ -11,6 +11,7 @@ export interface PlaceholderBlock {
   placeholderText?: string,
   defaultContent?: JSX.Element,
   onDrop?: Function
+  itemsTypes?: string[]
 }
 
 export interface Sentence_rel {
@@ -21,6 +22,7 @@ export interface Sentence_rel {
 export interface Data {
   rootElems: string[],
   sentence_relations: {[id: string] : Sentence_rel }
+  nested_relations: {[id: string] : string[]}
 }
 
 export interface ElementsData {

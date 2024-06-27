@@ -5,6 +5,7 @@ import Block from "@components/dragNdrop/Block.tsx"
 import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder.tsx'
 import {ItemTypes} from "@components/ItemTypes.tsx"
 import {CodeBlock, Data, ElementsData} from "@components/types.tsx"
+import SentenceBlock from '@components/dragNdrop/SentenceBlock'
 
 interface PlaygroundInterface {
   codeData: Data,
@@ -16,7 +17,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop 
 
   const [{ isOver },drop] = useDrop({
 
-    accept: ItemTypes.BLOCK,
+    accept: [ItemTypes.BLOCK, ItemTypes.SENTENCE],
     drop: (block: CodeBlock) => {
       if(isOver) {
         onDrop(block);
@@ -25,26 +26,29 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop 
     collect: (monitor) => ({
       isOver: !!monitor.isOver({ shallow: true }),
     })
+    
   });
 
-  const renderElem = (elemId: string) => (
-    <>
-      <Block id={elemId} key={elemId} content={
+  const renderElem = (elemId: string) => {
+      return (
         <>
-          {elements[elemId].props?.children}
-          <BlockPlaceholder
-            key={`placeholder-${elemId}`}
-            isReduced={Boolean(codeData.sentence_relations[elemId].sent_child)}
-            onDrop={(block: CodeBlock)=> onDrop(block, elemId)}
-          />
-          {
-            codeData.sentence_relations[elemId].sent_child 
-              ? renderElem(codeData.sentence_relations[elemId].sent_child ?? '') 
-              : null}
+          <Block id={elemId} key={elemId} content={
+            <>
+              {elements[elemId].props?.children}
+              <BlockPlaceholder
+                key={`placeholder-${elemId}`}
+                isReduced={Boolean(codeData.sentence_relations[elemId].sent_child)}
+                onDrop={(block: CodeBlock)=> onDrop(block, elemId)}
+              />
+              {
+                codeData.sentence_relations[elemId].sent_child 
+                  ? renderElem(codeData.sentence_relations[elemId].sent_child ?? '') 
+                  : null}
+            </>
+          }/>
         </>
-      }/>
-    </>
-  )
+      );
+    }
 
   return(
       <section id="playground">

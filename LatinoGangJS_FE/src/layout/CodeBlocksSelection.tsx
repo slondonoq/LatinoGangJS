@@ -24,6 +24,7 @@ import Block from "@components/dragNdrop/Block.tsx";
 import {ItemTypes} from "@components/ItemTypes.tsx";
 import {CodeBlock} from "@components/types.tsx";
 import {useDrop} from "react-dnd";
+import SentenceBlock from '@components/dragNdrop/SentenceBlock'
 
 interface CodeBlockSelectionProps {
   onDrop: (block:CodeBlock) => void;
@@ -31,7 +32,7 @@ interface CodeBlockSelectionProps {
 
 const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({  onDrop }) => {
   const [,drop] = useDrop({
-    accept: ItemTypes.BLOCK,
+    accept: [ItemTypes.BLOCK, ItemTypes.SENTENCE],
     drop: (block: CodeBlock) => {
       onDrop(block);
     },
@@ -71,7 +72,7 @@ const CodeBlockSelection:React.FC<CodeBlockSelectionProps> = ({  onDrop }) => {
 
       <OperationAssignBlock />
       <h3 id='operadores'>Operadores</h3>
-      <Block content={<BinaryOperator />}/>
+      <SentenceBlock content={<BinaryOperator />}/>
       <h3 id='comparadores'>Comparadores</h3>
       <Block content={<BinaryLogicOperator />}/>
       <h3 id='bucles'>Bucles</h3>
