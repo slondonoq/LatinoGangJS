@@ -6,7 +6,7 @@ import CodeOutput from '@layout/CodeOutput'
 import TopBar from '@layout/TopBar'
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import {useDrop} from 'react-dnd'
+// import {useDrop} from 'react-dnd'
 import { v4 } from 'uuid'
 import _ from 'lodash'
 import { useState } from "react";
@@ -44,7 +44,7 @@ function App() {
 
     if(!blockParent) {
       console.log('No parent')
-      newData.rootElems = newData.rootElems.concat([newId]),
+      newData.rootElems = newData.rootElems.concat([newId])
       newData.sentence_relations[newId] = {
         sent_parent: undefined,
         sent_child: undefined
@@ -131,7 +131,7 @@ function App() {
       newData.sentence_relations[newBlockParent].sent_child = block.id
       newData.sentence_relations[block.id ?? ''].sent_parent = newBlockParent
       newData.sentence_relations[currentBlockEnd ?? ''].sent_child = oldChild
-      newData.sentence_relations[oldChild ?? ''].sent_parent = currentBlockEnd
+      oldChild ? newData.sentence_relations[oldChild ?? ''].sent_parent = currentBlockEnd:null
     }
     else {
       // This option is left here in case we plan to allow x,y movement of pieces
