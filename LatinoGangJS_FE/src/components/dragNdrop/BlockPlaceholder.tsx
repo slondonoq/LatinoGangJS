@@ -3,6 +3,7 @@ import {ItemTypes} from "@components/ItemTypes.tsx"
 import { CodeBlock, PlaceholderBlock } from "@components/types.tsx"
 import React, { useEffect, useState } from 'react'
 import Block from './Block'
+import SentenceBlock from './SentenceBlock'
 
 const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderText, defaultContent, onDrop, itemsTypes=[ItemTypes.BLOCK, ItemTypes.SENTENCE] }) => {
   
@@ -16,7 +17,7 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
         !(itemsTypes.includes(ItemTypes.BLOCK)) ?
         (setReplacementBlock(
           <>
-            <Block
+            <SentenceBlock
               content={
                 <>
                   {block.content}
@@ -58,6 +59,7 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
   useEffect(() => {
     //console.log(defaultContent)
     if(defaultContent && !replacementBlock.props?.children) {
+
       setReplacementBlock(
         <>
           <Block
@@ -144,7 +146,8 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
   return (
     <span>
       <div ref={drop} className={`block__placeholder ${
-        replacementBlock.props?.children || isReduced
+        (replacementBlock.props?.children?.type?.name === 'SentenceBlock' ) ? 'block__placeholder--sentence' :
+        replacementBlock.props?.children ||isReduced
           ? 'block__placeholder--reduced'
           : (!blockPreview.props?.children && placeholderText)
             ? 'block__placeholder--text'
