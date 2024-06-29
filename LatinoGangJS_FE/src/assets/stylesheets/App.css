@@ -1,11 +1,11 @@
 #root {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: max-content auto;
+  grid-template-columns: 2fr 3.5fr 2fr;
+  grid-template-rows: max-content calc(100vh - 4em);
 }
 
 *::-webkit-scrollbar {
@@ -15,4 +15,5 @@
 
 *::-webkit-scrollbar-thumb {
   background-color: #6200ea;
+  border-radius: 0.125em;
 }
