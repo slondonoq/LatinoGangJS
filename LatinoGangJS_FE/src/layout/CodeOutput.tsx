@@ -33,6 +33,19 @@ console.log("Fibonacci(5): " + fibonacci(5));
 console.log("Fibonacci(8): " + fibonacci(8));
 console.log("Fibonacci(12): " + fibonacci(12));
   `;
+
+const codeLatino = `
+funcion fib(n)
+    a,b = 0,1
+    mientras a < n
+        a,b = b, a+b
+        escribir(a)
+        /* uwu */
+    fin
+fin
+
+fib(250)
+`
 const CodeOutput = () => {
   // TODO: implement layout section
   const [isLight, setIsLight] = useState(true);
@@ -52,6 +65,7 @@ const CodeOutput = () => {
             <img src={MoonIcon} alt="Moon Icon" className="moon" />
           </label>
         </div>
+        
         {copy ? (
           <button className="copy-btn" >
             <img src={CheckIcon} alt="" />
@@ -73,6 +87,7 @@ const CodeOutput = () => {
           </button>
         )}
       </div>
+      <div className="output-header">Js Code</div>
       <SyntaxHighlighter
         language="javascript"
         style={isLight ? tomorrow : dracula}
@@ -82,6 +97,18 @@ const CodeOutput = () => {
         }}
       >
         {codeJs}
+      </SyntaxHighlighter>
+      <div className="output-header">Latino Code</div>
+      <SyntaxHighlighter
+        language="plaintext"
+        style={isLight ? tomorrow : dracula}
+        showLineNumbers={true}
+        customStyle={{
+          padding: "10px",
+          
+        }}
+      >
+        {codeLatino}
       </SyntaxHighlighter>
     </section>
   );

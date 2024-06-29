@@ -16,12 +16,23 @@
   background: var(--background_color-light-dark);
   padding: 0.5em;
 }
+.output-header{
+  display: flex;
+  background: var(--background_color-light-dark);
+  color: #fff;
+  border: 2px solid var(--background_color-dark);
+  height: 2em;
+  align-items: center;
+  justify-content: center;
+}
+
 pre {
   text-align: left;
   flex: 1;
-  overflow: auto;
+  overflow: scroll;
   margin: 0;
 }
+
 label{
   width: 60px;
   height: 24px;
