@@ -102,7 +102,7 @@
 .block__sentence::after {
   content: '';
   position: absolute;
-  bottom: -0.29em;
+  bottom: -0.35em;
   left: 0.75em;
   border-left: 0.3em solid transparent;
   border-right: 0.3em solid transparent;
@@ -198,4 +198,12 @@
 
 .code-block--dragged  * {
   display: none;
+}
+
+.block__start::before {
+  display: none;
+}
+
+.block__start::after {
+  border-top: 0.4em solid var(--secondary_color-500);
 }

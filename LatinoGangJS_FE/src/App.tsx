@@ -20,7 +20,8 @@ function App() {
   const [codeData, setCodeData] = useState<Data>({
     rootElems: [],
     sentence_relations: {},
-    nested_relations: {}  
+    nested_relations: {},
+    has_translation_block: false
   })
 
   const[elements, setElements] = useState<ElementsData>({})
@@ -31,8 +32,11 @@ function App() {
         moveElem(block, blockParent, changeRoot)
       }
     }
-    else {
+    else if(block.content.type.name !== 'FormBlock' || !codeData.has_translation_block) {
       createElem(block, blockParent, changeRoot)
+    }
+    else {
+      alert('Solo se puede tener un bloque de inicio')
     }
   }
 
@@ -40,6 +44,11 @@ function App() {
     console.log('Creating elem')
     const newId = v4()
     const newData: Data = _.cloneDeep(codeData)
+
+    if(block.content.type.name === 'FormBlock') {
+      newData.has_translation_block = true
+    }
+
     if (type === 'nested') {
       //logic for sentence
       console.log('Sentence')
@@ -151,6 +160,10 @@ function App() {
 
   const deleteElem = (block: CodeBlock) => {
     const newData: Data = _.cloneDeep(codeData)
+
+    if(block.content?.props?.children[0]?.type?.name === 'FormBlock') {
+      newData.has_translation_block = false
+    }
 
     const blockRootIndex: number = newData.rootElems.findIndex(elem => elem == block.id)
     if (blockRootIndex != -1) {
