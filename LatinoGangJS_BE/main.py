@@ -1,6 +1,7 @@
 import sys
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from antlr4 import *
 from grammar.gen.LatinoGrammarLexer import LatinoGrammarLexer
@@ -10,6 +11,14 @@ import io
 from contextlib import redirect_stdout
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permitir solo tu frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class TextInput(BaseModel):
     input: str

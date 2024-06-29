@@ -9,32 +9,33 @@ import SunIcon from "@assets/icons/sun.svg";
 import CopyIcon from "@assets/icons/copy.svg";
 import CheckIcon from "@assets/icons/check.svg";
 import "@assets/stylesheets/layout/CodeOutput.css";
+import {processText} from "../api/api.tsx";
 
-const codeJs = `
-  function fibonacci(num) {
-    let num1 = 0;
-    let num2 = 1;
-    let sum;
-    if (num === 1) {
-        return num1;
-    } else if (num === 2) {
-        return num2;
-    } else {
-        for (let i = 3; i <= num; i++) {
-            sum = num1 + num2;
-            num1 = num2;
-            num2 = sum;
-        }
-        return num2;
-    }
-}
+// const codeJs = `
+//   function fibonacci(num) {
+//     let num1 = 0;
+//     let num2 = 1;
+//     let sum;
+//     if (num === 1) {
+//         return num1;
+//     } else if (num === 2) {
+//         return num2;
+//     } else {
+//         for (let i = 3; i <= num; i++) {
+//             sum = num1 + num2;
+//             num1 = num2;
+//             num2 = sum;
+//         }
+//         return num2;
+//     }
+// }
+//
+// console.log("Fibonacci(5): " + fibonacci(5));
+// console.log("Fibonacci(8): " + fibonacci(8));
+// console.log("Fibonacci(12): " + fibonacci(12));
+//   `;
 
-console.log("Fibonacci(5): " + fibonacci(5));
-console.log("Fibonacci(8): " + fibonacci(8));
-console.log("Fibonacci(12): " + fibonacci(12));
-  `;
-
-const codeLatino = `
+const initialCodeLatino = `
 funcion fib(n)
     a,b = 0,1
     mientras a < n
@@ -50,25 +51,37 @@ const CodeOutput = () => {
   // TODO: implement layout section
   const [isLight, setIsLight] = useState(true);
   const [copy, setCopy] = useState(false);
+  const [codeLatino, setCodeLatino] = useState(initialCodeLatino);
+  const [codeJs, setCodeJs] = useState('');
 
   const isCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLight(!e.target.checked);
     console.log(!e.target.checked);
   };
+
+  const handleProcessText = async () => {
+    try {
+      const result = await processText(codeLatino);
+      setCodeJs(result);
+    } catch (error) {
+      console.error("Failed to process text:", error);
+    }
+  };
+
   return (
     <section id="code-output">
       <div id="section-header">
         <div>
-          <input type="checkbox" id="darkmode-toggle" onChange={isCheck} />
+          <input type="checkbox" id="darkmode-toggle" onChange={isCheck}/>
           <label htmlFor="darkmode-toggle">
-            <img src={SunIcon} alt="Sun Icon" className="sun" />
-            <img src={MoonIcon} alt="Moon Icon" className="moon" />
+            <img src={SunIcon} alt="Sun Icon" className="sun"/>
+            <img src={MoonIcon} alt="Moon Icon" className="moon"/>
           </label>
         </div>
-        
+
         {copy ? (
-          <button className="copy-btn" >
-            <img src={CheckIcon} alt="" />
+          <button className="copy-btn">
+            <img src={CheckIcon} alt=""/>
             <span>Copied!</span>
           </button>
         ) : (
@@ -82,11 +95,12 @@ const CodeOutput = () => {
             }}
             className="copy-btn"
           >
-            <img src={CopyIcon} alt="" />
+            <img src={CopyIcon} alt=""/>
             <span>Copy code</span>
           </button>
         )}
       </div>
+      <button onClick={handleProcessText}>Process Code</button>
       <div className="output-header">JavaScript Code</div>
       <SyntaxHighlighter
         language="javascript"
@@ -105,7 +119,7 @@ const CodeOutput = () => {
         showLineNumbers={true}
         customStyle={{
           padding: "10px",
-          
+
         }}
       >
         {codeLatino}
