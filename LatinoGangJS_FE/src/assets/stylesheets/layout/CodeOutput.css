@@ -1,10 +1,10 @@
 #code-output {
   background-color: var(--background_color-light);
   color: var(--text_color-dark);
-  overflow: scroll;
   display: flex;
   flex-direction: column;
   padding: 0;
+  height: calc(100vh - 4em);
 }
 
 #section-header{
@@ -20,7 +20,7 @@
   display: flex;
   background: var(--background_color-light-dark);
   color: #fff;
-  border: 2px solid var(--background_color-dark);
+  border-top: 2px solid var(--background_color-dark);
   height: 2em;
   align-items: center;
   justify-content: center;
