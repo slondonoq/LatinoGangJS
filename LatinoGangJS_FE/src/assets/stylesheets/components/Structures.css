@@ -1,0 +1,45 @@
+.block__list {
+  background-color: #cf3917;
+  border-radius: 0.25em 0.25em 0.25em 0;
+}
+
+
+.block__dic {
+  background-color: #d263d5;
+  border-radius: 0.25em 0.25em 0.25em 0;
+}
+.block__dic--container {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.block__dic--nested-block {
+  position: relative;
+  padding-left: 1em;
+  min-height: 1em;
+}
+
+.block__dic--nested-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 100%;
+  background-color: #d263d5;
+}
+
+.block__dic--end {
+  border-radius: 0em 0.25em 0.25em 0;
+  min-width: 8em;
+}
+
+.block__dic::after {
+  border-top: 0.4em solid #d263d5;
+}
+
+.block__dic--end::before,
+.block__dic::after {
+  left: 1.75em;
+}
