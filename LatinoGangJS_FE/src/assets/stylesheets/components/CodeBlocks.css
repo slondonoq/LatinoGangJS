@@ -151,6 +151,10 @@
   min-height: 0;
 
 }
+.block__start {
+  border-radius: 0.25em 0.25em 0 0;
+  background-color: var(--secondary_color-500);
+}
 
 .block__placeholder--text {
   background-color: var(--background_color-dark);

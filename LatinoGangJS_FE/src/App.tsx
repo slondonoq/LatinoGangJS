@@ -11,6 +11,7 @@ import { v4 } from 'uuid'
 import _ from 'lodash'
 import { useState } from "react";
 import {CodeBlock, Data, ElementsData} from "@components/types.tsx"
+import { ItemTypes } from '@components/ItemTypes'
 // import {BlockProps} from "@components/types.tsx";
 
 function App() {
@@ -24,8 +25,7 @@ function App() {
 
   const[elements, setElements] = useState<ElementsData>({})
 
-  const onDrop = (block: CodeBlock, blockParent?: string, changeRoot?: boolean) => {
-    console.log('Dropping item', block)
+  const onDrop = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, type?:string) => {
     if(block.id && elements[block.id]) {
       if ((blockParent !== block.id)) {
         moveElem(block, blockParent, changeRoot)
@@ -36,11 +36,14 @@ function App() {
     }
   }
 
-  const createElem = (block: CodeBlock, blockParent?: string, changeRoot?: boolean) => {
+  const createElem = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, type?:string) => {
     console.log('Creating elem')
     const newId = v4()
     const newData: Data = _.cloneDeep(codeData)
-    
+    if (type === 'nested') {
+      //logic for sentence
+      console.log('Sentence')
+    }
 
     if(!blockParent) {
       console.log('No parent')
