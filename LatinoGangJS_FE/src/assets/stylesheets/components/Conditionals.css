@@ -103,6 +103,11 @@
   .block__condcase--call {
     border-radius: 0.25em;
   }
+
+  .block__condcase::after {
+    border-top: 0.4em solid #8ea0e8;
+  }
+
   
   .block__conddefecto {
     background-color: #8ea0e8;
@@ -153,13 +158,18 @@
     border-radius: 0.25em;
   }
 
+  .block__conddefecto::after {
+    border-top: 0.4em solid #8ea0e8;
+  }
+
   .block__condelse {
+    width: 3.2em;
     background-color: #8ea0e8;
     border-radius: 0.25em 0.25em 0.25em 0;
   }
   
   .block__condelse--container {
-    width: max-content;
+    
     display: flex;
     flex-direction: column;
   }
@@ -200,6 +210,10 @@
   
   .block__condelse--call {
     border-radius: 0.25em;
+  }
+
+  .block__condelse::after {
+    border-top: 0.4em solid #8ea0e8;
   }
 
     .block__condelseif {
@@ -251,7 +265,12 @@
     border-radius: 0.25em;
   }
 
+  .block__condelseif::after {
+    border-top: 0.4em solid #8ea0e8;
+  }
+
   .block__condotro {
+    width: 3.2em;
     background-color: #8ea0e8;
     border-radius: 0.25em 0.25em 0.25em 0;
   }
@@ -298,6 +317,10 @@
   
   .block__condotro--call {
     border-radius: 0.25em;
+  }
+
+  .block__condotro::after {
+    border-top: 0.4em solid #8ea0e8;
   }
 
   .block__condswitch {
@@ -347,6 +370,10 @@
   
   .block__condswitch--call {
     border-radius: 0.25em;
+  }
+
+  .block__condswitch::after {
+    border-top: 0.4em solid #8ea0e8;
   }
 
   .block__romper {
