@@ -30,7 +30,7 @@ const AssignBlock = ({ nested1, nested2, onDrop }) => {
           itemsTypes={[ItemTypes.SENTENCE]}
           onDrop={(block: CodeBlock) => {
             console.log("Dropped block", block);
-            onDrop(block,elemId);
+            //onDrop(block);
           }
         }
         />
