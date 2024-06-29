@@ -1,13 +1,14 @@
 #playground {
   position: relative;
   background-color: var(--background_color-dark);
+
 }
 
 #watermark {
   box-sizing: border-box;
   position: absolute;
   max-width: 100%;
-  max-height: calc(100vh - 4em);
+  max-height: calc(100vh - 7em);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -20,9 +21,35 @@
   overflow-y: scroll;
   z-index: 10;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2em;
+}
+.btn-section {
+  width: 6em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5em;
+  cursor: pointer;
+  gap: 0.5em;
+  font-weight: 600;
+  font-size: 1em;
+  margin: 1em ;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+.clean{
+  background: var(--secondary_color-400);
+}
+.clean:hover{
+  background: var(--secondary_color-500);
+}
+.play{
+  background: var(--tertiary_color-300);
+}
+.play:hover{
+  background: var(--tertiary_color-400);
 }
