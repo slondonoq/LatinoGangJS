@@ -236,3 +236,17 @@
 .block__start::after {
   border-top: 0.4em solid var(--secondary_color-500);
 }
+
+.block__negation {
+  background-color: #d46714;
+  border-radius: 0.25em 0.25em 0.25em 0.25em;
+}
+
+.block__incrementdecrement {
+  background-color: #d46714;
+  border-radius: 0.25em 0.25em 0.25em 0.25em;
+}
+
+.block__incrementdecrement select{
+  background-color: #d46714;
+}

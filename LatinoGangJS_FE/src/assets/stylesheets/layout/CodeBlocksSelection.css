@@ -103,3 +103,9 @@
   background-color: #d263d5;
 }
 
+#block-selection aside a#condicionales-tag::before {
+  background-color: #8ea0e8;
+}
+#block-selection aside a#builtin-tag::before {
+  background-color: #e56175;
+}
