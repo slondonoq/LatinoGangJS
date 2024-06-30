@@ -22,6 +22,7 @@ function App() {
     sentence_relations: {},
     embedded_relations: {},
     has_translation_block: false,
+    inputs: {}
   });
 
   const [elements, setElements] = useState<ElementsData>({});
@@ -42,6 +43,25 @@ function App() {
       alert("Solo se puede tener un bloque de inicio");
     }
   };
+  const handleInput = (
+    block:CodeBlock,
+    pos:number,
+    inputValue:string,
+  ) =>{
+    setCodeData(prevData => {
+      const newData: Data = _.cloneDeep(prevData);
+      const blockId = block.id ?? '';
+
+      if (!newData.inputs[blockId]) {
+        newData.inputs[blockId] = [];
+      }
+
+      newData.inputs[blockId][pos] = inputValue;
+
+      console.log(blockId, newData.inputs);
+      return newData;
+    });
+  }
 
   const createElem = (
     block: CodeBlock,
@@ -112,6 +132,7 @@ function App() {
         newData.sentence_relations[blockParent].sent_child = newId;
       }
     }
+    newData.inputs[newId] = [];
     //console.log(block)
     setElements({
       ...elements,
@@ -261,6 +282,7 @@ function App() {
       sentence_relations: {},
       embedded_relations: {},
       has_translation_block: false,
+      inputs: {},
     });
   };
 
@@ -274,6 +296,7 @@ function App() {
           elements={elements}
           onDrop={onDrop}
           clearPlayground={clearPlayground}
+          handleInputs={handleInput}
         />
         <CodeOutput />
       </DndProvider>

@@ -9,7 +9,9 @@ export interface CodeBlock {
   embeddedBlock1?: JSX.Element,
   embeddedBlock2?: JSX.Element,
   embeddedBlock3?: JSX.Element,
-  embeddedOnDrop?: Function
+  embeddedOnDrop?: Function,
+  handleInputs?: Function,
+  inputs?: string[]
 }
 
 export interface PlaceholderBlock {
@@ -25,7 +27,9 @@ export interface CodeBlockWithEmbeddings {
   embeddedBlock1?: JSX.Element,
   embeddedBlock2?: JSX.Element,
   embeddedBlock3?: JSX.Element,
-  embeddedOnDrop?: Function
+  embeddedOnDrop?: Function,
+  handleInputs?: Function,
+  inputs?:string[],
 }
 
 export interface Sentence_rel {
@@ -42,9 +46,10 @@ export interface Embedding_rel {
 
 export interface Data {
   rootElems: string[],
-  sentence_relations: {[id: string] : Sentence_rel }
+  sentence_relations: {[id: string] : Sentence_rel },
   embedded_relations: {[id: string] : Embedding_rel},
-  has_translation_block: boolean
+  has_translation_block: boolean,
+  inputs: {[id:string] : string[]},
 }
 
 export interface ElementsData {

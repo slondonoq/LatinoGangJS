@@ -8,16 +8,18 @@ import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder.tsx'
 import {ItemTypes} from "@components/ItemTypes.tsx"
 import {CodeBlock, CodeBlockWithEmbeddings, Data, ElementsData, Embedding_rel} from "@components/types.tsx"
 import { MouseEventHandler } from 'react';
+import block from "@components/dragNdrop/Block.tsx";
 
 
 interface PlaygroundInterface {
   codeData: Data,
   elements: ElementsData,
   onDrop: Function,
-  clearPlayground: MouseEventHandler<HTMLButtonElement>
+  clearPlayground: MouseEventHandler<HTMLButtonElement>,
+  handleInputs: Function,
 }
 
-const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground }) => {
+const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs}) => {
 
   const [{ isOver },drop] = useDrop({
 
@@ -41,7 +43,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
 
     const sentence_child: string = codeData.sentence_relations[elemId]?.sent_child ?? ''
     const embedded_rel: Embedding_rel = codeData.embedded_relations[elemId]
-
+    const inputs: string[] = codeData.inputs[elemId]
     const element = (
       <Block
         id={elemId}
@@ -65,6 +67,8 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         embeddedBlock2={renderElem(embedded_rel?.emb_child_2 ?? '')}
         embeddedBlock3={renderElem(embedded_rel?.emb_child_3 ?? '')}
         embeddedOnDrop={(block: CodeBlock, embedding_spot: string) => onDrop(block, elemId, undefined, embedding_spot)}
+        handleInputs={(pos:number,inputValue:string) => handleInputs(elements[elemId], pos,inputValue)}
+        inputs={inputs}
       />
     )
     //console.log(element)

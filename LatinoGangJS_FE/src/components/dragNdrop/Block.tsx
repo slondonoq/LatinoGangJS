@@ -9,7 +9,7 @@ import FormBlock from '@components/FormBlock';
 import BinaryLogicOperator from '@components/operators/BinaryLogicOperator';
 import BinaryOperator from '@components/operators/BinaryOperator';
 
-const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock, embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop }) => {
+const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock, embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop ,handleInputs,inputs}) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: typeOfBlock === 'embedded' ? ItemTypes.EMBEDDED : ItemTypes.BLOCK,
     item: {id, name, typeOfBlock },
@@ -23,10 +23,10 @@ const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock,
       return <FormBlock />
     }
     else if(name === 'assignation') {
-      return <AssignBlock embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop}/>
+      return <AssignBlock embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop} handleInputs={handleInputs} inputs={inputs}/>
     }
     else if(name === 'binary_operator') {
-      return <BinaryOperator embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop}/>
+      return <BinaryOperator embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop} handleInputs={handleInputs} inputs={inputs}/>
     }
   }
 
