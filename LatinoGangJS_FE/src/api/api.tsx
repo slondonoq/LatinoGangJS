@@ -8,14 +8,14 @@ export async function processText(text: string): Promise<string> {
     },
     body: JSON.stringify({ input:text }),
   });
-  console.log(API_URL)
-  console.log("input:",text)
-  console.log("response:",response)
+  // console.log(API_URL)
+  // console.log("input:",text)
+  // console.log("response:",response)
   if (!response.ok) {
     throw new Error('Failed to process text');
   }
 
   const data = await response.json();
-  console.log("data:",data)
+  // console.log("data:",data)
   return data.result;
 }

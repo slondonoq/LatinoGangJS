@@ -3,13 +3,12 @@ import {
   tomorrow,
   dracula,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { useState } from "react";
+import React, { useState } from "react";
 import MoonIcon from "@assets/icons/moon.svg";
 import SunIcon from "@assets/icons/sun.svg";
 import CopyIcon from "@assets/icons/copy.svg";
 import CheckIcon from "@assets/icons/check.svg";
 import "@assets/stylesheets/layout/CodeOutput.css";
-import {processText} from "../api/api.tsx";
 
 // const codeJs = `
 //   function fibonacci(num) {
@@ -35,37 +34,20 @@ import {processText} from "../api/api.tsx";
 // console.log("Fibonacci(12): " + fibonacci(12));
 //   `;
 
-const initialCodeLatino = `
-funcion fib(n)
-    a,b = 0,1
-    mientras a < n
-        a,b = b, a+b
-        escribir(a)
-        /* uwu */
-    fin
-fin
+interface CodeOutputInterface {
+  codeLatino: string,
+  codeJs: string,
+}
 
-fib(250)
-`
-const CodeOutput = () => {
+const CodeOutput :React.FC<CodeOutputInterface> = ({codeLatino, codeJs}) => {
   // TODO: implement layout section
   const [isLight, setIsLight] = useState(true);
   const [copy, setCopy] = useState(false);
-  const [codeLatino, setCodeLatino] = useState(initialCodeLatino);
-  const [codeJs, setCodeJs] = useState('');
+
 
   const isCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLight(!e.target.checked);
     console.log(!e.target.checked);
-  };
-
-  const handleProcessText = async () => {
-    try {
-      const result = await processText(codeLatino);
-      setCodeJs(result);
-    } catch (error) {
-      console.error("Failed to process text:", error);
-    }
   };
 
   return (
@@ -100,7 +82,6 @@ const CodeOutput = () => {
           </button>
         )}
       </div>
-      <button onClick={handleProcessText}>Process Code</button>
       <div className="output-header">JavaScript Code</div>
       <SyntaxHighlighter
         language="javascript"

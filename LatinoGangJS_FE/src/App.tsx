@@ -12,10 +12,11 @@ import _ from 'lodash'
 import { useState } from "react";
 import {CodeBlock, Data, ElementsData} from "@components/types.tsx"
 import { ItemTypes } from '@components/ItemTypes'
+import {processText} from "./api/api.tsx";
 // import {BlockProps} from "@components/types.tsx";
 
 function App() {
-  
+
 
   const [codeData, setCodeData] = useState<Data>({
     rootElems: [],
@@ -25,6 +26,9 @@ function App() {
   })
 
   const[elements, setElements] = useState<ElementsData>({})
+
+  const [codeLatino, setCodeLatino] = useState("funcion fib(n)\n    a,b = 0,1\n    mientras a < n\n        a,b = b, a+b\n        escribir(a)\n        /* uwu */\n    fin\nfin\n\nfib(250)");
+  const [codeJs, setCodeJs] = useState('');
 
   const onDrop = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, type?:string) => {
     if(block.id && elements[block.id]) {
@@ -192,14 +196,28 @@ function App() {
     setCodeData(newData)
   }
 
+  const translate = async ()=> {
+    //TODO block to codeLatino
+    handleProcessText()
+  }
+
+  const handleProcessText = async () => {
+    try {
+      const result = await processText(codeLatino);
+      setCodeJs(result);
+    } catch (error) {
+      console.error("Failed to process text:", error);
+    }
+  };
+
 
   return (
     <>
       <DndProvider backend={HTML5Backend}>
         <TopBar />
         <CodeBlockSelection onDrop={deleteElem}/>
-        <Playground codeData={codeData} elements={elements} onDrop={onDrop}/>
-        <CodeOutput />
+        <Playground codeData={codeData} elements={elements} onDrop={onDrop} runFunc={translate}/>
+        <CodeOutput codeLatino={codeLatino} codeJs={codeJs}/>
       </DndProvider>
     </>
   )

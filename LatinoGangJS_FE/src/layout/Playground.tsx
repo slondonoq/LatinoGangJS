@@ -12,10 +12,11 @@ import SentenceBlock from '@components/dragNdrop/SentenceBlock'
 interface PlaygroundInterface {
   codeData: Data,
   elements: ElementsData,
-  onDrop: Function
+  onDrop: Function,
+  runFunc: Function,
 }
 
-const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop }) => {
+const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop ,runFunc}) => {
 
   const [{ isOver },drop] = useDrop({
 
@@ -59,7 +60,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop 
             Clear
             <img src={ClearIcon} alt="" />
           </button>
-          <button className="btn-section play">
+          <button className="btn-section play" onClick={runFunc}>
             Run
             <img src={PlayIcon} alt="" />
           </button>
