@@ -172,9 +172,11 @@ const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock,
 
   return (
     <div ref={drag} id={id} className={`code-block ${isDragging && 'code-block--dragged'}`}>
-      {
-        renderBlockByName(name)
-      }
+      <React.Suspense fallback={'Cargando bloque ...'}>
+        {
+          renderBlockByName(name)
+        }
+      </React.Suspense>
       {additional_content}
       {/* TODO: fin block separation can go here when diff block types are defined */}
     </div>
