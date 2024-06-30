@@ -1,46 +1,5 @@
 import "@assets/stylesheets/layout/CodeBlocksSelection.css";
-import DoWhileBlock from "@components/iterators/DoWhileBlock";
-import ForBlock from "@components/iterators/ForBlock";
-import ForRangeBlock from "@components/iterators/ForRangeBlock";
-import RangeBlock from "@components/iterators/RangeBlock";
-import WhileBlock from "@components/iterators/WhileBlock";
-import BinaryLogicOperator from "@components/operators/BinaryLogicOperator";
-import BinaryOperator from "@components/operators/BinaryOperator";
-import AssignBlock from "@components/variables/AssignBlock";
-import OperationAssignBlock from "@components/variables/OperationAssignBlock";
-import ReturnBlock from "@components/functions/ReturnBlock";
-import FunctionBlock from "@components/functions/FunctionBlock";
-import AnonymousFunBlock from "@components/functions/AnonymousFunBlock";
-import FunCall from "@components/functions/FunCall";
-import Lists from "@components/structures/Lists";
-import Dictionaries from "@components/structures/Dictionaries";
-import DicElement from "@components/structures/DicElement";
-import IncrementDecrement from '@components/operators/IncrementDecrement'
-import Negation from '@components/operators/Negation'
-import CondIf from '@components/conditionals/CondIf'
-import CondElseIf from '@components/conditionals/CondElseIf'
-import CondElse from '@components/conditionals/CondElse'
-import CondSwitch from '@components/conditionals/CondSwitch'
-import CondCase from '@components/conditionals/CondCase'
-import CondDefecto from '@components/conditionals/CondDefecto'
-import CondOtro from '@components/conditionals/CondOtro'
-import Acadena from '@components/funciones_builtin/Acadena'
-import Alogico from '@components/funciones_builtin/Alogico'
-import Anumero from '@components/funciones_builtin/Anumero'
-import Imprimir from '@components/funciones_builtin/Imprimir'
-import Escribir from '@components/funciones_builtin/Escribir'
-import Poner from '@components/funciones_builtin/Poner'
-import Leer from '@components/funciones_builtin/Leer'
-import Tipo from '@components/funciones_builtin/Tipo'
-import Limpiar from '@components/funciones_builtin/Limpiar'
-import Imprimirf from '@components/funciones_builtin/Imprimirf'
-import Romper from '@components/conditionals/Romper'
-import AccederElemento from "@components/structures/AccederElemento";
-
-// import { useDrop } from 'react-dnd';
 import React from "react";
-// import {ItemTypes} from "@components/ItemTypes.tsx";
-// import {CodeBlock} from "@components/types.tsx";
 import Block from "@components/dragNdrop/Block.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import { CodeBlock } from "@components/types.tsx";
@@ -123,86 +82,83 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='code_start' typeOfBlock='block'/>
         <h3 id="variables">Variables</h3>
         <Block name='assignation' typeOfBlock='block_with_embeddings' />
-
-        {/* <OperationAssignBlock /> */}
+        <Block name='op_assignation' typeOfBlock='block_with_embeddings' />
         <h3 id="operadores">Operadores</h3>
         <p>Operadores aritmeticos, concatenacion y regex</p>
-        {/*<Block name='binary_operator' typeOfBlock='embedded' />
+        <Block name='binary_operator' typeOfBlock='embedded' />
         <p>Incremento y decremento</p>
-        <Block content={<IncrementDecrement />}/>
+        <Block name='inc_dec' typeOfBlock='block_with_embeddings'/>
         <p>Negacion</p>
-        <Block content={<Negation />}/>
+        <Block name='negation' typeOfBlock='block_with_embeddings'/>
         <h3 id="comparadores">Comparadores</h3>
-        <Block content={<BinaryLogicOperator />} />
+        <Block name='binary_logic-op' typeOfBlock='embedded'/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
-        <Block content={<Anumero />}/>
+        <Block name='to_number' typeOfBlock='embedded'/>
         <p>Acadena</p>
-        <Block content={<Acadena />}/>
+        <Block name='to_string' typeOfBlock='embedded'/>
         <p>Alogico</p>
-        <Block content={<Alogico />}/>        
+        <Block name='to_boolean' typeOfBlock='embedded'/>
         <p>Imprimirf</p>
-        <Block content={<Imprimirf />}/>
+        <Block name='print_f' typeOfBlock='block_with_embeddings'/>
         <p>Imprimir</p>
-        <Block content={<Imprimir />}/>
+        <Block name='print' typeOfBlock='block_with_embeddings'/>
         <p>Escribir</p>
-        <Block content={<Escribir />}/>
+        <Block name='write' typeOfBlock='block_with_embeddings'/>
         <p>Poner</p>
-        <Block content={<Poner />}/>     
+        <Block name='put' typeOfBlock='block_with_embeddings'/>
         <p>Tipo</p>   
-        <Block content={<Tipo />}/>
-        <p>Leer</p>
-        <Block content={<Leer />}/>     
-        <p>Limpiar</p>   
-        <Block content={<Limpiar />}/>
+        <Block name='type' typeOfBlock='embedded'/>
+        <p>Limpiar</p>
+        <Block name='clean' typeOfBlock='block'/>
         <h3 id='condicionales'>Condicionales</h3>
         <p>Si</p>
-        <Block content={<CondIf />} />
+        <Block name='cond_if' typeOfBlock='block_with_embeddings'/>
         <p>Osi</p>
-        <Block content={<CondElseIf />} />
+        <Block name='cond_elif' typeOfBlock='block_with_embeddings'/>
         <p>Sino</p>
-        <Block content={<CondElse />} />
+        <Block name='cond_else' typeOfBlock='block'/>
         <p>Elegir</p>
-        <Block content={<CondSwitch />} />
+        <Block name='switch' typeOfBlock='block_with_embeddings'/>
         <p>Caso</p>
-        <Block content={<CondCase />} />
+        <Block name='switch_case' typeOfBlock='block_with_embeddings'/>
         <p>Defecto</p>
-        <Block content={<CondDefecto />} />
+        <Block name='switch_def' typeOfBlock='block'/>
         <p>Otro</p>
-        <Block content={<CondOtro />} />
+        <Block name='switch_other' typeOfBlock='block'/>
         <p>Romper</p>
-        <Block content={<Romper />} />
+        <Block name='break' typeOfBlock='block'/>
         <h3 id="bucles">Bucles</h3>
-        <p>Desde</p>/*}
-        {/* <Block content={<ForBlock />} /> */}
+        <p>Desde</p>
+        <Block name='for' typeOfBlock='block_with_embeddings'/>
         <p>Para ... en rango</p>
-        <RangeBlock range_n_values={1} />
-        <RangeBlock range_n_values={2} />
-        <RangeBlock range_n_values={3} />
-        <ForRangeBlock />
+        <Block name='range_1' typeOfBlock='embedded'/>
+        <Block name='range_2' typeOfBlock='embedded'/>
+        <Block name='range_3' typeOfBlock='embedded'/>
+        <Block name='for_range' typeOfBlock='block_with_embeddings'/>
         <p>Mientras</p>
-        <WhileBlock />
+        <Block name='while' typeOfBlock='block_with_embeddings'/>
         <p>Repetir ... hasta</p>
-        <DoWhileBlock />
+        <Block name='do_while' typeOfBlock='block_with_embeddings'/>
         <h3 id="funciones">Funciones</h3>
         <p>Función</p>
-        <FunctionBlock />
+        <Block name='func' typeOfBlock='block_with_embeddings'/>
         <p>Función anónima</p>
-        <AnonymousFunBlock />
+        <Block name='func_anonymous' typeOfBlock='embedded'/>
         <p>Retorno</p>
-        <ReturnBlock />
+        <Block name='return' typeOfBlock='block'/>
         <p>Llamado</p>
-        <FunCall />
+        <Block name='func_call' typeOfBlock='block_with_embeddings'/>
         <h3 id="listas">Listas</h3>
         <p>Listas</p>
-        <Lists />
+        <Block name='list' typeOfBlock='block_with_embeddings'/>
         <p>Acceder a un elemento</p>
-        <AccederElemento />
+        <Block name='list_access' typeOfBlock='embedded'/>
         <h3 id="diccionarios">Diccionarios</h3>
         <p>Diccionario</p>
-        <Dictionaries />
+        <Block name='dict' typeOfBlock='block_with_embeddings'/>
         <p>Clave - Valor</p>
-        <DicElement />
+        <Block name='dict_elem' typeOfBlock='block_with_embeddings'/>
       </div>
     </section>
   );
