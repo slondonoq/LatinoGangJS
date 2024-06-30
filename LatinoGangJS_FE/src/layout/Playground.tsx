@@ -6,7 +6,7 @@ import {useDrop} from 'react-dnd'
 import Block from "@components/dragNdrop/Block.tsx"
 import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder.tsx'
 import {ItemTypes} from "@components/ItemTypes.tsx"
-import {CodeBlock, CodeBlockWithEmbeddings, Data, ElementsData, Embedding_rel, Nested_rel} from "@components/types.tsx"
+import {CodeBlock, Data, ElementsData, Embedding_rel, Nested_rel} from "@components/types.tsx"
 import { MouseEventHandler } from 'react';
 
 
