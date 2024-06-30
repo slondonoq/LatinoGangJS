@@ -34,10 +34,10 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
   useEffect(() => {
     if(isOver) {
       setBlockPreview(
-        <><span className='block--preview'>{<Block name={hoveredBlock.name} typeOfBlock={hoveredBlock.typeOfBlock} />}</span></>
+        <><span className='block--preview'>{<Block name={hoveredBlock.name} blockTypes={hoveredBlock.blockTypes} />}</span></>
       )
     }
-    else if(blockPreview.props?.children){
+    else{
       setBlockPreview(<></>)
     }
   }, [isOver])

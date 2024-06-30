@@ -40,10 +40,24 @@ const AccederElemento = React.lazy(() => import('@components/structures/AccederE
 const Dictionaries = React.lazy(() => import('@components/structures/Dictionaries'));
 const DicElement = React.lazy(() => import('@components/structures/DicElement'));
 
-const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock, embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop ,handleInputs,inputs}) => {
+const Block: React.FC<CodeBlock> = (
+  { id,
+    additional_content,
+    name,
+    blockTypes,
+    embeddedBlock1,
+    embeddedBlock2,
+    embeddedBlock3,
+    embeddedOnDrop,
+    handleInputs,
+    inputs,
+    nestedBlock,
+    nestedOnDrop
+  }) => {
+  // TODO: Add more Item Types and a function to assign them based on blockTypes content
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: typeOfBlock === 'embedded' ? ItemTypes.EMBEDDED : ItemTypes.BLOCK,
-    item: {id, name, typeOfBlock },
+    type: blockTypes.includes('embedded') ? ItemTypes.EMBEDDED : ItemTypes.BLOCK,
+    item: {id, name, blockTypes },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -124,7 +138,14 @@ const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock,
       return <Romper/>
     }
     else if(name === 'for') {
-      return <ForBlock/>
+      return <ForBlock
+        embeddedBlock1={embeddedBlock1}
+        embeddedBlock2={embeddedBlock2}
+        embeddedBlock3={embeddedBlock3}
+        embeddedOnDrop={embeddedOnDrop}
+        nestedBlock={nestedBlock}
+        nestedOnDrop={nestedOnDrop}
+      />
     }
     else if(name === 'for_range') {
       return <ForRangeBlock/>

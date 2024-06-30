@@ -6,9 +6,8 @@ import {useDrop} from 'react-dnd'
 import Block from "@components/dragNdrop/Block.tsx"
 import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder.tsx'
 import {ItemTypes} from "@components/ItemTypes.tsx"
-import {CodeBlock, CodeBlockWithEmbeddings, Data, ElementsData, Embedding_rel} from "@components/types.tsx"
+import {CodeBlock, CodeBlockWithEmbeddings, Data, ElementsData, Embedding_rel, Nested_rel} from "@components/types.tsx"
 import { MouseEventHandler } from 'react';
-import block from "@components/dragNdrop/Block.tsx";
 
 
 interface PlaygroundInterface {
@@ -43,13 +42,14 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
 
     const sentence_child: string = codeData.sentence_relations[elemId]?.sent_child ?? ''
     const embedded_rel: Embedding_rel = codeData.embedded_relations[elemId]
+    const nested_rel: Nested_rel = codeData.nested_relations[elemId]
     const inputs: string[] = codeData.inputs[elemId]
     const element = (
       <Block
         id={elemId}
         name={blockData.name}
-        typeOfBlock={blockData.typeOfBlock}
-        additional_content={ blockData.typeOfBlock !== 'embedded' ?         
+        blockTypes={blockData.blockTypes}
+        additional_content={ !blockData.blockTypes.includes('embedded') ?         
           <>
             <BlockPlaceholder
               key={`placeholder-${elemId}`}
@@ -69,6 +69,8 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         embeddedOnDrop={(block: CodeBlock, embedding_spot: string) => onDrop(block, elemId, undefined, embedding_spot)}
         handleInputs={(pos:number,inputValue:string) => handleInputs(elements[elemId], pos,inputValue)}
         inputs={inputs}
+        nestedBlock={renderElem(nested_rel?.nested_child ?? '')}
+        nestedOnDrop={(block: CodeBlock) => onDrop(block, elemId, undefined, undefined, true)}
       />
     )
     //console.log(element)
@@ -93,7 +95,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
             codeData.rootElems.map(elemId => 
               <div key={`rootContainer-${elemId}`}>
                 {
-                  (elements[elemId].typeOfBlock !== 'embedded') && (elements[elemId].name !== 'code_start')
+                  (!elements[elemId].blockTypes.includes('embedded')) && (elements[elemId].name !== 'code_start')
                   ? <BlockPlaceholder
                       key={`root-${elemId}`}
                       onDrop={(block: CodeBlock) => onDrop(block, elemId, true)}

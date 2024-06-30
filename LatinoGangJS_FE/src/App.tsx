@@ -7,13 +7,12 @@ import TopBar from "@layout/TopBar";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { v4 } from "uuid";
-import _, { set } from "lodash";
+import _ from "lodash";
 import { useState } from "react";
 import {
   CodeBlock,
   Data,
   ElementsData,
-  Embedding_rel,
 } from "@components/types.tsx";
 
 function App() {
@@ -21,6 +20,7 @@ function App() {
     rootElems: [],
     sentence_relations: {},
     embedded_relations: {},
+    nested_relations: {},
     has_translation_block: false,
     inputs: {}
   });
@@ -31,14 +31,15 @@ function App() {
     block: CodeBlock,
     blockParent?: string,
     changeRoot?: boolean,
-    embedding_spot?: string
+    embedding_spot?: string,
+    is_nested?: boolean
   ) => {
     if (block.id && elements[block.id]) {
       if (blockParent !== block.id) {
         moveElem(block, blockParent, changeRoot);
       }
     } else if (block.name !== "code_start" || !codeData.has_translation_block) {
-      createElem(block, blockParent, changeRoot, embedding_spot);
+      createElem(block, blockParent, changeRoot, embedding_spot, is_nested);
     } else {
       alert("Solo se puede tener un bloque de inicio");
     }
@@ -67,14 +68,28 @@ function App() {
     block: CodeBlock,
     blockParent?: string,
     changeRoot?: boolean,
-    embedding_spot?: string
+    embedding_spot?: string,
+    is_nested?: boolean
   ) => {
     const newId = v4();
     const newData: Data = _.cloneDeep(codeData);
     if (block.name === "code_start") {
       newData.has_translation_block = true;
     }
-    if (block.typeOfBlock === "embedded") {
+
+    if(is_nested) {
+      newData.nested_relations[blockParent ?? ''] = {
+        nested_child: newId
+      }
+      newData.nested_relations[block.id ?? ''] = {
+        nested_parent: blockParent
+      }
+      newData.sentence_relations[newId] = {
+        sent_parent: undefined,
+        sent_child: undefined,
+      };
+    }
+    else if (block.blockTypes.includes("embedded")) {
       if (!blockParent) {
         newData.rootElems = newData.rootElems.concat([newId]);
       } else if (!newData.embedded_relations[blockParent]) {
@@ -95,7 +110,6 @@ function App() {
         emb_parent: blockParent,
       };
     } else if (!blockParent) {
-      console.log("No parent");
       newData.rootElems = newData.rootElems.concat([newId]);
       newData.sentence_relations[newId] = {
         sent_parent: undefined,
@@ -152,7 +166,8 @@ function App() {
     if (newData.rootElems.findIndex((elem) => elem == block.id) != -1) {
       //Elem is another root
       newData.rootElems = newData.rootElems.filter((elem) => elem != block.id);
-    } else {
+    }
+    else {
       //Elem is not a root
       const previousBlockParent =
         newData.sentence_relations[block.id ?? ""].sent_parent;
@@ -210,6 +225,9 @@ function App() {
   };
 
   const deleteElem = (block: CodeBlock) => {
+    // Return if block has no id
+    if(!block.id) return
+
     const newData: Data = _.cloneDeep(codeData);
 
     if (block.name === "code_start") {
@@ -220,7 +238,7 @@ function App() {
       (elem) => elem == block.id
     );
 
-    if (block.typeOfBlock === "embedded") {
+    if (block.blockTypes.includes("embedded")) {
       if (newData.embedded_relations[block.id ?? ""]) {
         const parent = newData.embedded_relations[block.id ?? ""].emb_parent;
         if (parent) {
@@ -261,7 +279,7 @@ function App() {
         const child =
           newData.sentence_relations[currentElemId ?? ""].sent_child;
         idsToRemove.push(child ?? "");
-        currentElemId = child;
+        currentElemId = child ?? "";
       }
       newData.sentence_relations = _.omit(
         newData.sentence_relations,
@@ -281,6 +299,7 @@ function App() {
       rootElems: [],
       sentence_relations: {},
       embedded_relations: {},
+      nested_relations: {},
       has_translation_block: false,
       inputs: {},
     });
