@@ -7,14 +7,17 @@ import Block from "@components/dragNdrop/Block.tsx"
 import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder.tsx'
 import {ItemTypes} from "@components/ItemTypes.tsx"
 import {CodeBlock, CodeBlockWithEmbeddings, Data, ElementsData, Embedding_rel} from "@components/types.tsx"
+import { MouseEventHandler } from 'react';
+
 
 interface PlaygroundInterface {
   codeData: Data,
   elements: ElementsData,
-  onDrop: Function
+  onDrop: Function,
+  clearPlayground: MouseEventHandler<HTMLButtonElement>
 }
 
-const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop }) => {
+const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground }) => {
 
   const [{ isOver },drop] = useDrop({
 
@@ -71,7 +74,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop 
   return(
       <section id="playground">
         <div id="section-header">
-          <button className="btn-section clean">
+          <button className="btn-section clean" onClick={clearPlayground} >
             Clear
             <img src={ClearIcon} alt="" />
           </button>

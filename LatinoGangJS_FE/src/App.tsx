@@ -201,13 +201,23 @@ function App() {
     setCodeData(newData)
   }
 
+  const clearPlayground = () => {
+    console.log('Clearing playground')
+    setElements({})
+    setCodeData({
+      rootElems: [],
+      sentence_relations: {},
+      embedded_relations: {},
+      has_translation_block: false
+    })
+  }
 
   return (
     <>
       <DndProvider backend={HTML5Backend}>
         <TopBar />
         <CodeBlockSelection onDrop={deleteElem}/>
-        <Playground codeData={codeData} elements={elements} onDrop={onDrop}/>
+        <Playground codeData={codeData} elements={elements} onDrop={onDrop} clearPlayground={clearPlayground}/>
         <CodeOutput />
       </DndProvider>
     </>
