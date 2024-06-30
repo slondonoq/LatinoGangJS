@@ -36,7 +36,7 @@ function App() {
   ) => {
     if (block.id && elements[block.id]) {
       if (blockParent !== block.id) {
-        moveElem(block, blockParent, changeRoot);
+        moveElem(block, blockParent, changeRoot, embedding_spot);
       }
     } else if (block.name !== "code_start" || !codeData.has_translation_block) {
       createElem(block, blockParent, changeRoot, embedding_spot, is_nested);
@@ -158,10 +158,10 @@ function App() {
   const moveElem = (
     block: CodeBlock,
     newBlockParent?: string,
-    changeRoot?: boolean
+    changeRoot?: boolean,
+    embedding_spot?: string
   ) => {
     const newData: Data = _.cloneDeep(codeData);
-
     // Deleting block from previous relation
     if (newData.rootElems.findIndex((elem) => elem == block.id) != -1) {
       //Elem is another root
@@ -169,54 +169,87 @@ function App() {
     }
     else {
       //Elem is not a root
-      const previousBlockParent =
-        newData.sentence_relations[block.id ?? ""].sent_parent;
-      newData.sentence_relations[previousBlockParent ?? ""].sent_child =
-        undefined;
-    }
+      if (block.typeOfBlock === "embedded") {
+        const previousEmbParent =
+          newData.embedded_relations[block.id ?? ""].emb_parent;
+          let currentKey;
+          if (
+            newData.embedded_relations[previousEmbParent ?? ""].emb_child_1 == block.id
+          ) {
+            currentKey = "emb_child_1";
+          } else if (
+            newData.embedded_relations[previousEmbParent ?? ""].emb_child_2 == block.id
+          ) {
+            currentKey = "emb_child_2";
+          } else if (
+            newData.embedded_relations[previousEmbParent ?? ""].emb_child_3 == block.id
+          ) {
+            currentKey = "emb_child_3";
+          }
+          newData.embedded_relations[previousEmbParent ?? ""] = {
+            ...newData.embedded_relations[previousEmbParent ?? ""],
+            [currentKey ?? ""]: undefined,
+          };
 
-    // Finding current block's end
-    let currentBlockEnd = block.id;
-    while (newData.sentence_relations[currentBlockEnd ?? ""].sent_child) {
-      currentBlockEnd =
-        newData.sentence_relations[currentBlockEnd ?? ""].sent_child;
-    }
-
-    // Now change remaining relations
-    if (changeRoot) {
-      const currentRootIndex: number = newData.rootElems.findIndex(
-        (elem) => elem == newBlockParent
-      );
-      if (currentRootIndex != -1) {
-        // Adding old root to the end of block
-        newData.sentence_relations[currentBlockEnd ?? ""].sent_child =
-          newBlockParent;
-
-        newData.rootElems = newData.rootElems
-          .slice(0, currentRootIndex)
-          .concat([block.id ?? ""])
-          .concat(newData.rootElems.slice(currentRootIndex + 1));
-
-        // Setting previous root relations
-        newData.sentence_relations[newBlockParent ?? ""].sent_parent =
-          currentBlockEnd;
-        // Seting new elem relations
-        newData.sentence_relations[block.id ?? ""].sent_parent = undefined;
+      } else {
+        const previousBlockParent =
+          newData.sentence_relations[block.id ?? ""].sent_parent;
+        newData.sentence_relations[previousBlockParent ?? ""].sent_child =
+          undefined;
       }
-    } else if (newBlockParent) {
-      //Save parent's previous child
-      const oldChild = newData.sentence_relations[newBlockParent].sent_child;
-      // Change relations
-      newData.sentence_relations[newBlockParent].sent_child = block.id;
-      newData.sentence_relations[block.id ?? ""].sent_parent = newBlockParent;
-      newData.sentence_relations[currentBlockEnd ?? ""].sent_child = oldChild;
-      oldChild
-        ? (newData.sentence_relations[oldChild ?? ""].sent_parent =
-            currentBlockEnd)
-        : null;
+    }
+    if (block.typeOfBlock === "embedded") {
+      if (newBlockParent) {
+        newData.embedded_relations[newBlockParent ?? ""] = {
+          ...newData.embedded_relations[newBlockParent ?? ""],
+          [embedding_spot ?? ""]: block.id,
+        };
+      }
+      newData.embedded_relations[block.id ?? ""].emb_parent = newBlockParent;
     } else {
-      // This option is left here in case we plan to allow x,y movement of pieces
-      newData.rootElems = newData.rootElems.concat([block.id ?? ""]);
+      // Finding current block's end
+      let currentBlockEnd = block.id;
+      while (newData.sentence_relations[currentBlockEnd ?? ""].sent_child) {
+        currentBlockEnd =
+          newData.sentence_relations[currentBlockEnd ?? ""].sent_child;
+      }
+
+      // Now change remaining relations
+      if (changeRoot) {
+        const currentRootIndex: number = newData.rootElems.findIndex(
+          (elem) => elem == newBlockParent
+        );
+        if (currentRootIndex != -1) {
+          // Adding old root to the end of block
+          newData.sentence_relations[currentBlockEnd ?? ""].sent_child =
+            newBlockParent;
+
+          newData.rootElems = newData.rootElems
+            .slice(0, currentRootIndex)
+            .concat([block.id ?? ""])
+            .concat(newData.rootElems.slice(currentRootIndex + 1));
+
+          // Setting previous root relations
+          newData.sentence_relations[newBlockParent ?? ""].sent_parent =
+            currentBlockEnd;
+          // Seting new elem relations
+          newData.sentence_relations[block.id ?? ""].sent_parent = undefined;
+        }
+      } else if (newBlockParent) {
+        //Save parent's previous child
+        const oldChild = newData.sentence_relations[newBlockParent].sent_child;
+        // Change relations
+        newData.sentence_relations[newBlockParent].sent_child = block.id;
+        newData.sentence_relations[block.id ?? ""].sent_parent = newBlockParent;
+        newData.sentence_relations[currentBlockEnd ?? ""].sent_child = oldChild;
+        oldChild
+          ? (newData.sentence_relations[oldChild ?? ""].sent_parent =
+              currentBlockEnd)
+          : null;
+      } else {
+        // This option is left here in case we plan to allow x,y movement of pieces
+        newData.rootElems = newData.rootElems.concat([block.id ?? ""]);
+      }
     }
 
     setCodeData(newData);
@@ -244,20 +277,27 @@ function App() {
         if (parent) {
           const idToRemove: string = block.id ?? "";
           //Remove child from parent
+          let currentKey;
           if (
             newData.embedded_relations[parent ?? ""].emb_child_1 == idToRemove
           ) {
-            newData.embedded_relations[parent ?? ""].emb_child_1 = undefined;
+            currentKey = "emb_child_1";
           } else if (
             newData.embedded_relations[parent ?? ""].emb_child_2 == idToRemove
           ) {
-            newData.embedded_relations[parent ?? ""].emb_child_2 = undefined;
+            currentKey = "emb_child_2";
           } else if (
             newData.embedded_relations[parent ?? ""].emb_child_3 == idToRemove
           ) {
-            newData.embedded_relations[parent ?? ""].emb_child_3 = undefined;
+            currentKey = "emb_child_3";
           }
+          newData.embedded_relations[parent ?? ""] = {
+            ...newData.embedded_relations[parent ?? ""],
+            [currentKey ?? ""]: undefined,
+          };
+          delete newData.embedded_relations[block.id ?? ""];
           setCodeData(newData);
+
         }
       }
     } else {
