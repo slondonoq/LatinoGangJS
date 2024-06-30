@@ -23,7 +23,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
   const [{ isOver },drop] = useDrop({
 
     accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
-    drop: (block: CodeBlock | CodeBlockWithEmbeddings) => {
+    drop: (block: CodeBlock) => {
       if(isOver) {
         onDrop(block);
       }
@@ -98,7 +98,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
                   (!elements[elemId].blockTypes.includes('embedded')) && (elements[elemId].name !== 'code_start')
                   ? <BlockPlaceholder
                       key={`root-${elemId}`}
-                      onDrop={(block: CodeBlock) => onDrop(block, elemId, true)}
+                      onDrop={(block: CodeBlock) => onDrop(block, elemId, true, undefined, codeData.nested_relations[elemId]?.nested_parent ? true : false)}
                       itemsTypes={[ItemTypes.BLOCK]}
                     />
                   : undefined
