@@ -5,7 +5,7 @@ import { CodeBlockWithEmbeddings } from '@components/types'
 import { FC } from 'react'
 
 const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop}) => {
-  console.log(embeddedOnDrop)
+  //console.log(embeddedOnDrop)
   const defaultFunc: Function = () => console.log('Oops, forgot to pass onDrop prop to block with embeddings')
 
   return(

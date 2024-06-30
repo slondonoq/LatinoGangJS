@@ -67,7 +67,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         embeddedOnDrop={(block: CodeBlock, embedding_spot: string) => onDrop(block, elemId, undefined, embedding_spot)}
       />
     )
-    console.log(element)
+    //console.log(element)
     return element
   }
 
