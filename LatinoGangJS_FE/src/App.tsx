@@ -6,62 +6,73 @@ import CodeOutput from '@layout/CodeOutput'
 import TopBar from '@layout/TopBar'
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-// import {useDrop} from 'react-dnd'
 import { v4 } from 'uuid'
 import _ from 'lodash'
 import { useState } from "react";
 import {CodeBlock, Data, ElementsData} from "@components/types.tsx"
-import { ItemTypes } from '@components/ItemTypes'
-// import {BlockProps} from "@components/types.tsx";
 
 function App() {
-  
 
   const [codeData, setCodeData] = useState<Data>({
     rootElems: [],
     sentence_relations: {},
-    nested_relations: {},
+    embedded_relations: {},
     has_translation_block: false
   })
 
   const[elements, setElements] = useState<ElementsData>({})
 
-  const onDrop = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, type?:string) => {
+  const onDrop = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, embedding_spot?: string) => {
+    console.log(block)
     if(block.id && elements[block.id]) {
       if ((blockParent !== block.id)) {
         moveElem(block, blockParent, changeRoot)
       }
     }
-    else if(block.content.type.name !== 'FormBlock' || !codeData.has_translation_block) {
-      createElem(block, blockParent, changeRoot)
+    else if(block.name !== 'code_start' || !codeData.has_translation_block) {
+      createElem(block, blockParent, changeRoot, embedding_spot)
     }
     else {
       alert('Solo se puede tener un bloque de inicio')
     }
   }
 
-  const createElem = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, type?:string) => {
-    console.log('Creating elem')
+  const createElem = (block: CodeBlock, blockParent?: string, changeRoot?: boolean, embedding_spot?: string) => {
     const newId = v4()
     const newData: Data = _.cloneDeep(codeData)
 
-    if(block.content.type.name === 'FormBlock') {
+    if(block.name === 'code_start') {
       newData.has_translation_block = true
     }
 
-    if (type === 'nested') {
-      //logic for sentence
-      console.log('Sentence')
+    if(block.typeOfBlock === 'embedded') {
+      if(!blockParent) {
+        newData.rootElems = newData.rootElems.concat([newId])
+      }
+      else if(!newData.embedded_relations[blockParent]) {
+        // TODO, somehow send the key
+        newData.embedded_relations[blockParent ?? ''] = {
+          emb_parent: undefined,
+          [embedding_spot ?? '']: newId
+        }
+      }
+      else {
+        newData.embedded_relations[blockParent ?? ''] = {
+          ...newData.embedded_relations[blockParent ?? ''],
+          [embedding_spot ?? '']: newId
+        }
+      }
+      newData.embedded_relations[newId ?? ''] = {
+        emb_parent: blockParent
+      }
     }
-
-    if(!blockParent) {
+    else if(!blockParent) {
       console.log('No parent')
       newData.rootElems = newData.rootElems.concat([newId])
       newData.sentence_relations[newId] = {
         sent_parent: undefined,
         sent_child: undefined
       }
-
     }
     else{
       if(changeRoot) {
@@ -91,12 +102,12 @@ function App() {
         newData.sentence_relations[blockParent].sent_child = newId
       }
     }
+    console.log(block)
     setElements({
       ...elements,
-      [newId]: <>{block.content}</>
+      [newId]: {...block, id: newId}
     })
     setCodeData(newData)
-    console.log(elements, codeData)
   }
 
   const moveElem = (block: CodeBlock, newBlockParent?: string, changeRoot?: boolean) => {
@@ -150,18 +161,16 @@ function App() {
       newData.rootElems = newData.rootElems.concat([block.id ?? ''])
     }
 
-   /*  const nestedBlock = Object.keys(codeData.nested_relations).filter(key => codeData.nested_relations[key] === block.id)
- */
-
     setCodeData(newData)
 
     return newData
   }
 
   const deleteElem = (block: CodeBlock) => {
+    console.log(block)
     const newData: Data = _.cloneDeep(codeData)
 
-    if(block.content?.props?.children[0]?.type?.name === 'FormBlock') {
+    if(block.name === 'code_start') {
       newData.has_translation_block = false
     }
 

@@ -1,23 +1,41 @@
 // Block.tsx
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 // import {ItemTypes} from "@components/ItemTypes.tsx";
-import {CodeBlock} from "@components/types.tsx";
+import { CodeBlock } from "@components/types.tsx";
 import React from "react";
 import {ItemTypes} from "@components/ItemTypes.tsx";
+import AssignBlock from '@components/variables/AssignBlock';
+import FormBlock from '@components/FormBlock';
+import BinaryLogicOperator from '@components/operators/BinaryLogicOperator';
+import BinaryOperator from '@components/operators/BinaryOperator';
 
-const Block: React.FC<CodeBlock> = ({ id,content,index, delFunction, replaceFunction }) => {
-  // const ref = useRef<HTMLDivElement>(null)
+const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock, embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.BLOCK,
-    item: {id,content,index, delFunction, replaceFunction},
+    type: typeOfBlock === 'embedded' ? ItemTypes.EMBEDDED : ItemTypes.BLOCK,
+    item: {id, name, typeOfBlock },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
   }));
 
+  const renderBlockByName = (name: string) => {
+    if(name === 'code_start') {
+      return <FormBlock />
+    }
+    else if(name === 'assignation') {
+      return <AssignBlock embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop}/>
+    }
+    else if(name === 'binary_operator') {
+      return <BinaryOperator embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop}/>
+    }
+  }
+
   return (
     <div ref={drag} id={id} className={`code-block ${isDragging && 'code-block--dragged'}`}>
-      {content}
+      {
+        renderBlockByName(name)
+      }
+      {additional_content}
       {/* TODO: fin block separation can go here when diff block types are defined */}
     </div>
   );

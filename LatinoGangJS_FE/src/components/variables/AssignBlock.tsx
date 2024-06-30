@@ -1,40 +1,31 @@
 import BlockPlaceholder from "@components/dragNdrop/BlockPlaceholder";
-import { CodeBlock } from "@components/types.tsx";
+import { CodeBlockWithEmbeddings } from "@components/types.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
-import { useDrop } from "react-dnd";
-import { ReactNode } from "react";
+import Block from '@components/dragNdrop/Block';
 
-const AssignBlock = ({ nested1, nested2, onDrop }) => {
-  const [{ isOver },drop] = useDrop({
-
-    accept: [ItemTypes.BLOCK, ItemTypes.SENTENCE],
-    drop: (block: CodeBlock) => {
-      if(isOver) {
-        onDrop(block);
-      }
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver({ shallow: true }),
-    })
-    
-  });
-
+const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop }) => {
+  // console.log(embeddedOnDrop)
+  const defaultFunc: Function = () => console.log('Oops, forgot to pass onDrop prop to block with embeddings')
 
   return (
     <span className="block block__assign block__sentence">
-      {nested1 ?? <BlockPlaceholder placeholderText={"variable"} />}
+      {embeddedBlock1 ?? (
+          <BlockPlaceholder
+            placeholderText='variables'
+            itemsTypes={[ItemTypes.EMBEDDED]}
+            onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+            embedding_spot='emb_child_1'
+          />
+        )}
       <input type="hidden" value="=" />=
-      {nested2 ?? (
-        <BlockPlaceholder
-          placeholderText={"valor"}
-          itemsTypes={[ItemTypes.SENTENCE]}
-          onDrop={(block: CodeBlock) => {
-            console.log("Dropped block", block);
-            //onDrop(block);
-          }
-        }
-        />
-      )}
+      {embeddedBlock2 ?? (
+          <BlockPlaceholder
+            defaultContent={<><input type="text" placeholder='valor'/></>}
+            itemsTypes={[ItemTypes.EMBEDDED]}
+            onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+            embedding_spot='emb_child_2'
+          />
+        )}
     </span>
   );
 };
