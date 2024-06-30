@@ -15,7 +15,7 @@ import FunCall from "@components/functions/FunCall";
 import Lists from "@components/structures/Lists";
 import Dictionaries from "@components/structures/Dictionaries";
 import DicElement from "@components/structures/DicElement";
-import IncrementDecrement from '@components/operators/IncrementDecrement' ////////////////////////////////////////////////
+import IncrementDecrement from '@components/operators/IncrementDecrement'
 import Negation from '@components/operators/Negation'
 import CondIf from '@components/conditionals/CondIf'
 import CondElseIf from '@components/conditionals/CondElseIf'
@@ -45,8 +45,6 @@ import Block from "@components/dragNdrop/Block.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import { CodeBlock } from "@components/types.tsx";
 import { useDrop } from "react-dnd";
-import SentenceBlock from "@components/dragNdrop/SentenceBlock";
-import FormBlock from "@components/FormBlock";
 
 interface CodeBlockSelectionProps {
   onDrop: (block: CodeBlock) => void;
@@ -54,7 +52,7 @@ interface CodeBlockSelectionProps {
 
 const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
   const [, drop] = useDrop({
-    accept: [ItemTypes.BLOCK, ItemTypes.SENTENCE],
+    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
     drop: (block: CodeBlock) => {
       onDrop(block);
     },
@@ -122,13 +120,14 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         </ul>
       </aside>
       <div className="blocks-container">
-        <Block content={<FormBlock />}/>
+        <Block name='code_start' typeOfBlock='block'/>
         <h3 id="variables">Variables</h3>
-        <Block content={<AssignBlock onDrop={onDrop} />} />
-        <OperationAssignBlock />
+        <Block name='assignation' typeOfBlock='block_with_embeddings' />
+
+        {/* <OperationAssignBlock /> */}
         <h3 id="operadores">Operadores</h3>
         <p>Operadores aritmeticos, concatenacion y regex</p>
-        <SentenceBlock content={<BinaryOperator />} />
+        {/*<Block name='binary_operator' typeOfBlock='embedded' />
         <p>Incremento y decremento</p>
         <Block content={<IncrementDecrement />}/>
         <p>Negacion</p>
@@ -174,8 +173,8 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Romper</p>
         <Block content={<Romper />} />
         <h3 id="bucles">Bucles</h3>
-        <p>Desde</p>
-        <Block content={<ForBlock />} />
+        <p>Desde</p>/*}
+        {/* <Block content={<ForBlock />} /> */}
         <p>Para ... en rango</p>
         <RangeBlock range_n_values={1} />
         <RangeBlock range_n_values={2} />

@@ -1,5 +1,4 @@
 export const ItemTypes = {
-  NO_SENTENCE: 'no_sentence',
-  SENTENCE: 'sentence',
+  EMBEDDED: 'embedded',
   BLOCK: 'block',
 };

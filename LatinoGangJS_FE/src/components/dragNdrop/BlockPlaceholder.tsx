@@ -3,47 +3,15 @@ import {ItemTypes} from "@components/ItemTypes.tsx"
 import { CodeBlock, PlaceholderBlock } from "@components/types.tsx"
 import React, { useEffect, useState } from 'react'
 import Block from './Block'
-import SentenceBlock from './SentenceBlock'
 
-const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderText, defaultContent, onDrop, itemsTypes=[ItemTypes.BLOCK, ItemTypes.SENTENCE] }) => {
+const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderText, defaultContent, onDrop, itemsTypes=[ItemTypes.BLOCK, ItemTypes.EMBEDDED], embedding_spot }) => {
   
   const [{ isOver, hoveredBlock },drop] = useDrop({
     
     accept: itemsTypes,
     drop: (block: CodeBlock) => {
-      console.log('Dropped')
       if(isOver) {
-        onDrop ? onDrop(block) : () => console.log('No drop func');
-        !(itemsTypes.includes(ItemTypes.BLOCK)) ?
-        (setReplacementBlock(
-          <>
-            <SentenceBlock
-              content={
-                <>
-                  {block.content}
-                  {replacementBlock.props?.children}
-                </>
-              }
-              delFunction={delFunction}
-              replaceFunction={replaceFunction}
-            />  
-          </>
-         ) )
-        : null
-        /* (setReplacementBlock(
-          <>
-            <Block
-              content={
-                <>
-                  {block.content}
-                  {replacementBlock.props?.children}
-                </>
-              }
-              delFunction={delFunction}
-              replaceFunction={replaceFunction}
-            />  
-          </>
-        );) */
+        onDrop(block, embedding_spot)
       }
       
     },
@@ -57,23 +25,8 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
   const [ blockPreview, setBlockPreview ] = useState<JSX.Element>(<></>)
 
   useEffect(() => {
-    //console.log(defaultContent)
     if(defaultContent && !replacementBlock.props?.children) {
-
-      setReplacementBlock(
-        <>
-          <Block
-            content={
-              <>
-                {defaultContent?.props?.children?.props.content?.props?.children[0]}
-                {defaultContent?.props?.children?.props.content?.props?.children[1]}
-              </>
-            }
-            delFunction={delFunction}
-            replaceFunction={replaceFunction}
-          />
-        </>
-      )
+      setReplacementBlock(defaultContent)
     }
     
   }, [defaultContent, replacementBlock])
@@ -81,7 +34,7 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
   useEffect(() => {
     if(isOver) {
       setBlockPreview(
-        <><span className='block--preview'>{hoveredBlock.content}</span></>
+        <><span className='block--preview'>{<Block name={hoveredBlock.name} typeOfBlock={hoveredBlock.typeOfBlock} />}</span></>
       )
     }
     else if(blockPreview.props?.children){
@@ -89,69 +42,16 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
     }
   }, [isOver])
 
-  // const onDrop = (block:CodeBlock) => {
-  //   if(!replacementBlock.props?.children) {
-  //     setReplacementBlock(
-  //       <>
-  //         <Block
-  //           content={<>{block.content}<BlockPlaceholder /></>}
-  //           delFunction={delFunction}
-  //           replaceFunction={replaceFunction}
-  //         />
-  //       </>
-  //     )
-  //   }
-  //   else {
-  //     replaceFunction(block)
-  //   }
-  // }
-
-  const delFunction = () => {
-    setReplacementBlock(<></>)
-    setBlockPreview(<></>)
-  }
-
-  const replaceFunction = (newTopBlock:CodeBlock) => {
-    const newTopContent = newTopBlock.content
-    // console.log(newTopContent)
-    // if(newTopBlock.delFunction) newTopBlock.delFunction()
-    // setReplacementBlock(replacementBlock =>
-    //   <>
-    //     <Block
-    //       content={
-    //         <>
-    //           {newTopContent}
-    //           <BlockPlaceholder defaultContent={replacementBlock}/>
-    //         </>
-    //       }
-    //       delFunction={delFunction}
-    //       replaceFunction={replaceFunction}
-    //     />
-    //   </>
-    // )
-    setReplacementBlock(
-      <Block
-        content={
-          <>
-            {newTopContent}
-            <BlockPlaceholder defaultContent={replacementBlock}/>
-          </>
-        }
-        delFunction={delFunction}
-        replaceFunction={replaceFunction}
-      />
-    );
-  }
-
   return (
-    <span>
+    <span className={`block__placeholder--container${defaultContent ? ' block__placeholder--container-w-default' : ''}`}>
       <div ref={drop} className={`block__placeholder ${
-        (replacementBlock.props?.children?.type?.name === 'SentenceBlock' ) ? 'block__placeholder--sentence' :
-        replacementBlock.props?.children ||isReduced
+        isReduced
           ? 'block__placeholder--reduced'
           : (!blockPreview.props?.children && placeholderText)
             ? 'block__placeholder--text'
-            : ''
+            : defaultContent && !blockPreview.props?.children ?
+              'block__placeholder--content'
+              : ''
 
       }`}>
         { blockPreview.props?.children ?? 
@@ -160,7 +60,7 @@ const BlockPlaceholder: React.FC<PlaceholderBlock> = ({ isReduced, placeholderTe
       </div>
       <span className={`block__placeholder--block-container`}>
         {
-          replacementBlock.props?.children
+          !blockPreview.props?.children && replacementBlock.props?.children
         }
       </span>
     </span>
