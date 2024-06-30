@@ -39,6 +39,15 @@ const Lists = React.lazy(() => import('@components/structures/Lists'));
 const AccederElemento = React.lazy(() => import('@components/structures/AccederElemento'));
 const Dictionaries = React.lazy(() => import('@components/structures/Dictionaries'));
 const DicElement = React.lazy(() => import('@components/structures/DicElement'));
+const NumType = React.lazy(() => import('@components/dataTypes/NumType'));
+const StringType = React.lazy(() => import('@components/dataTypes/StringType'));
+const ListType = React.lazy(() => import('@components/dataTypes/ListType'));
+const DictType = React.lazy(() => import('@components/dataTypes/DictType'));
+const NullType = React.lazy(() => import('@components/dataTypes/NullType'));
+const BoolType = React.lazy(() => import('@components/dataTypes/BoolType'));
+const VarType = React.lazy(() => import('@components/dataTypes/VarType'));
+const MoreItems = React.lazy(() => import('@components/auxiliaryBlocks/MoreItems'));
+const Properties = React.lazy(() => import('@components/auxiliaryBlocks/Properties'));
 
 const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock, embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop ,handleInputs,inputs}) => {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -62,6 +71,33 @@ const Block: React.FC<CodeBlock> = ({ id, additional_content, name, typeOfBlock,
     }
     else if(name === 'binary_operator') {
       return <BinaryOperator embeddedBlock1={embeddedBlock1} embeddedBlock2={embeddedBlock2} embeddedOnDrop={embeddedOnDrop} handleInputs={handleInputs} inputs={inputs}/>
+    }
+    else if(name === 'numType') {
+      return <NumType/>
+    }
+    else if(name === 'stringType') {
+      return <StringType/>
+    }
+    else if(name === 'listType') {
+      return <ListType/>
+    }
+    else if(name === 'dictType') {
+      return <DictType/>
+    }
+    else if(name === 'nullType') {
+      return <NullType/>
+    }
+    else if(name === 'boolType') {
+      return <BoolType/>
+    }
+    else if(name === 'varType') {
+      return <VarType/>
+    }
+    else if(name === 'moreItems') {
+      return <MoreItems/>
+    }
+    else if(name === 'properties') {
+      return <Properties/>
     }
     else if(name === 'inc_dec') {
       return <IncrementDecrement/>

@@ -109,3 +109,9 @@
 #block-selection aside a#builtin-tag::before {
   background-color: #e56175;
 }
+#block-selection aside a#tiposDatos-tag::before {
+  background-color: #599354;
+}
+#block-selection aside a#auxiliares-tag::before {
+  background-color: #655493;
+}

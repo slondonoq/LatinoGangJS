@@ -41,6 +41,12 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
             </a>
           </li>
           <li>
+            <a href="#tipos de datos" id="tiposDatos-tag">
+              {" "}
+              Tipos de datos{" "}
+            </a>
+          </li>
+          <li>
             <a href="#funciones built-in" id="builtin-tag">
               {" "}
               Funciones Built-in{" "}
@@ -76,6 +82,12 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
               Diccionarios{" "}
             </a>
           </li>
+          <li>
+            <a href="#auxiliares" id="auxiliares-tag">
+              {" "}
+              Bloques auxiliares{" "}
+            </a>
+          </li>
         </ul>
       </aside>
       <div className="blocks-container">
@@ -92,6 +104,21 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='negation' typeOfBlock='block_with_embeddings'/>
         <h3 id="comparadores">Comparadores</h3>
         <Block name='binary_logic-op' typeOfBlock='embedded'/>
+        <h3 id='tipos de datos'>Tipos de datos</h3>
+        <p>Número</p>
+        <Block name='numType' typeOfBlock='embedded'/>
+        <p>Cadena de texo</p>
+        <Block name='stringType' typeOfBlock='embedded'/>
+        <p>Lista</p>
+        <Block name='listType' typeOfBlock='embedded'/>
+        <p>Diccionario</p>
+        <Block name='dictType' typeOfBlock='block_with_embeddings'/>
+        <p>Nulo</p>
+        <Block name='nullType' typeOfBlock='embedded'/>
+        <p>Lógico</p>
+        <Block name='boolType' typeOfBlock='embedded'/>
+        <p>Variable</p>
+        <Block name='varType' typeOfBlock='embedded'/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
         <Block name='to_number' typeOfBlock='embedded'/>
@@ -159,6 +186,11 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='dict' typeOfBlock='block_with_embeddings'/>
         <p>Clave - Valor</p>
         <Block name='dict_elem' typeOfBlock='block_with_embeddings'/>
+        <h3 id='auxiliares'>Bloques auxiliares</h3>
+        <p>Varios elementos</p>
+        <Block name='moreItems' typeOfBlock='embedded'/>
+        <p>Acceder a las propiedades de un elemento</p>
+        <Block name='properties' typeOfBlock='embedded'/>
       </div>
     </section>
   );
