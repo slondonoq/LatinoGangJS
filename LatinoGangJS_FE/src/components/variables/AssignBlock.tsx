@@ -10,7 +10,7 @@ const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedd
       {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText='variables'
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[ItemTypes.VARIABLE, ItemTypes.EMBEDDED]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
           />

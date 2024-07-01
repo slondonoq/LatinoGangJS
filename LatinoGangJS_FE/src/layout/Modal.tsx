@@ -3,12 +3,17 @@ import { useEffect, useState } from "react";
 
 interface ModalProps {
   closeModal: (value: boolean) => void;
+  updateVariables: (variables: string[]) => void;
+  variablesList: string[];
 }
 
-const Modal: React.FC<ModalProps> = ({ closeModal }) => {
+const Modal: React.FC<ModalProps> = ({
+  closeModal,
+  updateVariables,
+  variablesList,
+}) => {
   const [variable, setVariable] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const [variablesList, setVariablesList] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -26,15 +31,12 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
   const createVariable = () => {
     if (isValid && variable) {
       const updatedList = [...variablesList, variable];
-      setVariablesList(updatedList);
+      updateVariables(updatedList);
       setVariable("");
       closeModal(false);
     }
   };
 
-  useEffect(() => {
-    console.log("Updated variablesList:", variablesList);
-  }, [variablesList]);
   return (
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal">

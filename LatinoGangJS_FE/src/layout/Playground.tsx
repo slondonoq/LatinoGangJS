@@ -71,6 +71,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         inputs={inputs}
         nestedBlock={renderElem(nested_rel?.nested_child ?? '')}
         nestedOnDrop={(block: CodeBlock) => onDrop(block, elemId, undefined, undefined, true)}
+        variableName={blockData.variableName ?? ''}
       />
     )
     //console.log(element)

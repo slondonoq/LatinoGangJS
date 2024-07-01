@@ -76,7 +76,6 @@ function App() {
     if (block.name === "code_start") {
       newData.has_translation_block = true;
     }
-  
     if(is_nested) {
 
       if(!newData.nested_relations[blockParent ?? '']) {
@@ -99,7 +98,7 @@ function App() {
     }
     else if (block.blockTypes.includes("embedded")) {
       if (!blockParent) {
-        //newData.rootElems = newData.rootElems.concat([newId]);
+        //newData.rootElems = newData.rootElems.concat([newId]); //WARNING: this causes that a embedded block can be alone in the playground
       } else if (!newData.embedded_relations[blockParent]) {
         if (blockParent && embedding_spot) {
           newData.embedded_relations[blockParent] = {

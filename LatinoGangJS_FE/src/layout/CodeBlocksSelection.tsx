@@ -1,5 +1,5 @@
 import "@assets/stylesheets/layout/CodeBlocksSelection.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Block from "@components/dragNdrop/Block.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import { CodeBlock } from "@components/types.tsx";
@@ -12,13 +12,17 @@ interface CodeBlockSelectionProps {
 
 const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
   const [openModal, setOpenModal] = React.useState(false);
+  const [varibles, setVariables] = React.useState<string[]>([]);
   const [, drop] = useDrop({
     accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
     drop: (block: CodeBlock) => {
       onDrop(block);
     },
   });
-
+  useEffect(() => {
+    console.log(varibles);
+  }
+  , [varibles]);
   // TODO: implement layout section
   return (
     <section id="block-selection" ref={drop}>
@@ -84,7 +88,18 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='code_start' blockTypes={['block']}/>
         <h3 id="variables">Variables</h3>
         <button onClick={()=> setOpenModal(true)}>Crea una variable</button>
-        {openModal && (<Modal closeModal={setOpenModal} />)}
+        {openModal && (<Modal closeModal={setOpenModal} variablesList = {varibles} updateVariables={setVariables}/>)}
+        {/* {varibles.map((variable, index) => (
+          <div key={index}>{variable}</div>
+        ))} */}
+        {varibles.map((variable, index) => (
+          <Block 
+            key={index} 
+            name='variable' 
+            variableName={variable} 
+            blockTypes={['embedded','variable']}/>
+        ))
+        }
         <Block name='assignation' blockTypes={['block_with_embeddings']}/>
         <Block name='op_assignation' blockTypes={['block_with_embeddings']}/>
         <h3 id="operadores">Operadores</h3>

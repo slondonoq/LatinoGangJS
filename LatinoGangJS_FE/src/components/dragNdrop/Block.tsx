@@ -3,6 +3,7 @@ import { useDrag, DragSourceMonitor } from "react-dnd";
 import { CodeBlock } from "@components/types.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import Declaration from "@components/operators/Declaration";
+import Variable from "@components/variables/Variable";
 const AssignBlock = React.lazy(
   () => import("@components/variables/AssignBlock")
 );
@@ -100,11 +101,14 @@ const Block: React.FC<CodeBlock> = ({
   inputs,
   nestedBlock,
   nestedOnDrop,
+  variableName,
 }) => {
   // TODO: Add more Item Types and a function to assign them based on blockTypes content
   const [{ isDragging }, drag] = useDrag(() => ({
     type: blockTypes.includes("range")
       ? ItemTypes.RANGE
+      : blockTypes.includes("variable") 
+      ? ItemTypes.VARIABLE
       : blockTypes.includes("comparison")
       ? ItemTypes.COMPARISON
       : blockTypes.includes("declaration")
@@ -112,7 +116,7 @@ const Block: React.FC<CodeBlock> = ({
       : blockTypes.includes("embedded")
       ? ItemTypes.EMBEDDED
       : ItemTypes.BLOCK,
-    item: { id, name, blockTypes },
+    item: { id, name, blockTypes, variableName },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -122,7 +126,10 @@ const Block: React.FC<CodeBlock> = ({
     // TODO: place props on blocks after binary operator
     if (name === "code_start") {
       return <FormBlock />;
-    } else if (name === "assignation") {
+    } else if (name === "variable") {
+      //console.log(variableName,name,blockTypes)
+      return <Variable variableName={variableName ?? ''}/>;
+    }else if (name === "assignation") {
       return (
         <AssignBlock
           embeddedBlock1={embeddedBlock1}
