@@ -7,7 +7,7 @@ import Variable from "@components/variables/Variable";
 const AssignBlock = React.lazy(
   () => import("@components/variables/AssignBlock")
 );
-const FormBlock = React.lazy(() => import("@components/FormBlock"));
+const TranslationBlock = React.lazy(() => import("@components/TranslationBlock"));
 const BinaryLogicOperator = React.lazy(
   () => import("@components/operators/BinaryLogicOperator")
 );
@@ -101,7 +101,7 @@ const Block: React.FC<CodeBlock> = ({
   inputs,
   nestedBlock,
   nestedOnDrop,
-  variableName,
+  variableName
 }) => {
   // TODO: Add more Item Types and a function to assign them based on blockTypes content
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -127,10 +127,10 @@ const Block: React.FC<CodeBlock> = ({
   const renderBlockByName = (name: string) => {
     // TODO: place props on blocks after binary operator
     if (name === "code_start") {
-      return <FormBlock />;
+      return <TranslationBlock />;
     } else if (name === "variable") {
-      //console.log(variableName,name,blockTypes)
-      return <Variable variableName={variableName ?? ''}/>;
+      // Default name ensures block preview works correctly
+      return <Variable variableName={variableName ?? 'my_variable'}/>;
     }else if (name === "assignation") {
       return (
         <AssignBlock
@@ -294,10 +294,22 @@ const Block: React.FC<CodeBlock> = ({
       id={id}
       className={`code-block ${isDragging && "code-block--dragged"}`}
     >
-      <React.Suspense fallback={"Cargando bloque ..."}>
-        {renderBlockByName(name)}
-      </React.Suspense>
-      {additional_content}
+      {
+        name === 'code_start' && additional_content
+          ? <form id='blocks_for_translation'>
+              <React.Suspense fallback={"Cargando bloque ..."}>
+                {renderBlockByName(name)}
+              </React.Suspense>
+              {additional_content}
+            </form>
+          : <>
+              <React.Suspense fallback={"Cargando bloque ..."}>
+                {renderBlockByName(name)}
+              </React.Suspense>
+              {additional_content}
+            </>
+      }
+      
       {/* TODO: fin block separation can go here when diff block types are defined */}
     </div>
   );

@@ -1,5 +1,5 @@
 import "@assets/stylesheets/layout/Modal.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface ModalProps {
   closeModal: (value: boolean) => void;

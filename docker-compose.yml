@@ -11,10 +11,10 @@ services:
   latinogangjs-be:
     build: LatinoGangJS_BE/.
     restart: unless-stopped
-    ports:
-      - "8000:8000"
+#    ports:
+#      - "8000:8000"
     networks:
       - latinogangjs-net
 networks:
   latinogangjs-net:
-      
+    driver: bridge
