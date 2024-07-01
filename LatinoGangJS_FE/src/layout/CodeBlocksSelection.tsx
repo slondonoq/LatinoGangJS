@@ -4,12 +4,14 @@ import Block from "@components/dragNdrop/Block.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import { CodeBlock } from "@components/types.tsx";
 import { useDrop } from "react-dnd";
+import Modal from "./Modal";
 
 interface CodeBlockSelectionProps {
   onDrop: (block: CodeBlock) => void;
 }
 
 const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
+  const [openModal, setOpenModal] = React.useState(false);
   const [, drop] = useDrop({
     accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
     drop: (block: CodeBlock) => {
@@ -81,6 +83,8 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
       <div className="blocks-container">
         <Block name='code_start' blockTypes={['block']}/>
         <h3 id="variables">Variables</h3>
+        <button onClick={()=> setOpenModal(true)}>Crea una variable</button>
+        {openModal && (<Modal closeModal={setOpenModal} />)}
         <Block name='assignation' blockTypes={['block_with_embeddings']}/>
         <Block name='op_assignation' blockTypes={['block_with_embeddings']}/>
         <h3 id="operadores">Operadores</h3>

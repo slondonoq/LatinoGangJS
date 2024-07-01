@@ -60,7 +60,7 @@ const CodeOutput = () => {
       <div id="section-header">
         <div>
           <input type="checkbox" id="darkmode-toggle" onChange={isCheck} />
-          <label htmlFor="darkmode-toggle">
+          <label className="labelOutput" htmlFor="darkmode-toggle">
             <img src={SunIcon} alt="Sun Icon" className="sun" />
             <img src={MoonIcon} alt="Moon Icon" className="moon" />
           </label>
