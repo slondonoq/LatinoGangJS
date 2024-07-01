@@ -16,10 +16,10 @@ interface PlaygroundInterface {
   onDrop: Function,
   clearPlayground: MouseEventHandler<HTMLButtonElement>,
   handleInputs: Function,
-  runFunc: MouseEventHandler<HTMLButtonElement>,
+  onFormSubmit: (ev: SubmitEvent) => void
 }
 
-const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs,runFunc}) => {
+const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs, onFormSubmit }) => {
 
   const [{ isOver },drop] = useDrop({
 
@@ -79,6 +79,15 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
     return element
   }
 
+  const getElementAsForm = (id: string): HTMLFormElement | null => {
+
+    const element = document.getElementById(id)
+    if (element instanceof HTMLFormElement) {
+      return element
+    }
+    return null
+  }
+
   return(
       <section id="playground">
         <div id="section-header">
@@ -86,7 +95,13 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
             Clear
             <img src={ClearIcon} alt="" />
           </button>
-          <button className="btn-section play" onClick={runFunc}>
+          <button className="btn-section play" onClick={()=> {
+            const form: HTMLFormElement | null = getElementAsForm('blocks_for_translation')
+            if(form) {
+              form.onsubmit = onFormSubmit
+              form.requestSubmit()
+            }
+          }}>
             Run
             <img src={PlayIcon} alt="" />
           </button>

@@ -27,7 +27,7 @@ function App() {
   });
 
   const [elements, setElements] = useState<ElementsData>({});
-  const [codeLatino] = useState("funcion fib(n)\n    a,b = 0,1\n    mientras a < n\n        a,b = b, a+b\n        escribir(a)\n        /* uwu */\n    fin\nfin\n\nfib(250)");
+  const [codeLatino, setCodeLatino] = useState("funcion fib(n)\n    a,b = 0,1\n    mientras a < n\n        a,b = b, a+b\n        escribir(a)\n        /* uwu */\n    fin\nfin\n\nfib(250)");
   const [codeJs, setCodeJs] = useState('');
 
   const onDrop = (
@@ -62,7 +62,7 @@ function App() {
 
       newData.inputs[blockId][pos] = inputValue;
 
-      console.log(blockId, newData.inputs);
+      // console.log(blockId, newData.inputs);
       return newData;
     });
   }
@@ -253,7 +253,6 @@ function App() {
 
       // Now change remaining relations
       if (changeRoot) {
-        console.log('Helooooo')
         const currentRootIndex: number = newData.rootElems.findIndex(
           (elem) => elem == newBlockParent
         );
@@ -390,14 +389,25 @@ function App() {
     });
   };
 
-  const translate = async ()=> {
-    //TODO block to codeLatino
-    await handleProcessText()
+  const translate = async (event: SubmitEvent)=> {
+    event.preventDefault()
+    const form  = event.target as HTMLFormElement
+    let unformatted_code: string = ''
+    for (let i = 0; i < form.elements.length; i++) {
+      const elem = form.elements[i]
+      if (elem instanceof HTMLInputElement || elem instanceof HTMLSelectElement) {
+        unformatted_code += elem.value + ' '
+      }
+    }
+    //TODO: format code
+    // console.log(unformatted_code)
+    setCodeLatino(unformatted_code)
+    await handleProcessText(unformatted_code)
   }
 
-  const handleProcessText = async () => {
+  const handleProcessText = async (latinoCode: string) => {
     try {
-      const result = await processText(codeLatino);
+      const result = await processText(latinoCode);
       setCodeJs(result);
     } catch (error) {
       console.error("Failed to process text:", error);
@@ -415,7 +425,7 @@ function App() {
           onDrop={onDrop}
           clearPlayground={clearPlayground}
           handleInputs={handleInput}
-          runFunc={translate}
+          onFormSubmit={translate}
         />
         <CodeOutput codeLatino={codeLatino} codeJs={codeJs}/>
       </DndProvider>
