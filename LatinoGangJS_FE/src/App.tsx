@@ -76,7 +76,7 @@ function App() {
     if (block.name === "code_start") {
       newData.has_translation_block = true;
     }
-
+  
     if(is_nested) {
 
       if(!newData.nested_relations[blockParent ?? '']) {
@@ -154,7 +154,6 @@ function App() {
       }
     }
     newData.inputs[newId] = [];
-    //console.log(block)
     setElements({
       ...elements,
       [newId]: { ...block, id: newId },

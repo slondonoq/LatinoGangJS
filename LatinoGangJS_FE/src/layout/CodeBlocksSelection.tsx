@@ -86,12 +86,14 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <h3 id="operadores">Operadores</h3>
         <p>Operadores aritmeticos, concatenacion y regex</p>
         <Block name='binary_operator' blockTypes={['embedded']}/>
+        <p>Declaraciones</p>
+        <Block name='declaration' blockTypes={['block_with_embeddings','declaration']}/>
         <p>Incremento y decremento</p>
-        <Block name='inc_dec' blockTypes={['block_with_embeddings']}/>
+        <Block name='inc_dec' blockTypes={['block_with_embeddings','embedded']}/>
         <p>Negacion</p>
         <Block name='negation' blockTypes={['block_with_embeddings']}/>
         <h3 id="comparadores">Comparadores</h3>
-        <Block name='binary_logic-op' blockTypes={['embedded']}/>
+        <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
         <Block name='to_number' blockTypes={['embedded']}/>
@@ -132,9 +134,9 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Desde</p>
         <Block name='for' blockTypes={['block_with_embeddings']}/>
         <p>Para ... en rango</p>
-        <Block name='range_1' blockTypes={['embedded']}/>
-        <Block name='range_2' blockTypes={['embedded']}/>
-        <Block name='range_3' blockTypes={['embedded']}/>
+        <Block name='range_1' blockTypes={['embedded','range']}/>
+        <Block name='range_2' blockTypes={['embedded','range']}/>
+        <Block name='range_3' blockTypes={['embedded','range']}/>
         <Block name='for_range' blockTypes={['block_with_embeddings']}/>
         <p>Mientras</p>
         <Block name='while' blockTypes={['block_with_embeddings']}/>

@@ -2,6 +2,7 @@ import React from "react";
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 import { CodeBlock } from "@components/types.tsx";
 import {ItemTypes} from "@components/ItemTypes.tsx";
+import Declaration from "@components/operators/Declaration";
 const AssignBlock = React.lazy(() => import('@components/variables/AssignBlock'));
 const FormBlock = React.lazy(() => import('@components/FormBlock'));
 const BinaryLogicOperator = React.lazy(() => import('@components/operators/BinaryLogicOperator'));
@@ -56,14 +57,20 @@ const Block: React.FC<CodeBlock> = (
   }) => {
   // TODO: Add more Item Types and a function to assign them based on blockTypes content
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: blockTypes.includes('embedded') ? ItemTypes.EMBEDDED : ItemTypes.BLOCK,
+    type: blockTypes.includes('range') ? ItemTypes.RANGE 
+        : blockTypes.includes('comparison') ? ItemTypes.COMPARISON
+        : blockTypes.includes('declaration') ? ItemTypes.DECLARATION
+        : blockTypes.includes('embedded') ? ItemTypes.EMBEDDED 
+        : ItemTypes.BLOCK,
     item: {id, name, blockTypes },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    
   }));
 
   const renderBlockByName = (name: string) => {
+    
     // TODO: place props on blocks after binary operator
     if(name === 'code_start') {
       return <FormBlock />
@@ -82,6 +89,9 @@ const Block: React.FC<CodeBlock> = (
     }
     else if(name === 'negation') {
       return <Negation/>
+    }
+    else if(name === 'declaration') {
+      return <Declaration/>
     }
     else if(name === 'binary_logic-op') {
       return <BinaryLogicOperator/>
@@ -148,7 +158,13 @@ const Block: React.FC<CodeBlock> = (
       />
     }
     else if(name === 'for_range') {
-      return <ForRangeBlock/>
+      return <ForRangeBlock
+        embeddedBlock1={embeddedBlock1}
+        embeddedBlock2={embeddedBlock2}
+        embeddedOnDrop={embeddedOnDrop}
+        nestedBlock={nestedBlock}
+        nestedOnDrop={nestedOnDrop}
+      />
     }
     else if(name === 'range_1') {
       return <RangeBlock range_n_values={1}/>
@@ -160,10 +176,20 @@ const Block: React.FC<CodeBlock> = (
       return <RangeBlock range_n_values={3}/>
     }
     else if(name === 'while') {
-      return <WhileBlock/>
+      return <WhileBlock
+        embeddedBlock1={embeddedBlock1}
+        embeddedOnDrop={embeddedOnDrop}
+        nestedBlock={nestedBlock}
+        nestedOnDrop={nestedOnDrop}
+      />
     }
     else if(name === 'do_while') {
-      return <DoWhileBlock/>
+      return <DoWhileBlock
+        embeddedBlock1={embeddedBlock1}
+        embeddedOnDrop={embeddedOnDrop}
+        nestedBlock={nestedBlock}
+        nestedOnDrop={nestedOnDrop}
+      />
     }
     else if(name === 'func') {
       return <FunctionBlock/>

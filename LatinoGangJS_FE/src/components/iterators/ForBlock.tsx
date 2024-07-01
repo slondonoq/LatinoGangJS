@@ -15,7 +15,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
         {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText='declaración'
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[ItemTypes.DECLARATION]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
           />
@@ -25,7 +25,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
         {embeddedBlock2 ?? (
           <BlockPlaceholder
             placeholderText='expresión'
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[ItemTypes.COMPARISON]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />
