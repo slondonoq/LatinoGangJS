@@ -16,9 +16,10 @@ interface PlaygroundInterface {
   onDrop: Function,
   clearPlayground: MouseEventHandler<HTMLButtonElement>,
   handleInputs: Function,
+  runFunc: MouseEventHandler<HTMLButtonElement>,
 }
 
-const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs}) => {
+const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs,runFunc}) => {
 
   const [{ isOver },drop] = useDrop({
 
@@ -84,7 +85,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
             Clear
             <img src={ClearIcon} alt="" />
           </button>
-          <button className="btn-section play">
+          <button className="btn-section play" onClick={runFunc}>
             Run
             <img src={PlayIcon} alt="" />
           </button>

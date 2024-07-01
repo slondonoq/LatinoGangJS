@@ -14,6 +14,7 @@ import {
   Data,
   ElementsData,
 } from "@components/types.tsx";
+import {processText} from "./api/api.tsx";
 
 function App() {
   const [codeData, setCodeData] = useState<Data>({
@@ -26,6 +27,8 @@ function App() {
   });
 
   const [elements, setElements] = useState<ElementsData>({});
+  const [codeLatino] = useState("funcion fib(n)\n    a,b = 0,1\n    mientras a < n\n        a,b = b, a+b\n        escribir(a)\n        /* uwu */\n    fin\nfin\n\nfib(250)");
+  const [codeJs, setCodeJs] = useState('');
 
   const onDrop = (
     block: CodeBlock,
@@ -389,6 +392,20 @@ function App() {
     });
   };
 
+  const translate = async ()=> {
+    //TODO block to codeLatino
+    await handleProcessText()
+  }
+
+  const handleProcessText = async () => {
+    try {
+      const result = await processText(codeLatino);
+      setCodeJs(result);
+    } catch (error) {
+      console.error("Failed to process text:", error);
+    }
+  };
+
   return (
     <>
       <DndProvider backend={HTML5Backend}>
@@ -400,8 +417,9 @@ function App() {
           onDrop={onDrop}
           clearPlayground={clearPlayground}
           handleInputs={handleInput}
+          runFunc={translate}
         />
-        <CodeOutput />
+        <CodeOutput codeLatino={codeLatino} codeJs={codeJs}/>
       </DndProvider>
     </>
   );

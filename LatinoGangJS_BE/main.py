@@ -1,6 +1,5 @@
-import sys
-
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from antlr4 import *
 from grammar.gen.LatinoGrammarLexer import LatinoGrammarLexer
@@ -13,6 +12,13 @@ app = FastAPI()
 
 class TextInput(BaseModel):
     input: str
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permitir solo frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/translate")
 async def translate_latino2js(input:TextInput):
