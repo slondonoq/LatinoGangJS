@@ -14,7 +14,14 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const [varibles, setVariables] = React.useState<string[]>([]);
   const [, drop] = useDrop({
-    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
+    accept: [
+      ItemTypes.BLOCK,
+      ItemTypes.EMBEDDED,
+      ItemTypes.RANGE,
+      ItemTypes.VARIABLE,
+      ItemTypes.COMPARISON,
+      ItemTypes.DECLARATION
+    ],
     drop: (block: CodeBlock) => {
       onDrop(block);
     },

@@ -127,8 +127,8 @@ const Block: React.FC<CodeBlock> = ({
     if (name === "code_start") {
       return <FormBlock />;
     } else if (name === "variable") {
-      //console.log(variableName,name,blockTypes)
-      return <Variable variableName={variableName ?? ''}/>;
+      // Default name ensures block preview works correctly
+      return <Variable variableName={variableName ?? 'my_variable'}/>;
     }else if (name === "assignation") {
       return (
         <AssignBlock
