@@ -22,7 +22,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
 
   const [{ isOver },drop] = useDrop({
 
-    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
+    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED, ItemTypes.COMPARISON, ItemTypes.DECLARATION, ItemTypes.RANGE, ItemTypes.VARIABLE ],
     drop: (block: CodeBlock) => {
       if(isOver) {
         onDrop(block);

@@ -99,7 +99,7 @@ function App() {
     }
     else if (block.blockTypes.includes("embedded")) {
       if (!blockParent) {
-        newData.rootElems = newData.rootElems.concat([newId]);
+        //newData.rootElems = newData.rootElems.concat([newId]);
       } else if (!newData.embedded_relations[blockParent]) {
         if (blockParent && embedding_spot) {
           newData.embedded_relations[blockParent] = {

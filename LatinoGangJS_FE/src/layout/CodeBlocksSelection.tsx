@@ -87,7 +87,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Operadores aritmeticos, concatenacion y regex</p>
         <Block name='binary_operator' blockTypes={['embedded']}/>
         <p>Declaraciones</p>
-        <Block name='declaration' blockTypes={['block_with_embeddings','declaration']}/>
+        <Block name='declaration' blockTypes={['block_with_embeddings','declaration','embedded']}/>
         <p>Incremento y decremento</p>
         <Block name='inc_dec' blockTypes={['block_with_embeddings','embedded']}/>
         <p>Negacion</p>
