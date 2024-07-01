@@ -1,22 +1,28 @@
 import "@assets/stylesheets/layout/CodeBlocksSelection.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Block from "@components/dragNdrop/Block.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import { CodeBlock } from "@components/types.tsx";
 import { useDrop } from "react-dnd";
+import Modal from "./Modal";
 
 interface CodeBlockSelectionProps {
   onDrop: (block: CodeBlock) => void;
 }
 
 const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
+  const [openModal, setOpenModal] = React.useState(false);
+  const [varibles, setVariables] = React.useState<string[]>([]);
   const [, drop] = useDrop({
     accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
     drop: (block: CodeBlock) => {
       onDrop(block);
     },
   });
-
+  useEffect(() => {
+    console.log(varibles);
+  }
+  , [varibles]);
   // TODO: implement layout section
   return (
     <section id="block-selection" ref={drop}>
@@ -81,17 +87,32 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
       <div className="blocks-container">
         <Block name='code_start' blockTypes={['block']}/>
         <h3 id="variables">Variables</h3>
+        <button onClick={()=> setOpenModal(true)}>Crea una variable</button>
+        {openModal && (<Modal closeModal={setOpenModal} variablesList = {varibles} updateVariables={setVariables}/>)}
+        {/* {varibles.map((variable, index) => (
+          <div key={index}>{variable}</div>
+        ))} */}
+        {varibles.map((variable, index) => (
+          <Block 
+            key={index} 
+            name='variable' 
+            variableName={variable} 
+            blockTypes={['embedded','variable']}/>
+        ))
+        }
         <Block name='assignation' blockTypes={['block_with_embeddings']}/>
         <Block name='op_assignation' blockTypes={['block_with_embeddings']}/>
         <h3 id="operadores">Operadores</h3>
         <p>Operadores aritmeticos, concatenacion y regex</p>
         <Block name='binary_operator' blockTypes={['embedded']}/>
+        <p>Declaraciones</p>
+        <Block name='declaration' blockTypes={['block_with_embeddings','declaration','embedded']}/>
         <p>Incremento y decremento</p>
-        <Block name='inc_dec' blockTypes={['block_with_embeddings']}/>
+        <Block name='inc_dec' blockTypes={['block_with_embeddings','embedded']}/>
         <p>Negacion</p>
         <Block name='negation' blockTypes={['block_with_embeddings']}/>
         <h3 id="comparadores">Comparadores</h3>
-        <Block name='binary_logic-op' blockTypes={['embedded']}/>
+        <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
         <Block name='to_number' blockTypes={['embedded']}/>
@@ -132,9 +153,9 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Desde</p>
         <Block name='for' blockTypes={['block_with_embeddings']}/>
         <p>Para ... en rango</p>
-        <Block name='range_1' blockTypes={['embedded']}/>
-        <Block name='range_2' blockTypes={['embedded']}/>
-        <Block name='range_3' blockTypes={['embedded']}/>
+        <Block name='range_1' blockTypes={['embedded','range']}/>
+        <Block name='range_2' blockTypes={['embedded','range']}/>
+        <Block name='range_3' blockTypes={['embedded','range']}/>
         <Block name='for_range' blockTypes={['block_with_embeddings']}/>
         <p>Mientras</p>
         <Block name='while' blockTypes={['block_with_embeddings']}/>

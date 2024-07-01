@@ -6,6 +6,7 @@ export interface CodeBlock extends CodeBlockWithNestingAndEmbeddings{
   index?:number,
   name: string,
   blockTypes: string[]
+  variableName?: string,
 }
 
 export interface PlaceholderBlock {

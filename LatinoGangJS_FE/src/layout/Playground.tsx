@@ -23,7 +23,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
 
   const [{ isOver },drop] = useDrop({
 
-    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
+    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED, ItemTypes.COMPARISON, ItemTypes.DECLARATION, ItemTypes.RANGE, ItemTypes.VARIABLE ],
     drop: (block: CodeBlock) => {
       if(isOver) {
         onDrop(block);
@@ -72,6 +72,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         inputs={inputs}
         nestedBlock={renderElem(nested_rel?.nested_child ?? '')}
         nestedOnDrop={(block: CodeBlock) => onDrop(block, elemId, undefined, undefined, true)}
+        variableName={blockData.variableName ?? ''}
       />
     )
     //console.log(element)

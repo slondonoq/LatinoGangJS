@@ -33,7 +33,7 @@ pre {
   margin: 0;
 }
 
-label{
+.labelOutput{
   width: 60px;
   height: 24px;
   position: relative;
@@ -43,7 +43,7 @@ label{
   box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.3), inset 0px -5px 15px rgba(255, 255, 255, 0.4);
   cursor: pointer;
 }
-label:after {
+.labelOutput:after {
   content: '';
   position: absolute;
   top: 2px;
@@ -55,7 +55,7 @@ label:after {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   transition: 0.4s;
 }
-label:active:after {
+.labelOutput:active:after {
   width: 32px;
 }
 input[type="checkbox"] {
@@ -64,10 +64,10 @@ input[type="checkbox"] {
   height: 0;
   display: none;
 }
-input[type="checkbox"]:checked + label {
+input[type="checkbox"]:checked + .labelOutput {
   background: #28292b;
 }
-input[type="checkbox"]:checked + label:after {
+input[type="checkbox"]:checked + .labelOutput:after {
   left: calc(100% - 2px);
   transform: translateX(-100%);
   background: #7e7e7e;
