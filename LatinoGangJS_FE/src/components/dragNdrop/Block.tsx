@@ -107,6 +107,8 @@ const Block: React.FC<CodeBlock> = ({
   const [{ isDragging }, drag] = useDrag(() => ({
     type: blockTypes.includes("range")
       ? ItemTypes.RANGE
+      : blockTypes.includes("key_value")
+      ? ItemTypes.KEY_VALUE
       : blockTypes.includes("variable") 
       ? ItemTypes.VARIABLE
       : blockTypes.includes("comparison")
@@ -261,11 +263,28 @@ const Block: React.FC<CodeBlock> = ({
     } else if (name === "list") {
       return <Lists />;
     } else if (name === "list_access") {
-      return <AccederElemento />;
+      return <AccederElemento 
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+      />;
     } else if (name === "dict") {
-      return <Dictionaries />;
+      return <Dictionaries 
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+      />;
     } else if (name === "dict_elem") {
-      return <DicElement />;
+      return <DicElement 
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}/>;
     }
   };
 

@@ -5,7 +5,6 @@ interface VariableProps {
 }
 
 const Variable: React.FC<VariableProps> = ({variableName}) => {
-    
     return (
         <div className="block block__assign">
         <input type="hidden" value={variableName}/>

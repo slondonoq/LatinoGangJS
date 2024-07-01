@@ -174,12 +174,12 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Listas</p>
         <Block name='list' blockTypes={['block_with_embeddings']}/>
         <p>Acceder a un elemento</p>
-        <Block name='list_access' blockTypes={['embedded']}/>
+        <Block name='list_access' blockTypes={['embedded', 'variable']}/>
         <h3 id="diccionarios">Diccionarios</h3>
         <p>Diccionario</p>
         <Block name='dict' blockTypes={['block_with_embeddings']}/>
         <p>Clave - Valor</p>
-        <Block name='dict_elem' blockTypes={['block_with_embeddings']}/>
+        <Block name='dict_elem' blockTypes={['block_with_embeddings', 'key_value', ]}/>
       </div>
     </section>
   );

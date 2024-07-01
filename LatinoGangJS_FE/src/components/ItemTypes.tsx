@@ -5,4 +5,5 @@ export const ItemTypes = {
   DECLARATION: 'declaration',
   COMPARISON: 'comparison',
   VARIABLE: 'variable',
+  KEY_VALUE: 'key_value',
 };
