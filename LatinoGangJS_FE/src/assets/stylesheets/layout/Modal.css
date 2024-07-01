@@ -1,85 +1,84 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-  }
-  
-  .modal {
-    background: #fff;
-    border-radius: 8px;
-    display: grid;
-    min-width: 20em;
-  }
-  .modal-header {
-    display: grid;
-    border-radius: 8px 8px 0px 0px;
-    grid-template-columns: 1fr auto;
-    padding: 1em;
-    background: var(--primary_color-500);
-  }
-  .modal-close  {
-    position: relative;
-    top: 0px;
-    cursor: pointer;
-    justify-self: end;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-  }
-    .modal-close:hover {
-        color: var(--tertiary_color-300);
-    }
-  
-  .modal-content {
-    padding: 1em;
-    width: 100%;
-    display: grid;
-    color: var(--text_color-dark);
-    text-align: start;
-  }
-  .modal-content input {
-    margin-top: 1em;
-    padding: 0.5em;
-    width: 100%;
-    border-radius: 4px;
-    justify-self: center;
-  }
-  .modal-buttons {
-    margin-top: 1em;
-    display: flex;
-    justify-content: end;
-    gap: 0.5em;
-  }
-  .modal-buttons button{
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    color: var(--text_color-light);
-    border: none;
-    cursor: pointer;
-  }
-  .modal-buttons button:first-child{
-    background: var(--tertiary_color-300);
-  }
-    .modal-buttons button:first-child:hover{
-        background: var(--tertiary_color-400);
-    }
-    .modal-buttons button:last-child{
-        background: var(--secondary_color-400);
-    }
-    .modal-buttons button:last-child:hover{
-        background: var(--secondary_color-500);
-    }
-  .variable-error {
-    color: var(--tertiary_color-400);
-    font-size: 0.8rem;
-    margin: 0.4em 0;
-    text-align: start;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  display: grid;
+  min-width: 20em;
+}
+.modal-header {
+  display: grid;
+  border-radius: 8px 8px 0px 0px;
+  grid-template-columns: 1fr auto;
+  padding: 1em;
+  background: var(--primary_color-500);
+}
+.modal-close {
+  position: relative;
+  top: 0px;
+  cursor: pointer;
+  justify-self: end;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+.modal-close:hover {
+  color: var(--tertiary_color-300);
+}
+
+.modal-content {
+  padding: 1em;
+  width: 100%;
+  display: grid;
+  color: var(--text_color-dark);
+  text-align: start;
+}
+.modal-content input {
+  margin-top: 1em;
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 4px;
+  justify-self: center;
+}
+.modal-buttons {
+  margin-top: 1em;
+  display: flex;
+  justify-content: end;
+  gap: 0.5em;
+}
+.modal-buttons button {
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  color: var(--text_color-light);
+  border: none;
+  cursor: pointer;
+}
+.modal-buttons button:first-child {
+  background: var(--tertiary_color-300);
+}
+.modal-buttons button:first-child:hover {
+  background: var(--tertiary_color-400);
+}
+.modal-buttons button:last-child {
+  background: var(--secondary_color-400);
+}
+.modal-buttons button:last-child:hover {
+  background: var(--secondary_color-500);
+}
+.variable-error {
+  color: var(--tertiary_color-400);
+  font-size: 0.8rem;
+  margin: 0.4em 0;
+  text-align: start;
+}
