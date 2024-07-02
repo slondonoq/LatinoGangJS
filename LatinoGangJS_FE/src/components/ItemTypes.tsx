@@ -6,4 +6,6 @@ export const ItemTypes = {
   COMPARISON: 'comparison',
   VARIABLE: 'variable',
   KEY_VALUE: 'key_value',
+  IF_NESTING: 'if_nesting',
+  SWITCH: 'switch',
 };

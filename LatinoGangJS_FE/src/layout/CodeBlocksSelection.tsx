@@ -20,7 +20,9 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
       ItemTypes.RANGE,
       ItemTypes.VARIABLE,
       ItemTypes.COMPARISON,
-      ItemTypes.DECLARATION
+      ItemTypes.DECLARATION,
+      ItemTypes.KEY_VALUE,
+      ItemTypes.IF_NESTING,
     ],
     drop: (block: CodeBlock) => {
       onDrop(block);
@@ -143,15 +145,15 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Si</p>
         <Block name='cond_if' blockTypes={['block_with_embeddings']}/>
         <p>Osi</p>
-        <Block name='cond_elif' blockTypes={['block_with_embeddings']}/>
+        <Block name='cond_elif' blockTypes={['block_with_embeddings','if_nesting']}/>
         <p>Sino</p>
-        <Block name='cond_else' blockTypes={['block']}/>
+        <Block name='cond_else' blockTypes={['block','if_nesting']}/>
         <p>Elegir</p>
         <Block name='switch' blockTypes={['block_with_embeddings']}/>
         <p>Caso</p>
-        <Block name='switch_case' blockTypes={['block_with_embeddings']}/>
+        <Block name='switch_case' blockTypes={['switch','block']}/>
         <p>Defecto</p>
-        <Block name='switch_def' blockTypes={['block']}/>
+        <Block name='switch_def' blockTypes={['block','switch']}/>
         <p>Otro</p>
         <Block name='switch_other' blockTypes={['block']}/>
         <p>Romper</p>

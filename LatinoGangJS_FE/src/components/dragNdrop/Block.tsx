@@ -7,7 +7,9 @@ import Variable from "@components/variables/Variable";
 const AssignBlock = React.lazy(
   () => import("@components/variables/AssignBlock")
 );
-const TranslationBlock = React.lazy(() => import("@components/TranslationBlock"));
+const TranslationBlock = React.lazy(
+  () => import("@components/TranslationBlock")
+);
 const BinaryLogicOperator = React.lazy(
   () => import("@components/operators/BinaryLogicOperator")
 );
@@ -101,7 +103,7 @@ const Block: React.FC<CodeBlock> = ({
   inputs,
   nestedBlock,
   nestedOnDrop,
-  variableName
+  variableName,
 }) => {
   // TODO: Add more Item Types and a function to assign them based on blockTypes content
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -109,7 +111,11 @@ const Block: React.FC<CodeBlock> = ({
       ? ItemTypes.RANGE
       : blockTypes.includes("key_value")
       ? ItemTypes.KEY_VALUE
-      : blockTypes.includes("variable") 
+      : blockTypes.includes("if_nesting")
+      ? ItemTypes.IF_NESTING
+      : blockTypes.includes("switch")
+      ? ItemTypes.SWITCH
+      : blockTypes.includes("variable")
       ? ItemTypes.VARIABLE
       : blockTypes.includes("comparison")
       ? ItemTypes.COMPARISON
@@ -130,8 +136,8 @@ const Block: React.FC<CodeBlock> = ({
       return <TranslationBlock />;
     } else if (name === "variable") {
       // Default name ensures block preview works correctly
-      return <Variable variableName={variableName ?? 'my_variable'}/>;
-    }else if (name === "assignation") {
+      return <Variable variableName={variableName ?? "my_variable"} />;
+    } else if (name === "assignation") {
       return (
         <AssignBlock
           embeddedBlock1={embeddedBlock1}
@@ -189,22 +195,33 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "cond_elif") {
-      return <CondElseIf 
-        embeddedBlock1={embeddedBlock1}
-        embeddedOnDrop={embeddedOnDrop}
-        nestedBlock={nestedBlock}
-        nestedOnDrop={nestedOnDrop}
-      />;
+      return (
+        <CondElseIf
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+        />
+      );
     } else if (name === "cond_else") {
-      return <CondElse />;
+      return <CondElse nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />;
     } else if (name === "switch") {
-      return <CondSwitch />;
+      return (
+        <CondSwitch
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+        />
+      );
     } else if (name === "switch_case") {
-      return <CondCase />;
+      return <CondCase nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />;
     } else if (name === "switch_def") {
-      return <CondDefecto />;
+      return (
+        <CondDefecto nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />
+      );
     } else if (name === "switch_other") {
-      return <CondOtro />;
+      return <CondOtro nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />;
     } else if (name === "break") {
       return <Romper />;
     } else if (name === "for") {
@@ -253,38 +270,72 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "func") {
-      return <FunctionBlock />;
-    } else if (name === "func_anonymous") {
-      return <AnonymousFunBlock />;
-    } else if (name === "func_call") {
-      return <FunCall />;
-    } else if (name === "return") {
-      return <ReturnBlock />;
-    } else if (name === "list") {
-      return <Lists />;
-    } else if (name === "list_access") {
-      return <AccederElemento 
+      return (
+        <FunctionBlock
           embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
           embeddedOnDrop={embeddedOnDrop}
-          handleInputs={handleInputs}
-          inputs={inputs}
-      />;
-    } else if (name === "dict") {
-      return <Dictionaries 
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+        />
+      );
+    } else if (name === "func_anonymous") {
+      return (
+        <AnonymousFunBlock
           embeddedBlock1={embeddedBlock1}
           embeddedOnDrop={embeddedOnDrop}
           nestedBlock={nestedBlock}
           nestedOnDrop={nestedOnDrop}
-          handleInputs={handleInputs}
-          inputs={inputs}
-      />;
-    } else if (name === "dict_elem") {
-      return <DicElement 
+        />
+      );
+    } else if (name === "func_call") {
+      return (
+        <FunCall
           embeddedBlock1={embeddedBlock1}
           embeddedBlock2={embeddedBlock2}
           embeddedOnDrop={embeddedOnDrop}
           handleInputs={handleInputs}
-          inputs={inputs}/>;
+          inputs={inputs}
+        />
+      );
+    } else if (name === "return") {
+      return (
+        <ReturnBlock nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />
+      );
+    } else if (name === "list") {
+      return (
+        <Lists
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
+    } else if (name === "list_access") {
+      return (
+        <AccederElemento
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+        />
+      );
+    } else if (name === "dict") {
+      return (
+        <Dictionaries
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+        />
+      );
+    } else if (name === "dict_elem") {
+      return (
+        <DicElement
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+        />
+      );
     }
   };
 
@@ -294,22 +345,22 @@ const Block: React.FC<CodeBlock> = ({
       id={id}
       className={`code-block ${isDragging && "code-block--dragged"}`}
     >
-      {
-        name === 'code_start' && additional_content
-          ? <form id='blocks_for_translation'>
-              <React.Suspense fallback={"Cargando bloque ..."}>
-                {renderBlockByName(name)}
-              </React.Suspense>
-              {additional_content}
-            </form>
-          : <>
-              <React.Suspense fallback={"Cargando bloque ..."}>
-                {renderBlockByName(name)}
-              </React.Suspense>
-              {additional_content}
-            </>
-      }
-      
+      {name === "code_start" && additional_content ? (
+        <form id="blocks_for_translation">
+          <React.Suspense fallback={"Cargando bloque ..."}>
+            {renderBlockByName(name)}
+          </React.Suspense>
+          {additional_content}
+        </form>
+      ) : (
+        <>
+          <React.Suspense fallback={"Cargando bloque ..."}>
+            {renderBlockByName(name)}
+          </React.Suspense>
+          {additional_content}
+        </>
+      )}
+
       {/* TODO: fin block separation can go here when diff block types are defined */}
     </div>
   );

@@ -1,4 +1,13 @@
-const CondCase = () => {
+import { ItemTypes } from '@components/ItemTypes'
+import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
+import { CodeBlockWithNesting } from '@components/types'
+import { FC } from 'react'
+
+const CondCase: FC<CodeBlockWithNesting> = ({nestedBlock, nestedOnDrop}) => {
+  const defaultFunc = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with embeddings");
+  const defaultFunc2 = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with nesting");
     return (
         <div className="block__condcase--container">
           <span className="block block__condcase block__sentence">
@@ -9,7 +18,14 @@ const CondCase = () => {
             {": "}
           </span>
           <span className="block__condcase--nested-block">
-            {/* Here goes nested block */}
+          {nestedBlock ?? (
+          <BlockPlaceholder
+            placeholderText=''
+            itemsTypes={[ItemTypes.BLOCK]}
+            onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc2}
+            embedding_spot='emb_child_3'
+          />
+        )}
           </span>
           <div className="block block__condcase block__condcase--end block__sentence">
           </div>

@@ -32,9 +32,9 @@ const CondIf: FC<CodeBlockWithNestingAndEmbeddings> = ({
         {nestedBlock ?? (
           <BlockPlaceholder
             placeholderText=""
-            itemsTypes={[ItemTypes.BLOCK]}
+            itemsTypes={[ItemTypes.BLOCK, ItemTypes.IF_NESTING]}
             onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc2}
-            embedding_spot="emb_child_3"
+            embedding_spot="emb_child_2"
           />
         )}
       </span>

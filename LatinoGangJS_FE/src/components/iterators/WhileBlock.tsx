@@ -4,8 +4,10 @@ import { CodeBlockWithNestingAndEmbeddings } from '@components/types'
 import { FC } from 'react'
 
 const WhileBlock:FC<CodeBlockWithNestingAndEmbeddings> = ({embeddedBlock1, embeddedOnDrop, nestedBlock, nestedOnDrop }) => {
-  const defaultFunc: Function = () => console.log('Oops, forgot to pass onDrop prop to block with embeddings')
-  const defaultFunc2: Function = () => console.log('Oops, forgot to pass onDrop prop to block with nesting')
+  const defaultFunc = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with embeddings");
+  const defaultFunc2 = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
     <div className='block__iterator--container'>
       <span className='block block__iterator block__sentence'>
