@@ -139,16 +139,10 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='numType' blockTypes={['embedded']}/>
         <p>Cadena de texo</p>
         <Block name='stringType' blockTypes={['embedded']}/>
-        <p>Lista</p>
-        <Block name='listType' blockTypes={['embedded']}/>
-        <p>Diccionario</p>
-        <Block name='dictType' blockTypes={['block_with_embeddings']}/>
         <p>Nulo</p>
         <Block name='nullType' blockTypes={['embedded']}/>
         <p>Lógico</p>
         <Block name='boolType' blockTypes={['embedded']}/>
-        <p>Variable</p>
-        <Block name='varType' blockTypes={['embedded']}/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
         <Block name='to_number' blockTypes={['embedded']}/>
@@ -209,11 +203,13 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <h3 id="listas">Listas</h3>
         <p>Listas</p>
         <Block name='list' blockTypes={['block_with_embeddings']}/>
+        <Block name='listType' blockTypes={['embedded']}/>
         <p>Acceder a un elemento</p>
         <Block name='list_access' blockTypes={['embedded', 'variable']}/>
         <h3 id="diccionarios">Diccionarios</h3>
         <p>Diccionario</p>
         <Block name='dict' blockTypes={['block_with_embeddings']}/>
+        <Block name='dictType' blockTypes={['block_with_embeddings']}/>
         <p>Clave - Valor</p>
         <Block name='dict_elem' blockTypes={['block_with_embeddings',  'key_value']}/>
         <h3 id='auxiliares'>Bloques auxiliares</h3>

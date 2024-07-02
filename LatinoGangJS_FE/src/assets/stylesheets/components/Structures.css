@@ -85,3 +85,70 @@
 .block__dicElem::after {
   left: 0.75em;
 }
+
+.block__dictType {
+  width: 3.2em;
+  background-color: #d263d5;
+  border-radius: 0.25em 0.25em 0.25em 0;
+}
+.block__dictType--container {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.block__dictType--nested-block {
+  position: relative;
+  padding-left: 1em;
+  min-height: 1em;
+}
+
+.block__dictType--nested-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 100%;
+  background-color: #d263d5;
+}
+
+.block__dictType--end {
+  border-radius: 0em 0.25em 0.25em 0;
+  min-width: 8em;
+}
+
+.block__dictType::after {
+  border-top: 0.4em solid #d263d5;
+}
+
+.block__dictType--end::after {
+  border-top: 0em;
+}
+
+.block__dictType--end::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75em;
+  border-top: 0.4em solid var(--background_color-light-dark);
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  height: 0;
+  width: 0.8em;
+  z-index: 0;
+  left: 1.75em;
+}
+
+.block__dictType::after {
+  content: '';
+position: absolute;
+bottom: -0.35em;
+left: 0.75em;
+border-left: 0.3em solid transparent;
+border-right: 0.3em solid transparent;
+height: 0;
+width: 0.8em;
+z-index: 10;
+  left: 1.75em;
+}

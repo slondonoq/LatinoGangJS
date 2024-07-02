@@ -111,9 +111,6 @@ const NullType = React.lazy(
 const BoolType = React.lazy(
   () => import('@components/dataTypes/BoolType')
 );
-const VarType = React.lazy(
-  () => import('@components/dataTypes/VarType')
-);
 const MoreItems = React.lazy(
   () => import('@components/auxiliaryBlocks/MoreItems')
 );
