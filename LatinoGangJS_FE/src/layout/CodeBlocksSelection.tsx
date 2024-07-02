@@ -159,15 +159,15 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Osi</p>
         <Block name='cond_elif' blockTypes={['block_with_embeddings','if_nesting']}/>
         <p>Sino</p>
-        <Block name='cond_else' blockTypes={['block','if_nesting']}/>
+        <Block name='cond_else' blockTypes={['block_with_embeddings','if_nesting']}/>
         <p>Elegir</p>
         <Block name='switch' blockTypes={['block_with_embeddings']}/>
         <p>Caso</p>
-        <Block name='switch_case' blockTypes={['switch','block']}/>
+        <Block name='switch_case' blockTypes={['switch']}/>
         <p>Defecto</p>
-        <Block name='switch_def' blockTypes={['block','switch']}/>
+        <Block name='switch_def' blockTypes={['switch']}/>
         <p>Otro</p>
-        <Block name='switch_other' blockTypes={['block']}/>
+        <Block name='switch_other' blockTypes={['switch']}/>
         <p>Romper</p>
         <Block name='break' blockTypes={['block']}/>
         <h3 id="bucles">Bucles</h3>
@@ -200,7 +200,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Diccionario</p>
         <Block name='dict' blockTypes={['block_with_embeddings']}/>
         <p>Clave - Valor</p>
-        <Block name='dict_elem' blockTypes={['block_with_embeddings', 'key_value', ]}/>
+        <Block name='dict_elem' blockTypes={['block_with_embeddings',  'key_value']}/>
         <h3 id='auxiliares'>Bloques auxiliares</h3>
         <p>Varios elementos</p>
         <Block name='moreItems' blockTypes={['embedded']}/>

@@ -438,6 +438,8 @@ const Block: React.FC<CodeBlock> = ({
           embeddedBlock1={embeddedBlock1}
           embeddedBlock2={embeddedBlock2}
           embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
         />
       );
     }

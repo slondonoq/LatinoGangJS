@@ -56,7 +56,14 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
               key={`placeholder-${elemId}`}
               isReduced={Boolean(sentence_child)}
               onDrop={(block: CodeBlock)=> onDrop(block, elemId)}
-              itemsTypes={[ItemTypes.BLOCK]}
+              itemsTypes={
+                blockData.blockTypes.includes('key_value')
+                ?[ItemTypes.KEY_VALUE]
+                :blockData.blockTypes.includes('switch')
+                ?[ItemTypes.SWITCH]
+                :blockData.blockTypes.includes('if_nesting')
+                ?[ItemTypes.IF_NESTING]
+                :[ItemTypes.BLOCK]}
             />
             {
               renderElem(sentence_child)
@@ -87,7 +94,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
     }
     return null
   }
-
+  
   return(
       <section id="playground">
         <div id="section-header">
@@ -112,6 +119,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
             codeData.rootElems.map(elemId => 
               <div key={`rootContainer-${elemId}`}>
                 {
+                  
                   (!elements[elemId].blockTypes.includes('embedded')) && (elements[elemId].name !== 'code_start')
                   ? <BlockPlaceholder
                       key={`root-${elemId}`}

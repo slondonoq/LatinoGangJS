@@ -80,7 +80,7 @@ function App() {
       newData.has_translation_block = true;
     }
     if(is_nested) {
-
+      console.log('nested')
       if(!newData.nested_relations[blockParent ?? '']) {
         newData.nested_relations[blockParent ?? ''] = {
           nested_child: undefined,
@@ -118,12 +118,17 @@ function App() {
       newData.embedded_relations[newId ?? ""] = {
         emb_parent: blockParent,
       };
-    } else if (!blockParent) {
+    } else if (!blockParent ) {
+      if(block.blockTypes.includes("key_value") || block.blockTypes.includes("switch")|| block.blockTypes.includes("if_nesting")){
+        console.log('Block can not be root')
+      }
+      else{
       newData.rootElems = newData.rootElems.concat([newId]);
       newData.sentence_relations[newId] = {
         sent_parent: undefined,
         sent_child: undefined,
       };
+    }
     } else {
       if (changeRoot) {
         const currentRootIndex: number = codeData.rootElems.findIndex(
@@ -144,6 +149,7 @@ function App() {
           };
         }
       } else {
+        
         const oldSentenceChild =
           newData.sentence_relations[blockParent].sent_child;
         //Setting parent for child
