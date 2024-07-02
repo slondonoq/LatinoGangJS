@@ -4,11 +4,17 @@ import BlockPlaceholder from "@components/dragNdrop/BlockPlaceholder";
 import { CodeBlockWithNestingAndEmbeddings } from "@components/types";
 import { FC } from "react";
 
-const CondIf: FC<CodeBlockWithNestingAndEmbeddings> = ({
+interface conditionalBlock extends CodeBlockWithNestingAndEmbeddings {
+  has_alt_conds?: boolean
+}
+
+const CondIf: FC<conditionalBlock> = ({
   embeddedBlock1,
+  embeddedBlock2,
   embeddedOnDrop,
   nestedBlock,
   nestedOnDrop,
+  has_alt_conds
 }) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
@@ -32,12 +38,23 @@ const CondIf: FC<CodeBlockWithNestingAndEmbeddings> = ({
         {nestedBlock ?? (
           <BlockPlaceholder
             placeholderText=""
-            itemsTypes={[ItemTypes.BLOCK, ItemTypes.IF_NESTING]}
+            itemsTypes={[ItemTypes.BLOCK]}
             onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc2}
             embedding_spot="emb_child_2"
           />
         )}
       </span>
+      
+        {has_alt_conds ? embeddedBlock2 ?? (
+          <span className='block__condif--alt_block'>
+            <BlockPlaceholder
+              placeholderText="Condición alterna"
+              itemsTypes={[ItemTypes.IF_NESTING]}
+              onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+              embedding_spot="emb_child_2"
+            />
+          </span>
+        ): null}
       <div className="block block__condif block__condif--end block__sentence">
         <input type="hidden" value="fin" />
         {"fin"}

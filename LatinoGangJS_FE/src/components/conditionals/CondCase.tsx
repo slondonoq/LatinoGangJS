@@ -4,8 +4,7 @@ import { CodeBlockWithNesting } from '@components/types'
 import { FC } from 'react'
 
 const CondCase: FC<CodeBlockWithNesting> = ({nestedBlock, nestedOnDrop}) => {
-  const defaultFunc = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with embeddings");
+  
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
     return (

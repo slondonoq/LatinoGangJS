@@ -42,7 +42,14 @@ function App() {
         moveElem(block, blockParent, changeRoot, embedding_spot, is_nested);
       }
     } else if (block.name !== "code_start" || !codeData.has_translation_block) {
-      createElem(block, blockParent, changeRoot, embedding_spot, is_nested);
+      const blockToCreate = {...block, blockTypes: [...block.blockTypes]}
+      // Special creation case:
+      if ((block.name === 'cond_elif' || block.name === 'cond_else')
+        && elements[blockParent ?? '']?.name == 'cond_elif'
+      ) {
+        blockToCreate.blockTypes = blockToCreate.blockTypes.map(elem => elem === 'embedded' ? 'block_with_embeddings' : elem)
+      }
+      createElem(blockToCreate, blockParent, changeRoot, embedding_spot, is_nested);
     } else {
       alert("Solo se puede tener un bloque de inicio");
     }
@@ -118,6 +125,11 @@ function App() {
       newData.embedded_relations[newId ?? ""] = {
         emb_parent: blockParent,
       };
+      if(block.name === 'cond_elif') {
+        newData.sentence_relations[newId ?? ''] = {
+          sent_child: undefined
+        }
+      }
     } else if (!blockParent ) {
       if(block.blockTypes.includes("key_value") || block.blockTypes.includes("switch")|| block.blockTypes.includes("if_nesting")){
         console.log('Block can not be root')
