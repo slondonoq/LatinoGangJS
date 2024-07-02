@@ -4,14 +4,14 @@ import { CodeBlockWithEmbeddings } from "@components/types";
 import { FC } from "react";
 
 const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
-  { embeddedBlock1, embeddedOnDrop, handleInputs, inputs }
+  { embeddedBlock1, embeddedOnDrop, handleInputs, inputs, isSentence }
 ) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className="block block__incrementdecrement block--embedded">
+    <span className={`block block__incrementdecrement ${isSentence ? 'block__sentence' : 'block--embedded'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           defaultContent={
@@ -28,7 +28,7 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
               />
             </>
           }
-          itemsTypes={[ItemTypes.EMBEDDED, ItemTypes.VARIABLE]}
+          itemsTypes={[ItemTypes.VARIABLE]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot="emb_child_1"
         />

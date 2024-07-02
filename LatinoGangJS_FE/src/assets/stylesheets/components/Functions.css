@@ -54,3 +54,7 @@
 .block__function--end.block__function--anonymous::after {
   content: none;
 }
+
+.block__function--call::after {
+  left: 0.75em;
+}

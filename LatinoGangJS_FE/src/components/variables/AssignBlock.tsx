@@ -9,8 +9,8 @@ const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedd
     <span className="block block__assign block__sentence">
       {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='variables'
-            itemsTypes={[ItemTypes.VARIABLE, ItemTypes.EMBEDDED]}
+            placeholderText='variable'
+            itemsTypes={[ItemTypes.VARIABLE]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
           />
@@ -31,7 +31,14 @@ const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedd
                 />
               </>
             }
-            itemsTypes={[ItemTypes.EMBEDDED, ItemTypes.VARIABLE, ItemTypes.COMPARISON]}
+            itemsTypes={[
+              ItemTypes.EMBEDDED,
+              ItemTypes.VARIABLE,
+              ItemTypes.COMPARISON,
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.DICT,
+              ItemTypes.LIST
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />

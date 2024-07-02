@@ -25,6 +25,7 @@ export interface CodeBlockWithEmbeddings {
   embeddedOnDrop?: Function,
   handleInputs?: Function,
   inputs?:string[],
+  isSentence?: boolean
 }
 
 export interface CodeBlockWithNesting {

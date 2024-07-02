@@ -9,13 +9,14 @@ const OperationAssignBlock: FC<CodeBlockWithEmbeddings> = ({
   embeddedOnDrop,
   handleInputs,
   inputs,
+  isSentence
 }) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className="block block__assign block__sentence">
+    <span className={`block block__assign ${isSentence ? 'block__sentence': 'block--embedded'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText="variable"

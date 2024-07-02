@@ -33,7 +33,14 @@ const DicElement: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, emb
                     : (_) => defaultFunc2()}/>
               </>
             }
-            itemsTypes={[ItemTypes.EMBEDDED,ItemTypes.VARIABLE]}
+            itemsTypes={[
+              ItemTypes.EMBEDDED,
+              ItemTypes.VARIABLE,
+              ItemTypes.COMPARISON,
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.DICT,
+              ItemTypes.LIST
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />

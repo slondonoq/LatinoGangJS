@@ -380,3 +380,7 @@
     background-color: #8ea0e8;
     border-radius: 0.25em 0.25em 0.25em 0.25em ;
   }
+
+  .block__romper::after {
+    border-top: 0.4em solid #8ea0e8;
+  }

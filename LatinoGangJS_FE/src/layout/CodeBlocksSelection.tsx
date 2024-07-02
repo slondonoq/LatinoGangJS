@@ -23,6 +23,11 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
       ItemTypes.DECLARATION,
       ItemTypes.KEY_VALUE,
       ItemTypes.IF_NESTING,
+      ItemTypes.FUNCTION_CALL,
+      ItemTypes.CONCAT,
+      ItemTypes.DICT,
+      ItemTypes.LIST,
+      ItemTypes.EMBEDDED_SENTENCE
     ],
     drop: (block: CodeBlock) => {
       onDrop(block);
@@ -122,16 +127,16 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         ))
         }
         <Block name='assignation' blockTypes={['block_with_embeddings']}/>
-        <Block name='op_assignation' blockTypes={['block_with_embeddings']}/>
+        <Block name='op_assignation' blockTypes={['block_with_embeddings']} isSentence={true}/>
         <h3 id="operadores">Operadores</h3>
         <p>Operadores aritmeticos, concatenacion y regex</p>
         <Block name='binary_operator' blockTypes={['embedded']}/>
         <p>Declaraciones</p>
         <Block name='declaration' blockTypes={['block_with_embeddings','declaration','embedded']}/>
         <p>Incremento y decremento</p>
-        <Block name='inc_dec' blockTypes={['block_with_embeddings','embedded']}/>
+        <Block name='inc_dec' blockTypes={['block_with_embeddings']} isSentence={true}/>
         <p>Negacion</p>
-        <Block name='negation' blockTypes={['block_with_embeddings']}/>
+        <Block name='negation' blockTypes={['embedded']}/>
         <h3 id="comparadores">Comparadores</h3>
         <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
         <h3 id='tipos de datos'>Tipos de datos</h3>
@@ -180,6 +185,8 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Romper</p>
         <Block name='break' blockTypes={['block']}/>
         <h3 id="bucles">Bucles</h3>
+        <Block name='op_assignation' blockTypes={['embedded',  'embedded_sentence']}/>
+        <Block name='inc_dec' blockTypes={['embedded',  'embedded_sentence']}/>
         <p>Desde</p>
         <Block name='for' blockTypes={['block_with_embeddings']}/>
         <p>Para ... en rango</p>
@@ -199,24 +206,23 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Retorno</p>
         <Block name='return' blockTypes={['block']}/>
         <p>Llamado</p>
-        <Block name='func_call' blockTypes={['block_with_embeddings']}/>
+        <Block name='func_call' blockTypes={['embedded', 'function_call']}/>
+        <Block name='func_call' blockTypes={['block_with_embeddings']} isSentence={true}/>
         <h3 id="listas">Listas</h3>
         <p>Listas</p>
-        <Block name='list' blockTypes={['block_with_embeddings']}/>
-        <Block name='listType' blockTypes={['embedded']}/>
+        <Block name='list' blockTypes={['embedded', 'list']}/>
         <p>Acceder a un elemento</p>
         <Block name='list_access' blockTypes={['embedded', 'variable']}/>
         <h3 id="diccionarios">Diccionarios</h3>
         <p>Diccionario</p>
-        <Block name='dict' blockTypes={['block_with_embeddings']}/>
-        <Block name='dictType' blockTypes={['block_with_embeddings']}/>
+        <Block name='dict' blockTypes={['embedded', 'dict']}/>
         <p>Clave - Valor</p>
         <Block name='dict_elem' blockTypes={['block_with_embeddings',  'key_value']}/>
         <h3 id='auxiliares'>Bloques auxiliares</h3>
         <p>Varios elementos</p>
-        <Block name='moreItems' blockTypes={['embedded']}/>
+        <Block name='moreItems' blockTypes={['embedded', 'concat']}/>
         <p>Acceder a las propiedades de un elemento</p>
-        <Block name='properties' blockTypes={['embedded']}/>
+        <Block name='properties' blockTypes={['embedded', 'variable']}/>
       </div>
     </section>
   );

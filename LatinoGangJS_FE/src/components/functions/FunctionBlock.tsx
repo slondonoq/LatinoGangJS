@@ -32,7 +32,15 @@ const FunctionBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({
         {embeddedBlock2 ?? (
           <BlockPlaceholder
             placeholderText="arg(s)"
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[
+              ItemTypes.EMBEDDED,
+              ItemTypes.VARIABLE,
+              ItemTypes.COMPARISON,
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.DICT,
+              ItemTypes.LIST,
+              ItemTypes.CONCAT
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot="emb_child_2"
           />

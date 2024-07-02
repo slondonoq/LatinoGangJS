@@ -75,3 +75,7 @@
 #playground .block input {
   max-width:5em;
 }
+
+#playground .block--with_nested_elems .block__placeholder {
+  min-height: 0.125em;
+}

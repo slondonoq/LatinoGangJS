@@ -33,7 +33,10 @@ const Declaration: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embeddedBlock
                     : (_) => defaultFunc2()}/>
               </>
             }
-            itemsTypes={[ItemTypes.EMBEDDED,ItemTypes.VARIABLE]}
+            itemsTypes={[
+              ItemTypes.EMBEDDED,
+              ItemTypes.VARIABLE
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />

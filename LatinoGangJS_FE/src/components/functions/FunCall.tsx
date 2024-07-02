@@ -9,13 +9,14 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
   embeddedOnDrop,
   handleInputs,
   inputs,
+  isSentence
 }) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className="block block__function block__function--call">
+    <span className={`block block__function block__function--call ${isSentence ? 'block__sentence': ''}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText="función"
@@ -42,7 +43,15 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
               />
             </>
           }
-          itemsTypes={[ItemTypes.EMBEDDED]}
+          itemsTypes={[
+            ItemTypes.EMBEDDED,
+            ItemTypes.VARIABLE,
+            ItemTypes.COMPARISON,
+            ItemTypes.FUNCTION_CALL,
+            ItemTypes.DICT,
+            ItemTypes.LIST,
+            ItemTypes.CONCAT
+          ]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot="emb_child_2"
         />

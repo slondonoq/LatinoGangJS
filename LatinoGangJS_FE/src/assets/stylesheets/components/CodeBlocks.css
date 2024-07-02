@@ -238,6 +238,10 @@
   border-radius: 0.25em 0.25em 0.25em 0.25em;
 }
 
+.block__incrementdecrement.block__sentence::after {
+  border-top: 0.4em solid #d46714;
+}
+
 .block__incrementdecrement select{
   background-color: #d46714;
 }

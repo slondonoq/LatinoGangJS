@@ -18,7 +18,7 @@ const AccederElemento: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1
         )}
         <input type="hidden" value="("/>
         {"["}
-        <input type="text" placeholder="valor" />
+        <input type="text" placeholder="valor" pattern='[0-9]+'/>
         <input type="hidden" value=")"/>
         {"]"}
       </span>

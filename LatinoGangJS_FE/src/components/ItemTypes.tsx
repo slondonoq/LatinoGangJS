@@ -8,4 +8,9 @@ export const ItemTypes = {
   KEY_VALUE: 'key_value',
   IF_NESTING: 'if_nesting',
   SWITCH: 'switch',
+  FUNCTION_CALL: 'function_call',
+  CONCAT: 'concat',
+  DICT: 'dict',
+  LIST: 'list',
+  EMBEDDED_SENTENCE: 'embedded_sentence'
 };

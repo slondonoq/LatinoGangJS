@@ -23,7 +23,12 @@ const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedB
                     : (_) => defaultFunc2()}/>
               </>
             }
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[
+              ItemTypes.EMBEDDED,
+              ItemTypes.VARIABLE,
+              ItemTypes.COMPARISON,
+              ItemTypes.FUNCTION_CALL
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
           />
@@ -57,7 +62,12 @@ const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedB
                 />
               </>
             }
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[
+              ItemTypes.EMBEDDED,
+              ItemTypes.VARIABLE,
+              ItemTypes.COMPARISON,
+              ItemTypes.FUNCTION_CALL
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />

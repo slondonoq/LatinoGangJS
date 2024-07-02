@@ -132,10 +132,21 @@ const Block: React.FC<CodeBlock> = ({
   nestedBlock,
   nestedOnDrop,
   variableName,
+  isSentence
 }) => {
   // TODO: Add more Item Types and a function to assign them based on blockTypes content
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: blockTypes.includes("range")
+    type: blockTypes.includes("function_call")
+      ? ItemTypes.FUNCTION_CALL
+      : blockTypes.includes("embedded_sentence")
+      ? ItemTypes.EMBEDDED_SENTENCE
+      : blockTypes.includes("list")
+      ? ItemTypes.LIST
+      : blockTypes.includes("dict")
+      ? ItemTypes.DICT
+      : blockTypes.includes("concat")
+      ? ItemTypes.CONCAT
+      : blockTypes.includes("range")
       ? ItemTypes.RANGE
       : blockTypes.includes("key_value")
       ? ItemTypes.KEY_VALUE
@@ -152,7 +163,7 @@ const Block: React.FC<CodeBlock> = ({
       : blockTypes.includes("embedded")
       ? ItemTypes.EMBEDDED
       : ItemTypes.BLOCK,
-    item: { id, name, blockTypes, variableName },
+    item: { id, name, blockTypes, variableName, isSentence },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -183,6 +194,7 @@ const Block: React.FC<CodeBlock> = ({
           embeddedOnDrop={embeddedOnDrop}
           handleInputs={handleInputs}
           inputs={inputs}
+          isSentence={isSentence}
         />
       );
     } else if (name === "binary_operator") {
@@ -202,6 +214,7 @@ const Block: React.FC<CodeBlock> = ({
           embeddedOnDrop={embeddedOnDrop}
           handleInputs={handleInputs}
           inputs={inputs}
+          isSentence={isSentence}
         />
       );
     } else if (name === "negation") {
@@ -418,6 +431,7 @@ const Block: React.FC<CodeBlock> = ({
           embeddedOnDrop={embeddedOnDrop}
           handleInputs={handleInputs}
           inputs={inputs}
+          isSentence={isSentence}
         />
       );
     } else if (name === "return") {
@@ -479,20 +493,15 @@ const Block: React.FC<CodeBlock> = ({
     else if(name === 'boolType') {
       return <BoolType/>
     }
-    else if(name === 'varType') {
-      return <VarType/>
-    }
     else if(name === 'moreItems') {
       return <MoreItems/>
     }
     else if(name === 'properties') {
-      return <Properties/>
-    }
-    else if(name === 'moreItems') {
-      return <MoreItems/>
-    }
-    else if(name === 'properties') {
-      return <Properties/>
+      return <Properties
+        embeddedBlock1={embeddedBlock1}
+        embeddedBlock2={embeddedBlock2}
+        embeddedOnDrop={embeddedOnDrop}
+      />
     }
   };
 
@@ -500,7 +509,7 @@ const Block: React.FC<CodeBlock> = ({
     <div
       ref={drag}
       id={id}
-      className={`code-block ${isDragging && "code-block--dragged"}`}
+      className={`code-block ${isDragging ? "code-block--dragged" : ""}${nestedBlock ? " block--with_nested_elems": ""}`}
     >
       {name === "code_start" && additional_content ? (
         <form id="blocks_for_translation">

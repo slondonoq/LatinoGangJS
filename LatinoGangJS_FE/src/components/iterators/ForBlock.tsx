@@ -36,7 +36,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
         {embeddedBlock3 ?? (
           <BlockPlaceholder
             placeholderText='sentencia'
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[ItemTypes.EMBEDDED_SENTENCE]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_3'
           />
@@ -50,7 +50,6 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
             placeholderText=''
             itemsTypes={[ItemTypes.BLOCK]}
             onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc2}
-            embedding_spot='emb_child_3'
           />
         )}
       </span>
