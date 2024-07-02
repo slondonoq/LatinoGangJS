@@ -218,7 +218,7 @@
   }
   
   .block__condelse--end {
-    border-radius: 0em 0.25em 0.25em 0.25em;
+    border-radius: 0em 0.25em 0 0;
     min-width: 8em;
   }
   
@@ -237,6 +237,17 @@
 
   .block__condelse::after {
     border-top: 0.4em solid #8ea0e8;
+  }
+
+  .block__condelse--end::after {
+    border-top: 0.5em solid #8ea0e8;
+    width: 1.5em;
+    left: 1.6em;
+    bottom: -0.5em;
+  }
+
+  .block__condif--end.block__condif--alt {
+    border-radius: 0 0 0.25em 0.25em;
   }
 
   .block__condelseif {

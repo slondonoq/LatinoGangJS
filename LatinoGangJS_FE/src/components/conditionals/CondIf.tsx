@@ -55,7 +55,7 @@ const CondIf: FC<conditionalBlock> = ({
             />
           </span>
         ): null}
-      <div className="block block__condif block__condif--end block__sentence">
+      <div className={`block block__condif block__condif--end block__sentence ${has_alt_conds ? 'block__condif--alt' : ''}`}>
         <input type="hidden" value="fin" />
         {"fin"}
       </div>
