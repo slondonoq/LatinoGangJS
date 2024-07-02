@@ -26,6 +26,22 @@
   justify-content: center;
 }
 
+.output-header a {
+  display: block;
+  font-size: 0.9em;
+  color: var(--secondary_color-200);
+  margin-top: -0.125em;
+}
+
+.output-header a:hover {
+  color: var(--tertiary_color-200);
+}
+
+.output-header--increased {
+  flex-direction: column;
+  height: 3.75em;
+}
+
 pre {
   text-align: left;
   flex: 1;
