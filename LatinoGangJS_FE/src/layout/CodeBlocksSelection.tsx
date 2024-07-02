@@ -1,22 +1,37 @@
 import "@assets/stylesheets/layout/CodeBlocksSelection.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Block from "@components/dragNdrop/Block.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 import { CodeBlock } from "@components/types.tsx";
 import { useDrop } from "react-dnd";
+import Modal from "./Modal";
 
 interface CodeBlockSelectionProps {
   onDrop: (block: CodeBlock) => void;
 }
 
 const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
+  const [openModal, setOpenModal] = React.useState(false);
+  const [varibles, setVariables] = React.useState<string[]>([]);
   const [, drop] = useDrop({
-    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
+    accept: [
+      ItemTypes.BLOCK,
+      ItemTypes.EMBEDDED,
+      ItemTypes.RANGE,
+      ItemTypes.VARIABLE,
+      ItemTypes.COMPARISON,
+      ItemTypes.DECLARATION,
+      ItemTypes.KEY_VALUE,
+      ItemTypes.IF_NESTING,
+    ],
     drop: (block: CodeBlock) => {
       onDrop(block);
     },
   });
-
+  useEffect(() => {
+    console.log(varibles);
+  }
+  , [varibles]);
   // TODO: implement layout section
   return (
     <section id="block-selection" ref={drop}>
@@ -91,106 +106,106 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         </ul>
       </aside>
       <div className="blocks-container">
-        <Block name='code_start' typeOfBlock='block'/>
+        <Block name='code_start' blockTypes={['block']}/>
         <h3 id="variables">Variables</h3>
-        <Block name='assignation' typeOfBlock='block_with_embeddings' />
-        <Block name='op_assignation' typeOfBlock='block_with_embeddings' />
+        <button onClick={()=> setOpenModal(true)}>Crea una variable</button>
+        {openModal && (<Modal closeModal={setOpenModal} variablesList = {varibles} updateVariables={setVariables}/>)}
+        {/* {varibles.map((variable, index) => (
+          <div key={index}>{variable}</div>
+        ))} */}
+        {varibles.map((variable, index) => (
+          <Block 
+            key={index} 
+            name='variable' 
+            variableName={variable} 
+            blockTypes={['embedded','variable']}/>
+        ))
+        }
+        <Block name='assignation' blockTypes={['block_with_embeddings']}/>
+        <Block name='op_assignation' blockTypes={['block_with_embeddings']}/>
         <h3 id="operadores">Operadores</h3>
         <p>Operadores aritmeticos, concatenacion y regex</p>
-        <Block name='binary_operator' typeOfBlock='embedded' />
+        <Block name='binary_operator' blockTypes={['embedded']}/>
+        <p>Declaraciones</p>
+        <Block name='declaration' blockTypes={['block_with_embeddings','declaration','embedded']}/>
         <p>Incremento y decremento</p>
-        <Block name='inc_dec' typeOfBlock='block_with_embeddings'/>
+        <Block name='inc_dec' blockTypes={['block_with_embeddings','embedded']}/>
         <p>Negacion</p>
-        <Block name='negation' typeOfBlock='block_with_embeddings'/>
+        <Block name='negation' blockTypes={['block_with_embeddings']}/>
         <h3 id="comparadores">Comparadores</h3>
-        <Block name='binary_logic-op' typeOfBlock='embedded'/>
-        <h3 id='tipos de datos'>Tipos de datos</h3>
-        <p>Número</p>
-        <Block name='numType' typeOfBlock='embedded'/>
-        <p>Cadena de texo</p>
-        <Block name='stringType' typeOfBlock='embedded'/>
-        <p>Lista</p>
-        <Block name='listType' typeOfBlock='embedded'/>
-        <p>Diccionario</p>
-        <Block name='dictType' typeOfBlock='block_with_embeddings'/>
-        <p>Nulo</p>
-        <Block name='nullType' typeOfBlock='embedded'/>
-        <p>Lógico</p>
-        <Block name='boolType' typeOfBlock='embedded'/>
-        <p>Variable</p>
-        <Block name='varType' typeOfBlock='embedded'/>
+        <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
-        <Block name='to_number' typeOfBlock='embedded'/>
+        <Block name='to_number' blockTypes={['embedded']}/>
         <p>Acadena</p>
-        <Block name='to_string' typeOfBlock='embedded'/>
+        <Block name='to_string' blockTypes={['embedded']}/>
         <p>Alogico</p>
-        <Block name='to_boolean' typeOfBlock='embedded'/>
+        <Block name='to_boolean' blockTypes={['embedded']}/>
         <p>Imprimirf</p>
-        <Block name='print_f' typeOfBlock='block_with_embeddings'/>
+        <Block name='print_f' blockTypes={['block_with_embeddings']}/>
         <p>Imprimir</p>
-        <Block name='print' typeOfBlock='block_with_embeddings'/>
+        <Block name='print' blockTypes={['block_with_embeddings']}/>
         <p>Escribir</p>
-        <Block name='write' typeOfBlock='block_with_embeddings'/>
+        <Block name='write' blockTypes={['block_with_embeddings']}/>
         <p>Poner</p>
-        <Block name='put' typeOfBlock='block_with_embeddings'/>
+        <Block name='put' blockTypes={['block_with_embeddings']}/>
         <p>Tipo</p>   
-        <Block name='type' typeOfBlock='embedded'/>
+        <Block name='type' blockTypes={['embedded']}/>
         <p>Limpiar</p>
-        <Block name='clean' typeOfBlock='block'/>
+        <Block name='clean' blockTypes={['block']}/>
         <h3 id='condicionales'>Condicionales</h3>
         <p>Si</p>
-        <Block name='cond_if' typeOfBlock='block_with_embeddings'/>
+        <Block name='cond_if' blockTypes={['block_with_embeddings']}/>
         <p>Osi</p>
-        <Block name='cond_elif' typeOfBlock='block_with_embeddings'/>
+        <Block name='cond_elif' blockTypes={['block_with_embeddings','if_nesting']}/>
         <p>Sino</p>
-        <Block name='cond_else' typeOfBlock='block'/>
+        <Block name='cond_else' blockTypes={['block','if_nesting']}/>
         <p>Elegir</p>
-        <Block name='switch' typeOfBlock='block_with_embeddings'/>
+        <Block name='switch' blockTypes={['block_with_embeddings']}/>
         <p>Caso</p>
-        <Block name='switch_case' typeOfBlock='block_with_embeddings'/>
+        <Block name='switch_case' blockTypes={['switch','block']}/>
         <p>Defecto</p>
-        <Block name='switch_def' typeOfBlock='block'/>
+        <Block name='switch_def' blockTypes={['block','switch']}/>
         <p>Otro</p>
-        <Block name='switch_other' typeOfBlock='block'/>
+        <Block name='switch_other' blockTypes={['block']}/>
         <p>Romper</p>
-        <Block name='break' typeOfBlock='block'/>
+        <Block name='break' blockTypes={['block']}/>
         <h3 id="bucles">Bucles</h3>
         <p>Desde</p>
-        <Block name='for' typeOfBlock='block_with_embeddings'/>
+        <Block name='for' blockTypes={['block_with_embeddings']}/>
         <p>Para ... en rango</p>
-        <Block name='range_1' typeOfBlock='embedded'/>
-        <Block name='range_2' typeOfBlock='embedded'/>
-        <Block name='range_3' typeOfBlock='embedded'/>
-        <Block name='for_range' typeOfBlock='block_with_embeddings'/>
+        <Block name='range_1' blockTypes={['embedded','range']}/>
+        <Block name='range_2' blockTypes={['embedded','range']}/>
+        <Block name='range_3' blockTypes={['embedded','range']}/>
+        <Block name='for_range' blockTypes={['block_with_embeddings']}/>
         <p>Mientras</p>
-        <Block name='while' typeOfBlock='block_with_embeddings'/>
+        <Block name='while' blockTypes={['block_with_embeddings']}/>
         <p>Repetir ... hasta</p>
-        <Block name='do_while' typeOfBlock='block_with_embeddings'/>
+        <Block name='do_while' blockTypes={['block_with_embeddings']}/>
         <h3 id="funciones">Funciones</h3>
         <p>Función</p>
-        <Block name='func' typeOfBlock='block_with_embeddings'/>
+        <Block name='func' blockTypes={['block_with_embeddings']}/>
         <p>Función anónima</p>
-        <Block name='func_anonymous' typeOfBlock='embedded'/>
+        <Block name='func_anonymous' blockTypes={['embedded']}/>
         <p>Retorno</p>
-        <Block name='return' typeOfBlock='block'/>
+        <Block name='return' blockTypes={['block']}/>
         <p>Llamado</p>
-        <Block name='func_call' typeOfBlock='block_with_embeddings'/>
+        <Block name='func_call' blockTypes={['block_with_embeddings']}/>
         <h3 id="listas">Listas</h3>
         <p>Listas</p>
-        <Block name='list' typeOfBlock='block_with_embeddings'/>
+        <Block name='list' blockTypes={['block_with_embeddings']}/>
         <p>Acceder a un elemento</p>
-        <Block name='list_access' typeOfBlock='embedded'/>
+        <Block name='list_access' blockTypes={['embedded', 'variable']}/>
         <h3 id="diccionarios">Diccionarios</h3>
         <p>Diccionario</p>
-        <Block name='dict' typeOfBlock='block_with_embeddings'/>
+        <Block name='dict' blockTypes={['block_with_embeddings']}/>
         <p>Clave - Valor</p>
-        <Block name='dict_elem' typeOfBlock='block_with_embeddings'/>
+        <Block name='dict_elem' blockTypes={['block_with_embeddings', 'key_value', ]}/>
         <h3 id='auxiliares'>Bloques auxiliares</h3>
         <p>Varios elementos</p>
-        <Block name='moreItems' typeOfBlock='embedded'/>
+        <Block name='moreItems' blockTypes={['embedded']}/>
         <p>Acceder a las propiedades de un elemento</p>
-        <Block name='properties' typeOfBlock='embedded'/>
+        <Block name='properties' blockTypes={['embedded'}]/>
       </div>
     </section>
   );

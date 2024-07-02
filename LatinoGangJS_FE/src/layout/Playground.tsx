@@ -6,9 +6,8 @@ import {useDrop} from 'react-dnd'
 import Block from "@components/dragNdrop/Block.tsx"
 import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder.tsx'
 import {ItemTypes} from "@components/ItemTypes.tsx"
-import {CodeBlock, CodeBlockWithEmbeddings, Data, ElementsData, Embedding_rel} from "@components/types.tsx"
+import {CodeBlock, Data, ElementsData, Embedding_rel, Nested_rel} from "@components/types.tsx"
 import { MouseEventHandler } from 'react';
-import block from "@components/dragNdrop/Block.tsx";
 
 
 interface PlaygroundInterface {
@@ -17,14 +16,15 @@ interface PlaygroundInterface {
   onDrop: Function,
   clearPlayground: MouseEventHandler<HTMLButtonElement>,
   handleInputs: Function,
+  onFormSubmit: (ev: SubmitEvent) => void
 }
 
-const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs}) => {
+const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop, clearPlayground ,handleInputs, onFormSubmit }) => {
 
   const [{ isOver },drop] = useDrop({
 
-    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED],
-    drop: (block: CodeBlock | CodeBlockWithEmbeddings) => {
+    accept: [ItemTypes.BLOCK, ItemTypes.EMBEDDED, ItemTypes.COMPARISON, ItemTypes.DECLARATION, ItemTypes.RANGE, ItemTypes.VARIABLE, ItemTypes.KEY_VALUE, ItemTypes.IF_NESTING, ItemTypes.SWITCH ],
+    drop: (block: CodeBlock) => {
       if(isOver) {
         onDrop(block);
       }
@@ -43,13 +43,14 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
 
     const sentence_child: string = codeData.sentence_relations[elemId]?.sent_child ?? ''
     const embedded_rel: Embedding_rel = codeData.embedded_relations[elemId]
+    const nested_rel: Nested_rel = codeData.nested_relations[elemId]
     const inputs: string[] = codeData.inputs[elemId]
     const element = (
       <Block
         id={elemId}
         name={blockData.name}
-        typeOfBlock={blockData.typeOfBlock}
-        additional_content={ blockData.typeOfBlock !== 'embedded' ?         
+        blockTypes={blockData.blockTypes}
+        additional_content={ !blockData.blockTypes.includes('embedded') ?         
           <>
             <BlockPlaceholder
               key={`placeholder-${elemId}`}
@@ -69,10 +70,22 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         embeddedOnDrop={(block: CodeBlock, embedding_spot: string) => onDrop(block, elemId, undefined, embedding_spot)}
         handleInputs={(pos:number,inputValue:string) => handleInputs(elements[elemId], pos,inputValue)}
         inputs={inputs}
+        nestedBlock={renderElem(nested_rel?.nested_child ?? '')}
+        nestedOnDrop={(block: CodeBlock) => onDrop(block, elemId, undefined, undefined, true)}
+        variableName={blockData.variableName ?? ''}
       />
     )
     //console.log(element)
     return element
+  }
+
+  const getElementAsForm = (id: string): HTMLFormElement | null => {
+
+    const element = document.getElementById(id)
+    if (element instanceof HTMLFormElement) {
+      return element
+    }
+    return null
   }
 
   return(
@@ -82,7 +95,13 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
             Clear
             <img src={ClearIcon} alt="" />
           </button>
-          <button className="btn-section play">
+          <button className="btn-section play" onClick={()=> {
+            const form: HTMLFormElement | null = getElementAsForm('blocks_for_translation')
+            if(form) {
+              form.onsubmit = onFormSubmit
+              form.requestSubmit()
+            }
+          }}>
             Run
             <img src={PlayIcon} alt="" />
           </button>
@@ -93,10 +112,10 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
             codeData.rootElems.map(elemId => 
               <div key={`rootContainer-${elemId}`}>
                 {
-                  (elements[elemId].typeOfBlock !== 'embedded') && (elements[elemId].name !== 'code_start')
+                  (!elements[elemId].blockTypes.includes('embedded')) && (elements[elemId].name !== 'code_start')
                   ? <BlockPlaceholder
                       key={`root-${elemId}`}
-                      onDrop={(block: CodeBlock) => onDrop(block, elemId, true)}
+                      onDrop={(block: CodeBlock) => onDrop(block, elemId, true, undefined, codeData.nested_relations[elemId]?.nested_parent ? true : false)}
                       itemsTypes={[ItemTypes.BLOCK]}
                     />
                   : undefined

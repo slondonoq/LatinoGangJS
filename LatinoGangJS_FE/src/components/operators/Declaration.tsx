@@ -3,16 +3,24 @@ import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
 import { CodeBlockWithEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const Poner: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,handleInputs,inputs}) => {
+const Declaration: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embeddedBlock2, embeddedOnDrop,handleInputs,inputs}) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
-    return (
-      <span className='block block__builtin'>
-        <input type="hidden" value="poner (" />
-        {"poner ("}
-        {embeddedBlock1 ?? (
+  return (
+    <span className="block block__negation">
+      {embeddedBlock1 ?? (
+          <BlockPlaceholder
+            placeholderText='variable'
+            itemsTypes={[ItemTypes.VARIABLE]}
+            onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+            embedding_spot='emb_child_1'
+          />
+        )}
+      <input type="hidden" value="=" />
+      {"="}
+      {embeddedBlock2 ?? (
           <BlockPlaceholder
             defaultContent={
               <>
@@ -25,15 +33,13 @@ const Poner: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,han
                     : (_) => defaultFunc2()}/>
               </>
             }
-            itemsTypes={[ItemTypes.VARIABLE]}
+            itemsTypes={[ItemTypes.EMBEDDED,ItemTypes.VARIABLE]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
-            embedding_spot='emb_child_1'
+            embedding_spot='emb_child_2'
           />
         )}
-        <input type="hidden" value=")" />
-        {")"}
-      </span>
-    )
-  }
-  
-  export default Poner
+    </span>
+  );
+};
+
+export default Declaration;

@@ -3,50 +3,18 @@ import {
   tomorrow,
   dracula,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { useState } from "react";
+import React, { useState } from "react";
 import MoonIcon from "@assets/icons/moon.svg";
 import SunIcon from "@assets/icons/sun.svg";
 import CopyIcon from "@assets/icons/copy.svg";
 import CheckIcon from "@assets/icons/check.svg";
 import "@assets/stylesheets/layout/CodeOutput.css";
 
-const codeJs = `
-  function fibonacci(num) {
-    let num1 = 0;
-    let num2 = 1;
-    let sum;
-    if (num === 1) {
-        return num1;
-    } else if (num === 2) {
-        return num2;
-    } else {
-        for (let i = 3; i <= num; i++) {
-            sum = num1 + num2;
-            num1 = num2;
-            num2 = sum;
-        }
-        return num2;
-    }
+interface CodeOutputInterface {
+  codeLatino:string,
+  codeJs:string,
 }
-
-console.log("Fibonacci(5): " + fibonacci(5));
-console.log("Fibonacci(8): " + fibonacci(8));
-console.log("Fibonacci(12): " + fibonacci(12));
-  `;
-
-const codeLatino = `
-funcion fib(n)
-    a,b = 0,1
-    mientras a < n
-        a,b = b, a+b
-        escribir(a)
-        /* uwu */
-    fin
-fin
-
-fib(250)
-`
-const CodeOutput = () => {
+const CodeOutput :React.FC<CodeOutputInterface>= ({codeLatino,codeJs}) => {
   // TODO: implement layout section
   const [isLight, setIsLight] = useState(true);
   const [copy, setCopy] = useState(false);
@@ -60,7 +28,7 @@ const CodeOutput = () => {
       <div id="section-header">
         <div>
           <input type="checkbox" id="darkmode-toggle" onChange={isCheck} />
-          <label htmlFor="darkmode-toggle">
+          <label className="labelOutput" htmlFor="darkmode-toggle">
             <img src={SunIcon} alt="Sun Icon" className="sun" />
             <img src={MoonIcon} alt="Moon Icon" className="moon" />
           </label>

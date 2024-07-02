@@ -3,9 +3,11 @@ import BlockPlaceholder from "@components/dragNdrop/BlockPlaceholder"
 import { CodeBlockWithEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedBlock3, embeddedOnDrop,handleInputs,inputs}) => {
-  const defaultFunc: Function = () => console.log('Oops, forgot to pass onDrop prop to block with embeddings')
-  const defaultFunc2: Function = () => console.log('Oops, forgot to pass handleInputs prop to block with inputs')
+const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop,handleInputs,inputs}) => {
+  const defaultFunc = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with embeddings");
+  const defaultFunc2 = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return(
     <span className='block block__operator'>
       {embeddedBlock1 ?? (
