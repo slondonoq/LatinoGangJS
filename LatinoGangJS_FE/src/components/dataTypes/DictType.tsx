@@ -1,6 +1,6 @@
 const dictType = () => {
     return (
-        <div className="block__dictType--container">
+        <div className="block__dictType--container block--embedded">
           <span className="block block__dictType">
             <input type="hidden" value="{"/>
             {"{"}

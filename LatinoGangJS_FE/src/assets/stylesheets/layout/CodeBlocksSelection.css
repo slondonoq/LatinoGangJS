@@ -115,3 +115,8 @@
 #block-selection aside a#auxiliares-tag::before {
   background-color: #655493;
 }
+
+#block-selection .block input {
+  pointer-events: none;
+  max-width:3.75em;
+}

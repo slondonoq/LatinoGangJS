@@ -1,7 +1,7 @@
 const ListType = () => {
 
     return (
-      <span className='block block__dataType'>
+      <span className='block block__dataType block--embedded'>
         <input type="hidden" value="["/>
         {"["}
         <input type="text" placeholder='elementos' />

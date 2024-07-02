@@ -9,7 +9,7 @@ const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedB
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return(
-    <span className='block block__operator'>
+    <span className='block block__operator block--embedded'>
       {embeddedBlock1 ?? (
           <BlockPlaceholder
             defaultContent={

@@ -134,6 +134,21 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='negation' blockTypes={['block_with_embeddings']}/>
         <h3 id="comparadores">Comparadores</h3>
         <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
+        <h3 id='tipos de datos'>Tipos de datos</h3>
+        <p>Número</p>
+        <Block name='numType' blockTypes={['embedded']}/>
+        <p>Cadena de texo</p>
+        <Block name='stringType' blockTypes={['embedded']}/>
+        <p>Lista</p>
+        <Block name='listType' blockTypes={['embedded']}/>
+        <p>Diccionario</p>
+        <Block name='dictType' blockTypes={['block_with_embeddings']}/>
+        <p>Nulo</p>
+        <Block name='nullType' blockTypes={['embedded']}/>
+        <p>Lógico</p>
+        <Block name='boolType' blockTypes={['embedded']}/>
+        <p>Variable</p>
+        <Block name='varType' blockTypes={['embedded']}/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
         <Block name='to_number' blockTypes={['embedded']}/>

@@ -1,7 +1,16 @@
 #playground {
   position: relative;
   background-color: var(--background_color-dark);
-
+}
+#playground::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.3em;
+  height: 0.3em;
+  background-color: var(--background_color-dark);
+  z-index: 100;
 }
 
 #watermark {
@@ -20,13 +29,15 @@
   position: relative;
   overflow-y: scroll;
   z-index: 10;
-  width: 100%;
+  max-width: calc(47vw - 0.125em);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2em;
+  align-items: flex-start;
+  padding-left: 0.5em;
+  gap: 1em;
   height: calc(100vh - 7em);
 }
+
 .btn-section {
   width: 6em;
   height: 2em;
@@ -53,4 +64,13 @@
 }
 .play:hover{
   background: var(--tertiary_color-400);
+}
+
+#playground .block--embedded {
+  border: solid 0.08em var(--text_color-dark);
+  padding: 0.25em;
+}
+
+#playground .block input {
+  max-width:5em;
 }

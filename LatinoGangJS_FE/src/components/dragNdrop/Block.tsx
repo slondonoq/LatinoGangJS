@@ -93,6 +93,27 @@ const Dictionaries = React.lazy(
 const DicElement = React.lazy(
   () => import("@components/structures/DicElement")
 );
+const NumType = React.lazy(
+  () => import('@components/dataTypes/NumType')
+);
+const StringType = React.lazy(
+  () => import('@components/dataTypes/StringType')
+);
+const ListType = React.lazy(
+  () => import('@components/dataTypes/ListType')
+);
+const DictType = React.lazy(
+  () => import('@components/dataTypes/DictType')
+);
+const NullType = React.lazy(
+  () => import('@components/dataTypes/NullType')
+);
+const BoolType = React.lazy(
+  () => import('@components/dataTypes/BoolType')
+);
+const VarType = React.lazy(
+  () => import('@components/dataTypes/VarType')
+);
 const MoreItems = React.lazy(
   () => import('@components/auxiliaryBlocks/MoreItems')
 );
@@ -442,6 +463,33 @@ const Block: React.FC<CodeBlock> = ({
           inputs={inputs}
         />
       );
+    }
+    else if(name === 'numType') {
+      return <NumType/>
+    }
+    else if(name === 'stringType') {
+      return <StringType/>
+    }
+    else if(name === 'listType') {
+      return <ListType/>
+    }
+    else if(name === 'dictType') {
+      return <DictType/>
+    }
+    else if(name === 'nullType') {
+      return <NullType/>
+    }
+    else if(name === 'boolType') {
+      return <BoolType/>
+    }
+    else if(name === 'varType') {
+      return <VarType/>
+    }
+    else if(name === 'moreItems') {
+      return <MoreItems/>
+    }
+    else if(name === 'properties') {
+      return <Properties/>
     }
     else if(name === 'moreItems') {
       return <MoreItems/>
