@@ -3,6 +3,9 @@
   border-radius: 0.25em 0.25em 0.25em 0;
 }
 
+.block__list.block__sentence::after {
+  border-top: 0.4em solid #cf3917;
+}
 
 .block__dic {
   background-color: #d263d5;

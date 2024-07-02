@@ -1,4 +1,8 @@
 .block__builtin {
-    background-color: #e56175;
-    border-radius: 0.25em 0.25em 0.25em 0.25em;
-  }
+  background-color: #e56175;
+  border-radius: 0.25em 0.25em 0.25em 0.25em;
+}
+
+.block__builtin.block__sentence::after {
+  border-top: 0.4em solid #e56175;
+}

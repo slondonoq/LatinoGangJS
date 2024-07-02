@@ -11,7 +11,7 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className="block block__incrementdecrement">
+    <span className="block block__incrementdecrement block--embedded">
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           defaultContent={

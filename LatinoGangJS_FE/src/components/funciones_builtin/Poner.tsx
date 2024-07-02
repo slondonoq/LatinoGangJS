@@ -9,7 +9,7 @@ const Poner: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,han
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
     return (
-      <span className='block block__builtin'>
+      <span className='block block__builtin block__sentence'>
         <input type="hidden" value="poner (" />
         {"poner ("}
         {embeddedBlock1 ?? (

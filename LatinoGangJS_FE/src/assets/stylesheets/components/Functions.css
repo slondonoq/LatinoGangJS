@@ -46,3 +46,11 @@
 .block__function--call {
   border-radius: 0.25em;
 }
+
+.block__function--start.block__function--anonymous::before {
+  content: none;
+}
+
+.block__function--end.block__function--anonymous::after {
+  content: none;
+}

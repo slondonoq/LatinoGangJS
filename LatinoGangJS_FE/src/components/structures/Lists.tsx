@@ -10,10 +10,10 @@ const Lists: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, em
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-      <span className="block block__list ">
+      <span className="block block__list block__sentence">
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='declaración'
+            placeholderText='variable'
             itemsTypes={[ItemTypes.VARIABLE]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
