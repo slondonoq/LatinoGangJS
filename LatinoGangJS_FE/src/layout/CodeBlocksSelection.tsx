@@ -205,7 +205,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Varios elementos</p>
         <Block name='moreItems' blockTypes={['embedded']}/>
         <p>Acceder a las propiedades de un elemento</p>
-        <Block name='properties' blockTypes={['embedded'}]/>
+        <Block name='properties' blockTypes={['embedded']}/>
       </div>
     </section>
   );

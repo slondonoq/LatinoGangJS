@@ -2,8 +2,12 @@ import React from "react";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { CodeBlock } from "@components/types.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
-import Declaration from "@components/operators/Declaration";
-import Variable from "@components/variables/Variable";
+const Declaration = React.lazy(
+  () => import("@components/operators/Declaration")
+);
+const Variable = React.lazy(
+  () => import("@components/variables/Variable")
+);
 const AssignBlock = React.lazy(
   () => import("@components/variables/AssignBlock")
 );
@@ -88,6 +92,12 @@ const Dictionaries = React.lazy(
 );
 const DicElement = React.lazy(
   () => import("@components/structures/DicElement")
+);
+const MoreItems = React.lazy(
+  () => import('@components/auxiliaryBlocks/MoreItems')
+);
+const Properties = React.lazy(
+  () => import('@components/auxiliaryBlocks/Properties')
 );
 
 const Block: React.FC<CodeBlock> = ({
@@ -430,6 +440,12 @@ const Block: React.FC<CodeBlock> = ({
           embeddedOnDrop={embeddedOnDrop}
         />
       );
+    }
+    else if(name === 'moreItems') {
+      return <MoreItems/>
+    }
+    else if(name === 'properties') {
+      return <Properties/>
     }
   };
 
