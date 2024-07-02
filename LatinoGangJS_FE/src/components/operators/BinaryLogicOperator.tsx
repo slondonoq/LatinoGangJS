@@ -17,7 +17,7 @@ const BinaryLogicOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embed
                 <input
                   type="text"
                   placeholder='valor'
-                  value={inputs ? inputs[0] : undefined}
+                  defaultValue={inputs ? inputs[0] : undefined}
                   onBlur={handleInputs 
                     ? (event) => handleInputs(0,event.target.value)
                     : (_) => defaultFunc2()}/>
@@ -30,7 +30,7 @@ const BinaryLogicOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embed
         )}
       
           <select
-          value={inputs ? inputs[1] : undefined}
+          defaultValue={inputs ? inputs[1] : undefined}
           onChange={handleInputs 
             ? (event) => handleInputs(1,event.target.value)
             : (_) => defaultFunc2()}
@@ -53,7 +53,7 @@ const BinaryLogicOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embed
                 <input
                   type="text"
                   placeholder='valor'
-                  value={inputs ? inputs[0] : undefined}
+                  defaultValue={inputs ? inputs[0] : undefined}
                   onBlur={handleInputs 
                     ? (event) => handleInputs(0,event.target.value)
                     : (_) => defaultFunc2()}/>

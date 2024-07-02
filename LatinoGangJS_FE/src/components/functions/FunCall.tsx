@@ -34,7 +34,7 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
               <input
                 type="text"
                 placeholder="valor"
-                value={inputs ? inputs[2] : undefined}
+                defaultValue={inputs ? inputs[2] : undefined}
                 onBlur={
                   handleInputs
                     ? (event) => handleInputs(2, event.target.value)

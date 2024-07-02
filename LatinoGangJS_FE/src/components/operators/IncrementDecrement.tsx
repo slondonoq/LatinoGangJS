@@ -19,7 +19,7 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
               <input
                 type="text"
                 placeholder="valor"
-                value={inputs ? inputs[0] : undefined}
+                defaultValue={inputs ? inputs[0] : undefined}
                 onBlur={
                   handleInputs
                     ? (event) => handleInputs(0, event.target.value)
@@ -35,7 +35,7 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
       )}
 
       <select
-        value={inputs ? inputs[1] : undefined}
+        defaultValue={inputs ? inputs[1] : undefined}
         onChange={
           handleInputs
             ? (event) => handleInputs(1, event.target.value)
