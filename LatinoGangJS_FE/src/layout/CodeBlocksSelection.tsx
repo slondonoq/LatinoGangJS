@@ -52,7 +52,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
           <li>
             <a href="#comparadores" id="comparadores-tag">
               {" "}
-              Comparadores{" "}
+              Comparar{" "}
             </a>
           </li>
           <li>
@@ -70,7 +70,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
           <li>
             <a href="#condicionales" id="condicionales-tag"> 
               {" "}
-              Condicionales{" "}
+              Condición{" "}
             </a> 
           </li>
           <li>
@@ -88,13 +88,13 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
           <li>
             <a href="#listas" id="listas-tag">
               {" "}
-              Listas{" "}
+              Lista{" "}
             </a>
           </li>
           <li>
             <a href="#diccionarios" id="diccionarios-tag">
               {" "}
-              Diccionarios{" "}
+              Diccionario{" "}
             </a>
           </li>
           <li>
