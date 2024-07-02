@@ -31,6 +31,7 @@ pre {
   flex: 1;
   overflow: scroll;
   margin: 0;
+  max-width: calc(26.5vw + 0.125em);
 }
 
 .labelOutput{
