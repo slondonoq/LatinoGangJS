@@ -56,6 +56,12 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
             </a>
           </li>
           <li>
+            <a href="#tipos de datos" id="tiposDatos-tag">
+              {" "}
+              Tipos de datos{" "}
+            </a>
+          </li>
+          <li>
             <a href="#funciones built-in" id="builtin-tag">
               {" "}
               Funciones Built-in{" "}
@@ -89,6 +95,12 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
             <a href="#diccionarios" id="diccionarios-tag">
               {" "}
               Diccionarios{" "}
+            </a>
+          </li>
+          <li>
+            <a href="#auxiliares" id="auxiliares-tag">
+              {" "}
+              Bloques auxiliares{" "}
             </a>
           </li>
         </ul>
@@ -189,6 +201,11 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='dict' blockTypes={['block_with_embeddings']}/>
         <p>Clave - Valor</p>
         <Block name='dict_elem' blockTypes={['block_with_embeddings', 'key_value', ]}/>
+        <h3 id='auxiliares'>Bloques auxiliares</h3>
+        <p>Varios elementos</p>
+        <Block name='moreItems' blockTypes={['embedded']}/>
+        <p>Acceder a las propiedades de un elemento</p>
+        <Block name='properties' blockTypes={['embedded'}]/>
       </div>
     </section>
   );
