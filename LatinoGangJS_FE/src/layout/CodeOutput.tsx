@@ -67,7 +67,7 @@ const CodeOutput :React.FC<CodeOutputInterface>= ({codeLatino,codeJs}) => {
         {codeJs}
       </SyntaxHighlighter>
       <div className="output-header output-header--increased">
-        Latino Code (minificado)
+        Latino Code semi-minificado (con espacios)
         <a href='https://www.suratica.es/que-es-la-minificacion/' target='blank'>¿Qué es la minificación?</a>
       </div>
       <SyntaxHighlighter
