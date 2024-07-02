@@ -31,7 +31,7 @@ const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedd
                 />
               </>
             }
-            itemsTypes={[ItemTypes.EMBEDDED]}
+            itemsTypes={[ItemTypes.EMBEDDED, ItemTypes.VARIABLE, ItemTypes.COMPARISON]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />

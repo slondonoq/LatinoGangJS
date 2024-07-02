@@ -148,7 +148,15 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "op_assignation") {
-      return <OperationAssignBlock />;
+      return (
+        <OperationAssignBlock
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "binary_operator") {
       return (
         <BinaryOperator
@@ -160,29 +168,115 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "inc_dec") {
-      return <IncrementDecrement />;
+      return (
+        <IncrementDecrement
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "negation") {
-      return <Negation />;
+      return (
+        <Negation
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "declaration") {
-      return <Declaration />;
+      return (
+        <Declaration
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "binary_logic-op") {
-      return <BinaryLogicOperator />;
+      return (
+        <BinaryLogicOperator
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "to_number") {
-      return <Anumero />;
+      return (
+        <Anumero
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "to_string") {
-      return <Acadena />;
+      return (
+        <Acadena
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "to_boolean") {
-      return <Alogico />;
+      return (
+        <Alogico
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "print_f") {
-      return <Imprimirf />;
+      return (
+        <Imprimirf
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "print") {
-      return <Imprimir />;
+      return (
+        <Imprimir
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "write") {
-      return <Escribir />;
+      return (
+        <Escribir
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "put") {
-      return <Poner />;
+      return (
+        <Poner
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "type") {
-      return <Tipo />;
+      return (
+        <Tipo
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+          handleInputs={handleInputs}
+          inputs={inputs}
+        />
+      );
     } else if (name === "clean") {
       return <Limpiar />;
     } else if (name === "cond_if") {
