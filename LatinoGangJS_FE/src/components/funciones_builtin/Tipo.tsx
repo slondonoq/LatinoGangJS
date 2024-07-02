@@ -9,7 +9,7 @@ const Tipo: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,hand
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
     return (
-      <span className='block block__builtin'>
+      <span className='block block__builtin block--embedded'>
         <input type="hidden" value="tipo (" />
         {"tipo ("}
         {embeddedBlock1 ?? (

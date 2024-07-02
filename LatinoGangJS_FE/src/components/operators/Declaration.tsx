@@ -9,7 +9,7 @@ const Declaration: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embeddedBlock
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className="block block__negation">
+    <span className="block block__negation block--embedded">
       {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText='variable'

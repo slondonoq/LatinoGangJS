@@ -11,7 +11,7 @@ const AnonymousFunBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBloc
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
     return (
       <div className="block__function--container">
-        <span className="block block__function ">
+        <span className="block block__function block__function--start block__function--anonymous block__sentence">
           <input type="hidden" value="funcion (" />
           {"funcion"}
           {"("}
@@ -36,7 +36,7 @@ const AnonymousFunBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBloc
           />
         )}
         </span>
-        <div className="block block__function block__function--end">
+        <div className="block block__function block__function--end block__function--anonymous block__sentence">
           <input type="hidden" value="fin" />
           {"fin"}
         </div>

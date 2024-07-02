@@ -67,7 +67,8 @@
 }
 
 #playground .block--embedded {
-  border: solid 0.08em var(--text_color-dark);
+  border: solid 0.08em var(--background_color-dark);
+  box-shadow: 0 0 0 0.04em var(--tertiary_color-50);
   padding: 0.25em;
 }
 

@@ -9,7 +9,7 @@ const Negation: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
     return (
-      <span className='block block__negation'>
+      <span className='block block__negation block--embedded'>
         <input type="hidden" value="!" />
         {"!"}
         {embeddedBlock1 ?? (

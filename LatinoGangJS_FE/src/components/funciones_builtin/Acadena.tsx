@@ -11,7 +11,7 @@ const Acadena: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,h
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
 
     return (
-      <span className='block block__builtin'>
+      <span className='block block__builtin block--embedded'>
         <input type="hidden" value="acadena (" />
         {"acadena ("}
         {embeddedBlock1 ?? (

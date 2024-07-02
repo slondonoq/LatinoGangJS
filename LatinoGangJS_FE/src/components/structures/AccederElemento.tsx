@@ -7,7 +7,7 @@ const AccederElemento: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
     return (
-      <span className="block block__list">
+      <span className="block block__list block--embedded">
         {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText='variable'
