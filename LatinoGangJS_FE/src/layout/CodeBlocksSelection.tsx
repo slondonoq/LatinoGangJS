@@ -136,7 +136,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Incremento y decremento</p>
         <Block name='inc_dec' blockTypes={['block_with_embeddings']} isSentence={true}/>
         <p>Negacion</p>
-        <Block name='negation' blockTypes={['embedded']}/>
+        <Block name='negation' blockTypes={['embedded', 'boolean']}/>
         <h3 id="comparadores">Comparadores</h3>
         <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
         <h3 id='tipos de datos'>Tipos de datos</h3>

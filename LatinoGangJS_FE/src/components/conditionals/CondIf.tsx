@@ -28,7 +28,12 @@ const CondIf: FC<conditionalBlock> = ({
         {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText="condición"
-            itemsTypes={[ItemTypes.COMPARISON]}
+            itemsTypes={[
+              ItemTypes.COMPARISON,
+              ItemTypes.BOOLEAN,
+              ItemTypes.ALOGICO
+            ]
+            }
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot="emb_child_1"
           />
