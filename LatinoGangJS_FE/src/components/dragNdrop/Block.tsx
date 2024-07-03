@@ -525,7 +525,7 @@ const Block: React.FC<CodeBlock> = ({
     }
     else if(name === 'moreItems') {
       return <MoreItems
-      embeddedBlock1={embeddedBlock1}
+        embeddedBlock1={embeddedBlock1}
         embeddedBlock2={embeddedBlock2}
         embeddedOnDrop={embeddedOnDrop}
       />
