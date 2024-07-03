@@ -79,6 +79,11 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
           ) 
           || blockData.name == 'cond_elif' ?         
           <>
+            {
+              (blockData.name === 'dict_elem' && sentence_child)
+                ? <input type="hidden" value=", " />
+                : null
+            }
             <BlockPlaceholder
               key={`placeholder-${elemId}`}
               isReduced={ Boolean(sentence_child) || blockData.name === 'cond_elif'}
