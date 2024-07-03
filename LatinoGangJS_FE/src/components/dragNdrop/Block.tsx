@@ -338,6 +338,17 @@ const Block: React.FC<CodeBlock> = ({
           nestedOnDrop={nestedOnDrop}
         />
       );
+    } else if (name === "cond_if_alt") {
+      return (
+        <CondIf
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+          has_alt_conds={true}
+        />
+      );
     } else if (name === "cond_elif") {
       return (
         <CondElseIf
@@ -393,11 +404,23 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "range_1") {
-      return <RangeBlock range_n_values={1} />;
+      return <RangeBlock
+        range_n_values={1}
+        inputs={inputs}
+        handleInputs={handleInputs}
+      />;
     } else if (name === "range_2") {
-      return <RangeBlock range_n_values={2} />;
+      return <RangeBlock
+        range_n_values={2}
+        inputs={inputs}
+        handleInputs={handleInputs}
+      />;
     } else if (name === "range_3") {
-      return <RangeBlock range_n_values={3} />;
+      return <RangeBlock
+        range_n_values={3}
+        inputs={inputs}
+        handleInputs={handleInputs}
+      />;
     } else if (name === "while") {
       return (
         <WhileBlock

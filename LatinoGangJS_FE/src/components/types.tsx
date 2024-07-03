@@ -31,6 +31,8 @@ export interface CodeBlockWithEmbeddings {
 export interface CodeBlockWithNesting {
   nestedBlock?: JSX.Element,
   nestedOnDrop?: Function,
+  handleInputs?: Function,
+  inputs?:string[],
 }
 
 export interface CodeBlockWithNestingAndEmbeddings extends CodeBlockWithEmbeddings {

@@ -15,17 +15,14 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText="variable"
-          itemsTypes={[
-            ItemTypes.VARIABLE,
-
-          ]}
+          itemsTypes={[ItemTypes.VARIABLE]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot="emb_child_1"
         />
       )}
 
       <select
-        value={inputs ? inputs[1] : undefined}
+        defaultValue={inputs ? inputs[1] : undefined}
         onChange={
           handleInputs
             ? (event) => handleInputs(1, event.target.value)

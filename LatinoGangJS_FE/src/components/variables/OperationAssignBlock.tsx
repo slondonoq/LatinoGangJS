@@ -26,7 +26,7 @@ const OperationAssignBlock: FC<CodeBlockWithEmbeddings> = ({
         />
       )}
       <select
-        value={inputs ? inputs[1] : undefined}
+        defaultValue={inputs ? inputs[1] : undefined}
         onChange={
           handleInputs
             ? (event) => handleInputs(1, event.target.value)

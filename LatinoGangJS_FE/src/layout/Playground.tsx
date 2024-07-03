@@ -72,11 +72,11 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         id={elemId}
         name={blockData.name}
         blockTypes={blockData.blockTypes}
-        additional_content={ !blockData.blockTypes.includes('embedded') ?         
+        additional_content={ (!blockData.blockTypes.includes('embedded') && blockData.name !== 'cond_else') || blockData.name == 'cond_elif' ?         
           <>
             <BlockPlaceholder
               key={`placeholder-${elemId}`}
-              isReduced={Boolean(sentence_child)}
+              isReduced={ Boolean(sentence_child) || blockData.name === 'cond_elif'}
               onDrop={(block: CodeBlock)=> onDrop(block, elemId)}
               itemsTypes={
                 blockData.blockTypes.includes('key_value')

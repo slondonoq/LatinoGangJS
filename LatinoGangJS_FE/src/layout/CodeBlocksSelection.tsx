@@ -170,10 +170,11 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <h3 id='condicionales'>Condicionales</h3>
         <p>Si</p>
         <Block name='cond_if' blockTypes={['block_with_embeddings']}/>
+        <Block name='cond_if_alt' blockTypes={['block_with_embeddings']}/>
         <p>Osi</p>
-        <Block name='cond_elif' blockTypes={['block_with_embeddings','if_nesting']}/>
+        <Block name='cond_elif' blockTypes={['embedded','if_nesting']}/>
         <p>Sino</p>
-        <Block name='cond_else' blockTypes={['block_with_embeddings','if_nesting']}/>
+        <Block name='cond_else' blockTypes={['embedded','if_nesting']}/>
         <p>Elegir</p>
         <Block name='switch' blockTypes={['block_with_embeddings']}/>
         <p>Caso</p>

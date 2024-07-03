@@ -10,15 +10,14 @@ const CondCase: FC<CodeBlockWithNestingAndEmbeddings> = ({
   nestedOnDrop,
 }) => {
   const defaultFunc = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with embeddings");
-  const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
+
   return (
     <div className="block__condcase--container">
       <span className="block block__condcase block__sentence">
         {"caso"}
 
-        <input type="hidden" value=": " />
+        <input type="hidden" value="caso " />
 
         {embeddedBlock1 ?? (
           <BlockPlaceholder
