@@ -72,7 +72,12 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
         id={elemId}
         name={blockData.name}
         blockTypes={blockData.blockTypes}
-        additional_content={ (!blockData.blockTypes.includes('embedded') && blockData.name !== 'cond_else') || blockData.name == 'cond_elif' ?         
+        additional_content={ 
+          (!blockData.blockTypes.includes('embedded')
+            && blockData.name !== 'cond_else'
+            && blockData.name !== 'return'
+          ) 
+          || blockData.name == 'cond_elif' ?         
           <>
             <BlockPlaceholder
               key={`placeholder-${elemId}`}

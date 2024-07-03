@@ -471,7 +471,10 @@ const Block: React.FC<CodeBlock> = ({
       );
     } else if (name === "return") {
       return (
-        <ReturnBlock nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />
+        <ReturnBlock
+          embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+        />
       );
     } else if (name === "list") {
       return (

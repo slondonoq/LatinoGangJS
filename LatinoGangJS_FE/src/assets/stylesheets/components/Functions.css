@@ -58,3 +58,7 @@
 .block__function--call::after {
   left: 0.75em;
 }
+
+.block__function--return::after {
+  left: 0.75em;
+}
