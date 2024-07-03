@@ -6,14 +6,10 @@ import { FC } from "react";
 
 const Acadena: FC<CodeBlockWithEmbeddings> = ({
   embeddedBlock1,
-  embeddedOnDrop,
-  handleInputs,
-  inputs,
+  embeddedOnDrop
 }) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
-  const defaultFunc2 = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with nesting");
 
   return (
     <span className="block block__builtin block--embedded">

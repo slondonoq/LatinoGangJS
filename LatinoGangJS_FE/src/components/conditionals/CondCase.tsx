@@ -42,7 +42,7 @@ const CondCase: FC<CodeBlockWithNestingAndEmbeddings> = ({
           <BlockPlaceholder
             placeholderText=""
             itemsTypes={[ItemTypes.BLOCK]}
-            onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc2}
+            onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc}
             embedding_spot="emb_child_3"
           />
         )}

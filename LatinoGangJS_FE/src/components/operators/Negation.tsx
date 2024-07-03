@@ -3,11 +3,10 @@ import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
 import { CodeBlockWithEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const Negation: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,handleInputs,inputs}) => {
+const Negation: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
-  const defaultFunc2 = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with nesting");
+
     return (
       <span className='block block__negation block--embedded'>
         <input type="hidden" value="!(" />

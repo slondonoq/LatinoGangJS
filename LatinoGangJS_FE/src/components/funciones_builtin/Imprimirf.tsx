@@ -3,11 +3,10 @@ import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
 import { CodeBlockWithEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const Imprimirf: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,handleInputs,inputs}) => {
+const Imprimirf: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop}) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
-  const defaultFunc2 = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with nesting");
+
     return (
       <span className='block block__builtin block__sentence'>
         <input type="hidden" value="imprimirf (" />

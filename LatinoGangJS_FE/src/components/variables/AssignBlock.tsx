@@ -2,9 +2,9 @@ import BlockPlaceholder from "@components/dragNdrop/BlockPlaceholder";
 import { CodeBlockWithEmbeddings } from "@components/types.tsx";
 import { ItemTypes } from "@components/ItemTypes.tsx";
 
-const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop,handleInputs ,inputs}) => {
+const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop }) => {
   const defaultFunc: Function = () => console.log('Oops, forgot to pass onDrop prop to block with embeddings')
-  const defaultFunc2: Function = () => console.log('Oops, forgot to pass handleInputs prop to block with inputs')
+
   return (
     <span className="block block__assign block__sentence">
       {embeddedBlock1 ?? (

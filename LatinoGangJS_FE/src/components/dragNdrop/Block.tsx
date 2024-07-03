@@ -517,12 +517,6 @@ const Block: React.FC<CodeBlock> = ({
     else if(name === 'stringType') {
       return <StringType/>
     }
-    else if(name === 'listType') {
-      return <ListType/>
-    }
-    else if(name === 'dictType') {
-      return <DictType/>
-    }
     else if(name === 'nullType') {
       return <NullType/>
     }
