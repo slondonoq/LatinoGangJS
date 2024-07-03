@@ -14,7 +14,7 @@ const Lists: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) 
         {"["}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText="valor"
+            placeholderText="valor(es)"
             itemsTypes={[
               ItemTypes.EMBEDDED,
               ItemTypes.VARIABLE,
