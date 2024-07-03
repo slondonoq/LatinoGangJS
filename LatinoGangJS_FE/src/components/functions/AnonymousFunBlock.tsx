@@ -20,7 +20,7 @@ const AnonymousFunBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBloc
             placeholderText='arg(s)'
             itemsTypes={[
               ItemTypes.VARIABLE,
-              ItemTypes.CONCAT
+              ItemTypes.ARGUMENT_LIST
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
