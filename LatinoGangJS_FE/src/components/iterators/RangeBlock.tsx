@@ -12,7 +12,7 @@ const RangeBlock: React.FC<rangeBlock> = ({
 }) => {
   const defaultFunc2: Function = () => console.log('Oops, forgot to pass handleInputs prop to block with inputs')
   return (
-    <span className='block block__iterator block__iterator--range'>
+    <span className='block block__iterator block__iterator--range block--embedded'>
       <input type="hidden" value="rango (" />
       {"rango ("}
       {
