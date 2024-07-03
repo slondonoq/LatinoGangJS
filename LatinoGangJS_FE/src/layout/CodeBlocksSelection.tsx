@@ -125,7 +125,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <h3 id="variables">Variables</h3>
         <p>Variables</p>
         <button onClick={()=> setOpenModal(true)}>Crea una variable</button>
-        <i>Tip: debes crear una variable para poder insertarla en ranuras "variable" o</i>
+        <i>Tip: debes crear una variable para poder insertarla en ranuras "variable", "nombre", "argumento" o "argumento(s)"</i>
         {openModal && (<Modal closeModal={setOpenModal} variablesList = {varibles} updateVariables={setVariables}/>)}
         {varibles.map((variable, index) => (
           <Block 
