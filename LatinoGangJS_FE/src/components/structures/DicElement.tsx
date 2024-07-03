@@ -41,7 +41,6 @@ const DicElement: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, emb
             embedding_spot='emb_child_2'
           />
         )}
-      <input type="hidden" value=", " />
       {", "}
     </span>
   );
