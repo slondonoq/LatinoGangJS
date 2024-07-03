@@ -13,7 +13,7 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
 
   return (
-    <span className={`block block__function block__function--call ${isSentence ? 'block__sentence': ''}`}>
+    <span className={`block block__function block__function--call ${isSentence ? 'block__sentence': 'block--embedded'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText="función"

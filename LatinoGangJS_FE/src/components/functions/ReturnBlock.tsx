@@ -1,30 +1,40 @@
 import "@assets/stylesheets/components/Functions.css";
 import { ItemTypes } from "@components/ItemTypes"
 import BlockPlaceholder from "@components/dragNdrop/BlockPlaceholder"
-import { CodeBlockWithNesting } from '@components/types'
+import { CodeBlockWithEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const ReturnBlock: FC<CodeBlockWithNesting> = ({nestedBlock, nestedOnDrop}) => {
-  const defaultFunc2 = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with nesting");
+const ReturnBlock: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) => {
+  const defaultFunc = () =>
+    console.log("Oops, forgot to pass onDrop prop to block with embeddings");
   return (
     <div className="block__function--container">
-      <span className="block block__function block__sentence">
+      <span className="block block__function block__function--return block__sentence">
         <input type="hidden" value="retornar" />
         {"retornar"}
-      </span>
-      <span className="block__function--nested-block">
-      {nestedBlock ?? (
+        {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText=''
-            itemsTypes={[ItemTypes.BLOCK]}
-            onDrop={nestedOnDrop ? nestedOnDrop : defaultFunc2}
-            embedding_spot='emb_child_3'
+            placeholderText='valor(es)'
+            itemsTypes={[
+              ItemTypes.VARIABLE, 
+              ItemTypes.NUMBER,
+              ItemTypes.STRING,
+              ItemTypes.BOOLEAN,
+              ItemTypes.ACADENA,
+              ItemTypes.ANUMERO,
+              ItemTypes.ALOGICO,
+              ItemTypes.NULL,
+              ItemTypes.CONCAT, 
+              ItemTypes.DICT, 
+              ItemTypes.LIST,
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.EMBEDDED
+            ]}
+            onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+            embedding_spot='emb_child_1'
           />
         )}
       </span>
-      <div className="block block__function block__function--end block__sentence">
-      </div>
     </div>
   );
 };
