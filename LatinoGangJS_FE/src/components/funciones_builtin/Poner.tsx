@@ -9,7 +9,7 @@ const Poner: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) 
 
     return (
       <span className='block block__builtin block__sentence'>
-        <input type="hidden" value="poner (" />
+        <input type="hidden" value="poner(" />
         {"poner ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -28,7 +28,7 @@ const Poner: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) 
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=")" />
+        <input type="hidden" value=") " />
         {")"}
       </span>
     )

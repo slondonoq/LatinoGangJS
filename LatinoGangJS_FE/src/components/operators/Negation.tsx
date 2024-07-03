@@ -25,7 +25,7 @@ const Negation: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop 
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=") " />
+        <input type="hidden" value=")" />
       </span>
     )
   }

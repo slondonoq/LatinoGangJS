@@ -11,7 +11,7 @@ const WhileBlock:FC<CodeBlockWithNestingAndEmbeddings> = ({embeddedBlock1, embed
   return (
     <div className='block__iterator--container'>
       <span className='block block__iterator block__sentence'>
-        <input type="hidden" value="mientras (" />
+        <input type="hidden" value="mientras(" />
         {"mientras ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -25,7 +25,7 @@ const WhileBlock:FC<CodeBlockWithNestingAndEmbeddings> = ({embeddedBlock1, embed
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=")" />
+        <input type="hidden" value=") " />
         {")"}
       </span>
       <span className='block__iterator--nested-block'>
@@ -42,7 +42,7 @@ const WhileBlock:FC<CodeBlockWithNestingAndEmbeddings> = ({embeddedBlock1, embed
         )}
       </span>
       <div className='block block__iterator block__iterator--end block__sentence'>
-        <input type="hidden" value="fin" />
+        <input type="hidden" value="fin " />
       </div>
     </div>
   )

@@ -29,18 +29,25 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
           placeholderText="valor(es)"
           itemsTypes={[
             ItemTypes.EMBEDDED,
-            ItemTypes.VARIABLE,
-            ItemTypes.COMPARISON,
-            ItemTypes.FUNCTION_CALL,
-            ItemTypes.DICT,
-            ItemTypes.LIST,
-            ItemTypes.CONCAT
+              ItemTypes.VARIABLE,
+              ItemTypes.COMPARISON,
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.DICT,
+              ItemTypes.LIST,
+              ItemTypes.NUMBER,
+              ItemTypes.STRING,
+              ItemTypes.BOOLEAN,
+              ItemTypes.NULL,
+              ItemTypes.ACADENA,
+              ItemTypes.ANUMERO,
+              ItemTypes.ALOGICO,
+
           ]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot="emb_child_2"
         />
       )}
-      <input type="hidden" value=")" />
+      <input type="hidden" value={`)${isSentence ? ' ': ''}`} />
       {")"}
     </span>
   );

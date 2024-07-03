@@ -9,7 +9,7 @@ const CondOtro:FC<CodeBlockWithNesting> = ({nestedBlock,nestedOnDrop}) => {
     return (
         <div className="block__condotro--container">
           <span className="block block__condotro block__sentence">
-            <input type="hidden" value=" otro " />
+            <input type="hidden" value="otro " />
             {" otro "}
           </span>
           <span className="block__condotro--nested-block">

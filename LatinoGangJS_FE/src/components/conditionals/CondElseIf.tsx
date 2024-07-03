@@ -16,7 +16,7 @@ const CondElseIf: FC<CodeBlockWithNestingAndEmbeddings> = ({
   return (
     <div className="block__condelseif--container">
       <span className="block block__condelseif block__sentence">
-        <input type="hidden" value=" osi" />
+        <input type="hidden" value=" osi(" />
         {"osi"}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -30,6 +30,7 @@ const CondElseIf: FC<CodeBlockWithNestingAndEmbeddings> = ({
             embedding_spot="emb_child_1"
           />
         )}
+        <input type="hidden" value=") " />
       </span>
       <span className="block__condelseif--nested-block">
         {nestedBlock ?? (

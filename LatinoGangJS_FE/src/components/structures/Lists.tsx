@@ -10,7 +10,7 @@ const Lists: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) 
 
   return (
       <span className="block block__list">
-        <input type="hidden" value="[ " />
+        <input type="hidden" value="[" />
         {"["}
         {embeddedBlock1 ?? (
           <BlockPlaceholder

@@ -10,7 +10,7 @@ const ReturnBlock: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDr
   return (
     <div className="block__function--container">
       <span className="block block__function block__function--return block__sentence">
-        <input type="hidden" value="retornar" />
+        <input type="hidden" value="retornar " />
         {"retornar"}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -34,6 +34,7 @@ const ReturnBlock: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDr
             embedding_spot='emb_child_1'
           />
         )}
+        <input type="hidden" value=" " />
       </span>
     </div>
   );

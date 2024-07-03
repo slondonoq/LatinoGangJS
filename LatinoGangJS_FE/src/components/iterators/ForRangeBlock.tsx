@@ -19,7 +19,7 @@ const ForRangeBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, 
             embedding_spot="emb_child_1"
           />
         )}
-        <input type="hidden" value="en " />
+        <input type="hidden" value=" en " />
         en
         {embeddedBlock2 ?? (
           <BlockPlaceholder

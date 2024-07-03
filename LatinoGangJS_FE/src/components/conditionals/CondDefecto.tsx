@@ -12,7 +12,7 @@ const CondDefecto: FC<CodeBlockWithNesting> = ({
   return (
     <div className="block__conddefecto--container">
       <span className="block block__conddefecto block__sentence">
-        <input type="hidden" value=" defecto " />
+        <input type="hidden" value="defecto " />
         {" defecto "}
       </span>
       <span className="block__conddefecto--nested-block">

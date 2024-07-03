@@ -21,7 +21,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=" ; " />
+        <input type="hidden" value="; " />
         ;
         {embeddedBlock2 ?? (
           <BlockPlaceholder
@@ -31,7 +31,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
             embedding_spot='emb_child_2'
           />
         )}
-        <input type="hidden" value=" ; " />
+        <input type="hidden" value="; " />
         ;
         {embeddedBlock3 ?? (
           <BlockPlaceholder

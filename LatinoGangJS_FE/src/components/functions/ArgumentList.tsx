@@ -19,7 +19,7 @@ const ListArguments: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBl
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=","/>
+        <input type="hidden" value=", "/>
         {","}
         {embeddedBlock2 ?? (
           <BlockPlaceholder

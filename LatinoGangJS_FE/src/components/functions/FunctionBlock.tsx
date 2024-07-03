@@ -45,7 +45,7 @@ const FunctionBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({
             embedding_spot="emb_child_2"
           />
         )}
-        <input type="hidden" value=")" />
+        <input type="hidden" value=") " />
         {")"}
       </span>
       <span className="block__function--nested-block">

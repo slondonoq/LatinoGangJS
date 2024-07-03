@@ -11,16 +11,18 @@ const CondSwitch: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, emb
     return (
       <div className="block__condswitch--container">
         <span className="block block__condswitch block__sentence">
-          <input type="hidden" value="elegir " />
-          {"elegir"}
+          <input type="hidden" value="elegir(" />
+          {"elegir ("}
           {embeddedBlock1 ?? (
-          <BlockPlaceholder
-            placeholderText='variable'
-            itemsTypes={[ItemTypes.VARIABLE]}
-            onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
-            embedding_spot='emb_child_1'
-          />
-        )}
+            <BlockPlaceholder
+              placeholderText='variable'
+              itemsTypes={[ItemTypes.VARIABLE]}
+              onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+              embedding_spot='emb_child_1'
+            />
+          )}
+          <input type="hidden" value=") " />
+          {")"}
         </span>
         <span className="block__condswitch--nested-block">
         {nestedBlock ?? (

@@ -363,7 +363,7 @@ function App() {
       }
       else if(newData.nested_relations[block.id ?? '']) {
         const prevParent: string = newData.nested_relations[block.id ?? ''].nested_parent ?? ''
-        newData.nested_relations[prevParent].nested_child = undefined
+        if(prevParent) newData.nested_relations[prevParent].nested_child = undefined
         newData.nested_relations = _.omit(newData.nested_relations, [block.id])
       }
       else {
@@ -375,7 +375,7 @@ function App() {
       //Deleting sentence relations
       let currentElemId = block.id;
       const idsToRemove: string[] = [block.id ?? ""];
-      while (newData.sentence_relations[currentElemId ?? ""].sent_child) {
+      while (newData.sentence_relations[currentElemId ?? ""]?.sent_child) {
         const child =
           newData.sentence_relations[currentElemId ?? ""].sent_child;
         idsToRemove.push(child ?? "");

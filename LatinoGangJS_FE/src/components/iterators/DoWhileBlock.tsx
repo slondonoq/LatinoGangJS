@@ -34,7 +34,7 @@ const DoWhileBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, e
               ItemTypes.ALOGICO
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
-            embedding_spot='emb_child_3'
+            embedding_spot='emb_child_1'
           />
         )}
         {")"}
