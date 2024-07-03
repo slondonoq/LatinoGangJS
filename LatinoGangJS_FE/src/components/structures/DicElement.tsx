@@ -3,11 +3,10 @@ import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
 import { CodeBlockWithNestingAndEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const DicElement: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop, handleInputs, inputs}) => {
+const DicElement: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop }) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
-  const defaultFunc2 = () =>
-    console.log("Oops, forgot to pass onDrop prop to block with nesting");
+
   return (
     <span className="block block__dicElem block__sentence">
       {embeddedBlock1 ?? (
