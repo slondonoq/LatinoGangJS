@@ -25,3 +25,6 @@ dist-ssr
 
 #Python cache
 __pycache__
+
+# Files for project delivery
+README.txt

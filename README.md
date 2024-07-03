@@ -81,4 +81,4 @@ git checkout develop
 
 ### Consideraciones
 
-1. Para el correcto funcionamiento de la aplicación, los puertos 5001 y *pendiente_BE no pueden estar ocupados.
+1. Para el correcto funcionamiento de la aplicación, el puerto 5001 no puede estar ocupado.

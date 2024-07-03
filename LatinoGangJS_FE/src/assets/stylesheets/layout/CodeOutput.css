@@ -1,0 +1,118 @@
+#code-output {
+  background-color: var(--background_color-light);
+  color: var(--text_color-dark);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  height: calc(100vh - 4em);
+}
+
+#section-header{
+  display: flex;
+  height: 3em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background: var(--background_color-light-dark);
+  padding: 0.5em;
+}
+.output-header{
+  display: flex;
+  background: var(--background_color-light-dark);
+  color: #fff;
+  border-top: 2px solid var(--background_color-dark);
+  height: 2em;
+  align-items: center;
+  justify-content: center;
+}
+
+.output-header a {
+  display: block;
+  font-size: 0.9em;
+  color: var(--secondary_color-200);
+  margin-top: -0.125em;
+}
+
+.output-header a:hover {
+  color: var(--tertiary_color-200);
+}
+
+.output-header--increased {
+  flex-direction: column;
+  height: 3.75em;
+}
+
+pre {
+  text-align: left;
+  flex: 1;
+  overflow: scroll;
+  margin: 0;
+  max-width: calc(26.5vw + 0.125em);
+}
+
+.labelOutput{
+  width: 60px;
+  height: 24px;
+  position: relative;
+  display: block;
+  background: rgb(73, 60, 93);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.labelOutput:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  background: #f8b802;
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.4s;
+}
+.labelOutput:active:after {
+  width: 32px;
+}
+input[type="checkbox"] {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  display: none;
+}
+input[type="checkbox"]:checked + .labelOutput {
+  background: var(--background_color-dark);
+}
+input[type="checkbox"]:checked + .labelOutput:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+  background: var(--background_color-light-dark);
+}
+.sun, .moon{
+  position: absolute;
+  width: 16px;
+  z-index: 1;
+  top: 4px;
+}
+.moon{
+  right: 4px;
+  transition: 0.4s;
+  fill: #7e7e7e;
+  stroke: #7e7e7e;
+}
+.sun {
+  left: 4px;
+  transition: 0.4s;
+}
+.copy-btn{
+  background: var(--background_color-light-dark);
+  border: none;
+  align-content: center;
+  display: flex;  
+  gap: 0.5em;
+  cursor: pointer;
+}
+.copy-btn img{
+  width: 1.2em;
+  height: 1.2em;
+}

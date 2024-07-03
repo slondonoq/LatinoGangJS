@@ -1,0 +1,136 @@
+#block-selection {
+  position: relative;
+  background-color: var(--background_color-light-dark);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: max-content;
+  gap: 0.25em;
+}
+
+#block-selection::after {
+  content: '';
+  position: absolute;
+  width: 0.3em;
+  height: 0.3em;
+  background-color: var(--background_color-light-dark);
+  bottom: 0;
+  right: 0;
+}
+
+#block-selection .blocks-container {
+  overflow: scroll;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: calc(100vh - 4em);
+}
+
+#block-selection h3 {
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+#block-selection p {
+  text-align: justify;
+  padding-left: 0.5em;
+  color: var(--secondary_color-100);
+}
+
+#block-selection aside {
+  background-color: rgb(73, 60, 93);
+  height: calc(100vh - 4em);
+  overflow-y: scroll;
+  /* background-color: var(--primary_color-600); */
+}
+
+#block-selection aside ul{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 1em;
+  width: min-content;
+}
+
+#block-selection aside a {
+  position: relative;
+  display: block;
+  font-size: 0.75em;
+  padding-inline: 0.5em;
+  padding-top: 2.6em;
+  padding-bottom: 0.4em;
+  color: var(--text_color-light);
+}
+
+#block-selection aside a:hover {
+  background-color: var(--tertiary_color-300);
+  color: var(--text_color-dark);
+}
+
+#block-selection aside a::before {
+  content: '';
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.9em;
+  top: 0.5em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#block-selection aside a#inicio-tag::before {
+  background-color: var(--secondary_color-500);
+}
+
+#block-selection aside a#variables-tag::before {
+  background-color: #346dc2;
+}
+
+#block-selection aside a#operadores-tag::before {
+  background-color: #d46714;
+}
+
+#block-selection aside a#comparadores-tag::before {
+  background-color: #6600F5;
+}
+
+#block-selection aside a#bucles-tag::before {
+  background-color: #2e7c22;
+}
+#block-selection aside a#funciones-tag::before {
+  background-color: #f5a623;
+}
+#block-selection aside a#listas-tag::before {
+  background-color: #cf3917;
+}
+#block-selection aside a#diccionarios-tag::before {
+  background-color: #d263d5;
+}
+
+#block-selection aside a#condicionales-tag::before {
+  background-color: #8ea0e8;
+}
+#block-selection aside a#builtin-tag::before {
+  background-color: #e56175;
+}
+#block-selection aside a#tiposDatos-tag::before {
+  background-color: #c23373;
+}
+#block-selection aside a#auxiliares-tag::before {
+  background-color: #655493;
+}
+
+#block-selection .block input {
+  pointer-events: none;
+  max-width:5em;
+}
+
+#block-selection i {
+  font-size: 0.9em;
+  text-align: justify;
+}
+
+#block-selection hr {
+  margin-top: 0.5em;
+}
