@@ -38,7 +38,7 @@ const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedd
             embedding_spot='emb_child_2'
           />
         )}
-        <input type="hidden" value=" " />=
+        <input type="hidden" value=" " />
     </span>
   );
 };
