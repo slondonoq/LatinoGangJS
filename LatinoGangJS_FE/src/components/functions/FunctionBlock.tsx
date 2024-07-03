@@ -17,8 +17,8 @@ const FunctionBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({
   return (
     <div className="block__function--container">
       <span className="block block__function block__sentence">
-        <input type="hidden" value="funcion" />
-        {"funcion"}
+        <input type="hidden" value="funcion " />
+        {"funcion "}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText="nombre"
@@ -59,8 +59,8 @@ const FunctionBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({
         )}
       </span>
       <div className="block block__function block__function--end block__sentence">
-        <input type="hidden" value="fin" />
-        {"fin"}
+        <input type="hidden" value="fin " />
+        {"fin "}
       </div>
     </div>
   );
