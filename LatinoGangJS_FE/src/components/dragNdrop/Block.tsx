@@ -392,11 +392,23 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "range_1") {
-      return <RangeBlock range_n_values={1} />;
+      return <RangeBlock
+        range_n_values={1}
+        inputs={inputs}
+        handleInputs={handleInputs}
+      />;
     } else if (name === "range_2") {
-      return <RangeBlock range_n_values={2} />;
+      return <RangeBlock
+        range_n_values={2}
+        inputs={inputs}
+        handleInputs={handleInputs}
+      />;
     } else if (name === "range_3") {
-      return <RangeBlock range_n_values={3} />;
+      return <RangeBlock
+        range_n_values={3}
+        inputs={inputs}
+        handleInputs={handleInputs}
+      />;
     } else if (name === "while") {
       return (
         <WhileBlock
