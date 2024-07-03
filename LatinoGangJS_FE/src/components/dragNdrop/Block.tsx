@@ -99,12 +99,7 @@ const NumType = React.lazy(
 const StringType = React.lazy(
   () => import('@components/dataTypes/StringType')
 );
-const ListType = React.lazy(
-  () => import('@components/dataTypes/ListType')
-);
-const DictType = React.lazy(
-  () => import('@components/dataTypes/DictType')
-);
+
 const NullType = React.lazy(
   () => import('@components/dataTypes/NullType')
 );
@@ -140,6 +135,20 @@ const Block: React.FC<CodeBlock> = ({
       ? ItemTypes.FUNCTION_CALL
       : blockTypes.includes("embedded_sentence")
       ? ItemTypes.EMBEDDED_SENTENCE
+      : blockTypes.includes("anumero")
+      ? ItemTypes.ANUMERO
+      : blockTypes.includes("acadena")
+      ? ItemTypes.ACADENA
+      : blockTypes.includes("alogico")
+      ? ItemTypes.ALOGICO
+      : blockTypes.includes("number")
+      ? ItemTypes.NUMBER
+      : blockTypes.includes("string")
+      ? ItemTypes.STRING
+      : blockTypes.includes("boolean")
+      ? ItemTypes.BOOLEAN
+      : blockTypes.includes("null")
+      ? ItemTypes.NULL
       : blockTypes.includes("list")
       ? ItemTypes.LIST
       : blockTypes.includes("dict")
@@ -350,7 +359,10 @@ const Block: React.FC<CodeBlock> = ({
         />
       );
     } else if (name === "switch_case") {
-      return <CondCase nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />;
+      return <CondCase 
+      embeddedBlock1={embeddedBlock1}
+          embeddedOnDrop={embeddedOnDrop}
+      nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />;
     } else if (name === "switch_def") {
       return (
         <CondDefecto nestedBlock={nestedBlock} nestedOnDrop={nestedOnDrop} />
@@ -452,6 +464,7 @@ const Block: React.FC<CodeBlock> = ({
       return (
         <AccederElemento
           embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
           embeddedOnDrop={embeddedOnDrop}
         />
       );
@@ -494,7 +507,11 @@ const Block: React.FC<CodeBlock> = ({
       return <BoolType/>
     }
     else if(name === 'moreItems') {
-      return <MoreItems/>
+      return <MoreItems
+      embeddedBlock1={embeddedBlock1}
+        embeddedBlock2={embeddedBlock2}
+        embeddedOnDrop={embeddedOnDrop}
+      />
     }
     else if(name === 'properties') {
       return <Properties

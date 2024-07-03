@@ -15,21 +15,19 @@ const Lists: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,han
         {"["}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            defaultContent={
-              <>
-                <input
-                type="text"
-                placeholder='element(s)'
-                value={inputs ? inputs[0] : undefined}
-                onBlur={handleInputs 
-                  ? (event) => handleInputs(0,event.target.value)
-                  : (_) => defaultFunc2()}
-                />
-              </>
-            }
+            placeholderText="valor"
             itemsTypes={[
               ItemTypes.EMBEDDED,
-              
+              ItemTypes.VARIABLE,
+              ItemTypes.NUMBER,
+              ItemTypes.STRING,
+              ItemTypes.BOOLEAN,
+              ItemTypes.ACADENA,
+              ItemTypes.ANUMERO,
+              ItemTypes.ALOGICO,
+              ItemTypes.NULL,
+              ItemTypes.LIST,
+              ItemTypes.DICT
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'

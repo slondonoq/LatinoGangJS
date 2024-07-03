@@ -18,31 +18,27 @@ const AssignBlock: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedd
       <input type="hidden" value="=" />=
       {embeddedBlock2 ?? (
           <BlockPlaceholder
-            defaultContent={
-              <>
-                <input
-                  type="text"
-                  placeholder='valor'
-                  value={inputs ? inputs[0] : undefined}
-                  onBlur={handleInputs 
-                    ? (event) => handleInputs(0,event.target.value)
-                    : (_) => defaultFunc2()
-                  } 
-                />
-              </>
-            }
+            placeholderText='valor'
             itemsTypes={[
               ItemTypes.EMBEDDED,
               ItemTypes.VARIABLE,
               ItemTypes.COMPARISON,
               ItemTypes.FUNCTION_CALL,
               ItemTypes.DICT,
-              ItemTypes.LIST
+              ItemTypes.LIST,
+              ItemTypes.NUMBER,
+              ItemTypes.STRING,
+              ItemTypes.BOOLEAN,
+              ItemTypes.NULL,
+              ItemTypes.ACADENA,
+              ItemTypes.ANUMERO,
+              ItemTypes.ALOGICO,
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />
         )}
+      
     </span>
   );
 };

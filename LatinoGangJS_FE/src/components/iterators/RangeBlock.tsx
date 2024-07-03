@@ -9,21 +9,21 @@ const RangeBlock = (props:any = 1) => {
       }
       {
         props.range_n_values == 2 && <>
-          <input type="text" placeholder='inicio'/>
+          <input type="number" placeholder='inicio'/>
           <input type="hidden" value="," />
           ,
-          <input type="text" placeholder='fin'/>
+          <input type="number" placeholder='fin'/>
         </>
       }
       {
         props.range_n_values == 3 && <>
-          <input type="text" placeholder='inicio'/>
+          <input type="number" placeholder='inicio'/>
           <input type="hidden" value="," />
           ,
-          <input type="text" placeholder='fin'/>
+          <input type="number" placeholder='fin'/>
           <input type="hidden" value="," />
           ,
-          <input type="text" placeholder='salto'/>
+          <input type="number" placeholder='salto'/>
         </>
       }
       <input type="hidden" value=")" />

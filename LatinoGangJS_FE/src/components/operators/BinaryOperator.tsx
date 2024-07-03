@@ -12,22 +12,14 @@ const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedB
     <span className='block block__operator block--embedded'>
       {embeddedBlock1 ?? (
           <BlockPlaceholder
-            defaultContent={
-              <>
-                <input
-                  type="text"
-                  placeholder='valor'
-                  value={inputs ? inputs[0] : undefined}
-                  onBlur={handleInputs 
-                    ? (event) => handleInputs(0,event.target.value)
-                    : (_) => defaultFunc2()}/>
-              </>
-            }
+            placeholderText="valor"
             itemsTypes={[
               ItemTypes.EMBEDDED,
               ItemTypes.VARIABLE,
               ItemTypes.COMPARISON,
-              ItemTypes.FUNCTION_CALL
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.NUMBER,
+              ItemTypes.ANUMERO,
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
@@ -50,23 +42,14 @@ const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedB
       </select>
       {embeddedBlock2 ?? (
           <BlockPlaceholder
-            defaultContent={
-              <>
-                <input
-                type="text"
-                placeholder='valor'
-                value={inputs ? inputs[2] : undefined}
-                onBlur={handleInputs 
-                  ? (event) => handleInputs(2,event.target.value)
-                  : (_) => defaultFunc2()}
-                />
-              </>
-            }
+            placeholderText="valor"
             itemsTypes={[
               ItemTypes.EMBEDDED,
               ItemTypes.VARIABLE,
               ItemTypes.COMPARISON,
-              ItemTypes.FUNCTION_CALL
+              ItemTypes.FUNCTION_CALL,
+              ItemTypes.NUMBER,
+              ItemTypes.ANUMERO,
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
