@@ -36,14 +36,14 @@ const BinaryLogicOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embed
             ? (event) => handleInputs(1,event.target.value)
             : (_) => defaultFunc2()}
           >
-            <option value="&&"> && </option>
-            <option value="||"> || </option>
-            <option value="=="> == </option>
-            <option value="!="> != </option>
-            <option value="<="> {"<="} </option>
-            <option value=">="> {">="} </option>
-            <option value=">"> {">"} </option>
-            <option value="<"> {"<"} </option>
+            <option value=" && "> && </option>
+            <option value=" || "> || </option>
+            <option value=" == "> == </option>
+            <option value=" != "> != </option>
+            <option value=" <= "> {"<="} </option>
+            <option value=" >= "> {">="} </option>
+            <option value=" > "> {">"} </option>
+            <option value=" < "> {"<"} </option>
           </select>
         
       

@@ -11,7 +11,7 @@ const CondSwitch: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, emb
     return (
       <div className="block__condswitch--container">
         <span className="block block__condswitch block__sentence">
-          <input type="hidden" value="elegir" />
+          <input type="hidden" value="elegir " />
           {"elegir"}
           {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -33,7 +33,7 @@ const CondSwitch: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, emb
         )}
         </span>
         <div className="block block__condswitch block__condswitch--end block__sentence">
-          <input type="hidden" value="fin" />
+          <input type="hidden" value="fin " />
           {"fin"}
         </div>
       </div>

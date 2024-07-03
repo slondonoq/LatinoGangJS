@@ -15,7 +15,7 @@ const WhileBlock:FC<CodeBlockWithNestingAndEmbeddings> = ({embeddedBlock1, embed
         {"mientras ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='condición'
+            placeholderText='comparación'
             itemsTypes={[
               ItemTypes.COMPARISON,
               ItemTypes.BOOLEAN,

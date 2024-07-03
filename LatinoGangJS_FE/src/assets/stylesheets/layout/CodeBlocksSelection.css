@@ -33,7 +33,7 @@
 }
 
 #block-selection p {
-  text-align: left;
+  text-align: justify;
   padding-left: 0.5em;
   color: var(--secondary_color-100);
 }
@@ -79,6 +79,10 @@
   transform: translateX(-50%);
 }
 
+#block-selection aside a#inicio-tag::before {
+  background-color: var(--secondary_color-500);
+}
+
 #block-selection aside a#variables-tag::before {
   background-color: #346dc2;
 }
@@ -111,7 +115,7 @@
   background-color: #e56175;
 }
 #block-selection aside a#tiposDatos-tag::before {
-  background-color: #599354;
+  background-color: #c23373;
 }
 #block-selection aside a#auxiliares-tag::before {
   background-color: #655493;
@@ -119,5 +123,14 @@
 
 #block-selection .block input {
   pointer-events: none;
-  max-width:3.75em;
+  max-width:5em;
+}
+
+#block-selection i {
+  font-size: 0.9em;
+  text-align: justify;
+}
+
+#block-selection hr {
+  margin-top: 0.5em;
 }

@@ -37,7 +37,7 @@ const RangeBlock: React.FC<rangeBlock> = ({
           <input type="number" placeholder='salto' defaultValue={inputs?inputs[2]:undefined} onBlur={handleInputs?(event) => handleInputs(2,event.target.value):(_)=>defaultFunc2()}/>
         </>
       }
-      <input type="hidden" value=")" />
+      <input type="hidden" value=") " />
       {")"}
     </span>
   )

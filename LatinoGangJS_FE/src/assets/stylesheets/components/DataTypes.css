@@ -1,10 +1,11 @@
 .block__dataType {
-    background-color: #599354;
+    background-color: #c23373;
     border-radius: 0.25em 0.25em 0.25em 0.25em;
   }
 
   .block__dataType select{
-    background-color: #599354;
+    background-color: #c23373;
+    padding: 0.5em 0.25em;
   }
 
  

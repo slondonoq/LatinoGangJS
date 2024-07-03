@@ -51,11 +51,11 @@ const CodeOutput :React.FC<CodeOutputInterface>= ({codeLatino,codeJs}) => {
             className="copy-btn"
           >
             <img src={CopyIcon} alt="" />
-            <span>Copy code</span>
+            <span>Copiar código JS</span>
           </button>
         )}
       </div>
-      <div className="output-header">JavaScript Code</div>
+      <div className="output-header">Código JavaScript</div>
       <SyntaxHighlighter
         language="javascript"
         style={isLight ? tomorrow : dracula}
@@ -67,7 +67,7 @@ const CodeOutput :React.FC<CodeOutputInterface>= ({codeLatino,codeJs}) => {
         {codeJs}
       </SyntaxHighlighter>
       <div className="output-header output-header--increased">
-        Latino Code semi-minificado (con espacios)
+        Código Latino semi-minificado (con espacios)
         <a href='https://www.suratica.es/que-es-la-minificacion/' target='blank'>¿Qué es la minificación?</a>
       </div>
       <SyntaxHighlighter

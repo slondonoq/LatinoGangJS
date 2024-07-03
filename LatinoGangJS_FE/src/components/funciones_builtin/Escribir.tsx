@@ -9,7 +9,7 @@ const Escribir: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop}
 
     return (
       <span className='block block__builtin block__sentence'>
-        <input type="hidden" value="escribir (" />
+        <input type="hidden" value="escribir(" />
         {"escribir ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -28,7 +28,7 @@ const Escribir: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop}
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=")" />
+        <input type="hidden" value=") " />
         {")"}
       </span>
     )

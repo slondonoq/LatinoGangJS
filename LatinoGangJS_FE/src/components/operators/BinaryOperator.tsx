@@ -31,14 +31,14 @@ const BinaryOperator: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedB
           ? (event) => handleInputs(1,event.target.value)
           : (_) => defaultFunc2()}
         >
-        <option value="+"> + </option>
-        <option value="-"> - </option>
-        <option value="*"> * </option>
-        <option value="/"> / </option>
-        <option value="%"> % </option>
-        <option value="^"> ^ </option>
-        <option value=".."> .. </option>
-        <option value="~="> ~= </option>
+        <option value=" + "> + </option>
+        <option value=" - "> - </option>
+        <option value=" * "> * </option>
+        <option value=" / "> / </option>
+        <option value=" % "> % </option>
+        <option value=" ^ "> ^ </option>
+        <option value=" .. "> .. </option>
+        <option value=" ~= "> ~= </option>
       </select>
       {embeddedBlock2 ?? (
           <BlockPlaceholder

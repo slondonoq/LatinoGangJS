@@ -8,8 +8,8 @@ const Anumero: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop})
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
 
     return (
-      <span className='block block__builtin block--embedded'>
-        <input type="hidden" value="anumero (" />
+      <span className='block block__dataType block--embedded'>
+        <input type="hidden" value="anumero(" />
         {"anumero ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder

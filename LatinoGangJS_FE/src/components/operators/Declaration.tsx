@@ -8,7 +8,7 @@ const Declaration: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1,embeddedBlock
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
 
   return (
-    <span className="block block__negation block--embedded">
+    <span className="block block__iterator block--embedded">
       {embeddedBlock1 ?? (
           <BlockPlaceholder
             placeholderText='variable'

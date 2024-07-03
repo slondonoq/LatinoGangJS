@@ -9,7 +9,7 @@ const DoWhileBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, e
   return (
     <div className='block__iterator--container'>
       <span className='block block__iterator block__sentence'>
-        <input type="hidden" value="repetir" />
+        <input type="hidden" value="repetir " />
         repetir
       </span>
       <span className='block__iterator--nested-block'>
@@ -24,10 +24,10 @@ const DoWhileBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, e
       </span>
       <div className='block block__iterator block__iterator--end block__sentence'>
         {"hasta ("}
-        <input type="hidden" value="hasta (" />
+        <input type="hidden" value="hasta(" />
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='condición'
+            placeholderText='comparación'
             itemsTypes={[
               ItemTypes.COMPARISON,
               ItemTypes.BOOLEAN,
@@ -38,7 +38,7 @@ const DoWhileBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, e
           />
         )}
         {")"}
-        <input type="hidden" value=")" />
+        <input type="hidden" value=") " />
       </div>
     </div>
   )

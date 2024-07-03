@@ -55,9 +55,8 @@ pre {
   height: 24px;
   position: relative;
   display: block;
-  background: #b8b5b5;
+  background: rgb(73, 60, 93);
   border-radius: 12px;
-  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.3), inset 0px -5px 15px rgba(255, 255, 255, 0.4);
   cursor: pointer;
 }
 .labelOutput:after {
@@ -82,12 +81,12 @@ input[type="checkbox"] {
   display: none;
 }
 input[type="checkbox"]:checked + .labelOutput {
-  background: #28292b;
+  background: var(--background_color-dark);
 }
 input[type="checkbox"]:checked + .labelOutput:after {
   left: calc(100% - 2px);
   transform: translateX(-100%);
-  background: #7e7e7e;
+  background: var(--background_color-light-dark);
 }
 .sun, .moon{
   position: absolute;
@@ -111,6 +110,7 @@ input[type="checkbox"]:checked + .labelOutput:after {
   align-content: center;
   display: flex;  
   gap: 0.5em;
+  cursor: pointer;
 }
 .copy-btn img{
   width: 1.2em;

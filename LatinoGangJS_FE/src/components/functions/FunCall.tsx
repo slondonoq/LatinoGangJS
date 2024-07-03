@@ -16,7 +16,7 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
     <span className={`block block__function block__function--call ${isSentence ? 'block__sentence': 'block--embedded'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
-          placeholderText="función"
+          placeholderText="nombre"
           itemsTypes={[ItemTypes.VARIABLE]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot="emb_child_1"
@@ -26,7 +26,7 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
       {"("}
       {embeddedBlock2 ?? (
         <BlockPlaceholder
-          placeholderText="argumentos"
+          placeholderText="valor(es)"
           itemsTypes={[
             ItemTypes.EMBEDDED,
             ItemTypes.VARIABLE,

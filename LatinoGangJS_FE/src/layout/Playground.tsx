@@ -127,7 +127,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
       <section id="playground">
         <div id="section-header">
           <button className="btn-section clean" onClick={clearPlayground} >
-            Clear
+            Limpiar Bloques
             <img src={ClearIcon} alt="" />
           </button>
           <button className="btn-section play" onClick={()=> {
@@ -137,7 +137,7 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
               form.requestSubmit()
             }
           }}>
-            Run
+            Traducir bloques
             <img src={PlayIcon} alt="" />
           </button>
         </div>

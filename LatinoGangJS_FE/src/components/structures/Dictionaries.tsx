@@ -8,7 +8,7 @@ const Dictionaries: FC<CodeBlockWithNestingAndEmbeddings> = ({ nestedBlock, nest
   return (
     <div className="block__dic--container">
       <span className="block block__dic block__dic--start block__sentence">
-        <input type="hidden" value="{"/>
+        <input type="hidden" value="{ "/>
         {"{"}
       </span>
       <span className="block__dic--nested-block">
@@ -22,7 +22,7 @@ const Dictionaries: FC<CodeBlockWithNestingAndEmbeddings> = ({ nestedBlock, nest
         )}
       </span>
       <div className="block block__dic block__dic--end block__sentence">
-        <input type="hidden" value="}" />
+        <input type="hidden" value=" }" />
         {"}"}
       </div>
     </div>

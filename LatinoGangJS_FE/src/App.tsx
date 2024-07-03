@@ -27,7 +27,7 @@ function App() {
   });
 
   const [elements, setElements] = useState<ElementsData>({});
-  const [codeLatino, setCodeLatino] = useState("funcion fib(n)\n    a,b = 0,1\n    mientras a < n\n        a,b = b, a+b\n        escribir(a)\n        /* uwu */\n    fin\nfin\n\nfib(250)");
+  const [codeLatino, setCodeLatino] = useState("");
   const [codeJs, setCodeJs] = useState('');
 
   const onDrop = (
@@ -68,8 +68,6 @@ function App() {
       }
 
       newData.inputs[blockId][pos] = inputValue;
-
-      // console.log(blockId, newData.inputs);
       return newData;
     });
   }
@@ -414,7 +412,7 @@ function App() {
     for (let i = 0; i < form.elements.length; i++) {
       const elem = form.elements[i]
       if (elem instanceof HTMLInputElement || elem instanceof HTMLSelectElement) {
-        unformatted_code += elem.value + ' '
+        unformatted_code += elem.value
       }
     }
     //TODO: format code

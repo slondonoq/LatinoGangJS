@@ -11,7 +11,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
   return (
     <div className='block__iterator--container'>
       <span className='block block__iterator block__sentence'>
-        <input type="hidden" value="desde (" />
+        <input type="hidden" value="desde(" />
         {"desde ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -21,17 +21,17 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=";" />
+        <input type="hidden" value=" ; " />
         ;
         {embeddedBlock2 ?? (
           <BlockPlaceholder
-            placeholderText='expresión'
+            placeholderText='comparación'
             itemsTypes={[ItemTypes.COMPARISON]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_2'
           />
         )}
-        <input type="hidden" value=";" />
+        <input type="hidden" value=" ; " />
         ;
         {embeddedBlock3 ?? (
           <BlockPlaceholder
@@ -41,7 +41,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
             embedding_spot='emb_child_3'
           />
         )}
-        <input type="hidden" value=")" />
+        <input type="hidden" value=") " />
         {")"}
       </span>
       <span className='block__iterator--nested-block'>
@@ -54,7 +54,7 @@ const ForBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embed
         )}
       </span>
       <div className='block block__iterator block__iterator--end block__sentence'>
-        <input type="hidden" value="fin" />
+        <input type="hidden" value="fin " />
       </div>
     </div>
   )

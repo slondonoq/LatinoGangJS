@@ -16,11 +16,11 @@ const CondElseIf: FC<CodeBlockWithNestingAndEmbeddings> = ({
   return (
     <div className="block__condelseif--container">
       <span className="block block__condelseif block__sentence">
-        <input type="hidden" value="osi" />
+        <input type="hidden" value=" osi" />
         {"osi"}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText="condición"
+            placeholderText="comparación"
             itemsTypes={[
               ItemTypes.COMPARISON,
               ItemTypes.BOOLEAN,

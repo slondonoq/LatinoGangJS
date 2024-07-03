@@ -39,31 +39,37 @@
 }
 
 .btn-section {
-  width: 6em;
+  max-width: 12em;
   height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.5em;
+  border-radius: 0.25em;
   cursor: pointer;
   gap: 0.5em;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 0.85em;
   margin: 1em ;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   border: none;
 }
-.clean{
-  background: var(--secondary_color-400);
+
+.btn-section img {
+  height: 1em;
+  width: 1em;
 }
-.clean:hover{
+
+.clean{
   background: var(--secondary_color-500);
 }
+.clean:hover{
+  background: var(--secondary_color-400);
+}
 .play{
-  background: var(--tertiary_color-300);
+  background: var(--tertiary_color-400);
 }
 .play:hover{
-  background: var(--tertiary_color-400);
+  background: var(--tertiary_color-300);
 }
 
 #playground .block--embedded {
@@ -74,4 +80,8 @@
 
 #playground .block input {
   max-width:5em;
+}
+
+#playground .block__sentence::before {
+  border-top: 0.4em solid var(--background_color-dark);
 }

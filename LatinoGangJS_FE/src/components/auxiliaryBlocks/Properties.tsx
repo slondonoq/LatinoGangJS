@@ -6,7 +6,7 @@ const Properties: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedde
   const defaultFunc: Function = () => console.log('Oops, forgot to pass onDrop prop to block with embeddings')
   
   return (
-    <span className="block block__auxiliary block--embedded">
+    <span className="block block__dic block--embedded">
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText='variable'
@@ -19,7 +19,7 @@ const Properties: React.FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embedde
       {"."}
       {embeddedBlock2 ?? (
         <BlockPlaceholder
-          placeholderText='propiedad'
+          placeholderText='clave'
           itemsTypes={[ItemTypes.VARIABLE]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot='emb_child_2'

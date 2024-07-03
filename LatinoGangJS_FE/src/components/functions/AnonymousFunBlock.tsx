@@ -17,7 +17,7 @@ const AnonymousFunBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBloc
           {"("}
           {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='arg(s)'
+            placeholderText='argumento(s)'
             itemsTypes={[
               ItemTypes.VARIABLE,
               ItemTypes.ARGUMENT_LIST

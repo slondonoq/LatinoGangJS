@@ -12,7 +12,7 @@ const DicElement: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, emb
     <span className="block block__dicElem block__sentence">
       {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='declaración'
+            placeholderText='clave'
             itemsTypes={[ItemTypes.VARIABLE]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'

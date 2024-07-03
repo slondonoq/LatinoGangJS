@@ -8,10 +8,10 @@ const MoreItems: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
     return (
-      <span className="block block__auxiliary block--embedded">
+      <span className="block block__dataType block--embedded">
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='elemento'
+            placeholderText='valor(es)'
             itemsTypes={[
               ItemTypes.VARIABLE, 
               ItemTypes.NUMBER,
@@ -29,11 +29,11 @@ const MoreItems: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBlock2
             embedding_spot='emb_child_1'
           />
         )}
-        <input type="hidden" value=","/>
+        <input type="hidden" value=", "/>
         {","}
         {embeddedBlock2 ?? (
           <BlockPlaceholder
-            placeholderText='valor'
+            placeholderText='valor(es)'
             itemsTypes={[
               ItemTypes.VARIABLE, 
               ItemTypes.NUMBER,

@@ -16,7 +16,7 @@ const OperationAssignBlock: FC<CodeBlockWithEmbeddings> = ({
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className={`block block__assign ${isSentence ? 'block__sentence': 'block--embedded'}`}>
+    <span className={`block ${isSentence ? 'block__assign block__sentence': 'block__iterator block--embedded'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText="variable"
@@ -33,11 +33,11 @@ const OperationAssignBlock: FC<CodeBlockWithEmbeddings> = ({
             : (_) => defaultFunc2()
         }
       >
-        <option value="+="> += </option>
-        <option value="-="> -= </option>
-        <option value="*="> *= </option>
-        <option value="/="> /= </option>
-        <option value="%="> %= </option>
+        <option value=" += "> += </option>
+        <option value=" -= "> -= </option>
+        <option value=" *= "> *= </option>
+        <option value=" /= "> /= </option>
+        <option value=" %= "> %= </option>
       </select>
 
       {embeddedBlock2 ?? (
@@ -48,6 +48,7 @@ const OperationAssignBlock: FC<CodeBlockWithEmbeddings> = ({
           embedding_spot="emb_child_2"
         />
       )}
+      <input type="hidden" value=" " />
     </span>
   );
 };

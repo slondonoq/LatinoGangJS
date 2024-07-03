@@ -23,11 +23,11 @@ const CondIf: FC<conditionalBlock> = ({
   return (
     <div className="block__condif--container">
       <span className="block block__condif block__sentence">
-        <input type="hidden" value="si" />
+        <input type="hidden" value="si(" />
         {"si"}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText="condición"
+            placeholderText="comparación"
             itemsTypes={[
               ItemTypes.COMPARISON,
               ItemTypes.BOOLEAN,
@@ -38,6 +38,7 @@ const CondIf: FC<conditionalBlock> = ({
             embedding_spot="emb_child_1"
           />
         )}
+        <input type="hidden" value=") " />
       </span>
       <span className="block__condif--nested-block">
         {nestedBlock ?? (
@@ -61,7 +62,7 @@ const CondIf: FC<conditionalBlock> = ({
           </span>
         ): null}
       <div className={`block block__condif block__condif--end block__sentence ${has_alt_conds ? 'block__condif--alt' : ''}`}>
-        <input type="hidden" value="fin" />
+        <input type="hidden" value="fin " />
         {"fin"}
       </div>
     </div>

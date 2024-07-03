@@ -10,7 +10,7 @@ const ListArguments: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBl
       <span className="block block__function block--embedded">
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            placeholderText='argument'
+            placeholderText='argumento'
             itemsTypes={[
               ItemTypes.VARIABLE, 
               ItemTypes.ARGUMENT_LIST, 
@@ -23,7 +23,7 @@ const ListArguments: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedBl
         {","}
         {embeddedBlock2 ?? (
           <BlockPlaceholder
-            placeholderText='argument'
+            placeholderText='argumento'
             itemsTypes={[
               ItemTypes.VARIABLE, 
               ItemTypes.ARGUMENT_LIST, 

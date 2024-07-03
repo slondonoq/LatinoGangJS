@@ -11,7 +11,7 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
   const defaultFunc2 = () =>
     console.log("Oops, forgot to pass onDrop prop to block with nesting");
   return (
-    <span className={`block block__incrementdecrement ${isSentence ? 'block__sentence' : 'block--embedded'}`}>
+    <span className={`block ${isSentence ? 'block__sentence block__assign' : 'block--embedded block__iterator'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
           placeholderText="variable"
@@ -29,8 +29,8 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
             : (_) => defaultFunc2()
         }
       >
-        <option value="++"> ++ </option>
-        <option value="--"> -- </option>
+        <option value="++ "> ++ </option>
+        <option value="-- "> -- </option>
       </select>
     </span>
   );

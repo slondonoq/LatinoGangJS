@@ -31,7 +31,7 @@ const FunctionBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({
         {"("}
         {embeddedBlock2 ?? (
           <BlockPlaceholder
-            placeholderText="arg(s)"
+            placeholderText="argumento(s)"
             itemsTypes={[
               ItemTypes.EMBEDDED,
               ItemTypes.VARIABLE,

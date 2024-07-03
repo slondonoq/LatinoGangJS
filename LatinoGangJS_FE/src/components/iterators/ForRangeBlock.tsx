@@ -9,7 +9,7 @@ const ForRangeBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, 
   return (
     <div className="block__iterator--container">
       <span className="block block__iterator block__sentence">
-        <input type="hidden" value="para" />
+        <input type="hidden" value="para " />
         para
         {embeddedBlock1 ?? (
           <BlockPlaceholder
@@ -19,7 +19,7 @@ const ForRangeBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, 
             embedding_spot="emb_child_1"
           />
         )}
-        <input type="hidden" value="en" />
+        <input type="hidden" value="en " />
         en
         {embeddedBlock2 ?? (
           <BlockPlaceholder
@@ -41,7 +41,7 @@ const ForRangeBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, 
         )}
       </span>
       <div className="block block__iterator block__iterator--end block__sentence">
-        <input type="hidden" value="fin" />
+        <input type="hidden" value="fin " />
       </div>
     </div>
   );

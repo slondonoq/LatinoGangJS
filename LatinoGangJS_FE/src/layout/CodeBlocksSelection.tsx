@@ -51,33 +51,39 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
       <aside id="block-type-nav">
         <ul>
           <li>
+            <a href="#inicio" id="inicio-tag">
+              {" "}
+              Inicio{" "}
+            </a>
+          </li>
+          <li>
             <a href="#variables" id="variables-tag">
               {" "}
-              Variables{" "}
+              Variable{" "}
             </a>
           </li>
           <li>
             <a href="#operadores" id="operadores-tag">
               {" "}
-              Operadores{" "}
+              Operación{" "}
             </a>
           </li>
           <li>
             <a href="#comparadores" id="comparadores-tag">
               {" "}
-              Comparar{" "}
+              Comparación{" "}
             </a>
           </li>
           <li>
             <a href="#tipos de datos" id="tiposDatos-tag">
               {" "}
-              Tipos de datos{" "}
+              Valores{" "}
             </a>
           </li>
           <li>
             <a href="#funciones built-in" id="builtin-tag">
               {" "}
-              Funciones Built-in{" "}
+              Pantalla{" "}
             </a>
           </li>
           <li>
@@ -110,22 +116,17 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
               Diccionario{" "}
             </a>
           </li>
-          <li>
-            <a href="#auxiliares" id="auxiliares-tag">
-              {" "}
-              Bloques auxiliares{" "}
-            </a>
-          </li>
         </ul>
       </aside>
       <div className="blocks-container">
+        <h3 id="inicio">Inicio</h3>
         <Block name='code_start' blockTypes={['block']}/>
+        <hr />
         <h3 id="variables">Variables</h3>
+        <p>Variables</p>
         <button onClick={()=> setOpenModal(true)}>Crea una variable</button>
+        <i>Tip: debes crear una variable para poder insertarla en ranuras "variable" o</i>
         {openModal && (<Modal closeModal={setOpenModal} variablesList = {varibles} updateVariables={setVariables}/>)}
-        {/* {varibles.map((variable, index) => (
-          <div key={index}>{variable}</div>
-        ))} */}
         {varibles.map((variable, index) => (
           <Block 
             key={index} 
@@ -134,68 +135,79 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
             blockTypes={['embedded','variable']}/>
         ))
         }
+        <p>Asignaciones</p>
         <Block name='assignation' blockTypes={['block_with_embeddings']}/>
         <Block name='op_assignation' blockTypes={['block_with_embeddings']} isSentence={true}/>
-        <h3 id="operadores">Operadores</h3>
-        <p>Operadores aritmeticos, concatenacion y regex</p>
-        <Block name='binary_operator' blockTypes={['embedded']}/>
-        <p>Declaraciones</p>
-        <Block name='declaration' blockTypes={['block_with_embeddings','declaration','embedded']}/>
         <p>Incremento y decremento</p>
         <Block name='inc_dec' blockTypes={['block_with_embeddings']} isSentence={true}/>
-        <p>Negacion</p>
-        <Block name='negation' blockTypes={['embedded', 'boolean']}/>
-        <h3 id="comparadores">Comparadores</h3>
+        <hr />
+        <h3 id="operadores">Operaciones</h3>
+        <p>Operaciones aritméticas, de concatenación y regex</p>
+        <Block name='binary_operator' blockTypes={['embedded']}/>
+        <i>Tip: puedes usar operaciones dentro de algunas ranuras "valor"</i>
+        <hr />
+        <h3 id="comparadores">Comparación</h3>
+        <p>Comparaciones y operaciones lógicas binarias</p>
         <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
-        <h3 id='tipos de datos'>Tipos de datos</h3>
-        <p>Número</p>
+        <p>Negación</p>
+        <Block name='negation' blockTypes={['embedded', 'boolean']}/>
+        <i>Tip: los valores lógicos y de conversión a lógico también pueden ser usados en ranuras "comparación"</i>
+        <hr />
+        <h3 id='tipos de datos'>Valores</h3>
+        <p>Número y conversión a número</p>
         <Block name='numType' blockTypes={['embedded','number']}/>
-        <p>Cadena de texo</p>
+        <Block name='to_number' blockTypes={['embedded','anumero']}/>
+        <p>Cadena de texo y conversión a cadena</p>
         <Block name='stringType' blockTypes={['embedded','string']}/>
+        <Block name='to_string' blockTypes={['embedded','acadena']}/>
+        <p>Lógico y conversión a lógico</p>
+        <Block name='boolType' blockTypes={['embedded','boolean']}/>
+        <Block name='to_boolean' blockTypes={['embedded','alogico']}/>
         <p>Nulo</p>
         <Block name='nullType' blockTypes={['embedded','null']}/>
-        <p>Lógico</p>
-        <Block name='boolType' blockTypes={['embedded','boolean']}/>
-        <h3 id='funciones built-in'>Funciones Built-in</h3>
-        <p>Anumero</p>
-        <Block name='to_number' blockTypes={['embedded','anumero']}/>
-        <p>Acadena</p>
-        <Block name='to_string' blockTypes={['embedded','acadena']}/>
-        <p>Alogico</p>
-        <Block name='to_boolean' blockTypes={['embedded','alogico']}/>
-        <p>Imprimirf</p>
-        <Block name='print_f' blockTypes={['block_with_embeddings']}/>
-        <p>Imprimir</p>
+        <i>Tip: aunque estos son los valores primitivos,
+          se pueden usar bloques como variables, diccionarios,
+          listas, funciones anónimas, operaciones y comparaciones
+          en algunas ranuras "valor"
+        </i>
+        <p>Multiples valores</p>
+        <Block name='moreItems' blockTypes={['embedded', 'concat']}/>
+        <i>Tip: este bloque sólo puede utilizarse en ranuras "valor(es)"</i>
+        <hr />
+        <h3 id='funciones built-in'>Pantalla</h3>
+        <p>Mostrar en consola</p>
         <Block name='print' blockTypes={['block_with_embeddings']}/>
-        <p>Escribir</p>
         <Block name='write' blockTypes={['block_with_embeddings']}/>
-        <p>Poner</p>
         <Block name='put' blockTypes={['block_with_embeddings']}/>
-        <p>Tipo</p>   
-        <Block name='type' blockTypes={['embedded']}/>
-        <p>Limpiar</p>
+        <i>Tip: Aunque estos bloques tienen distinto nombre, todos muestran texto en la consola</i>
+        <p>Limpiar consola</p>
         <Block name='clean' blockTypes={['block']}/>
+        <hr />
         <h3 id='condicionales'>Condicionales</h3>
-        <p>Si</p>
+        <p>Condición Si</p>
         <Block name='cond_if' blockTypes={['block_with_embeddings']}/>
         <Block name='cond_if_alt' blockTypes={['block_with_embeddings']}/>
-        <p>Osi</p>
+        <p>Condiciones alternas</p>
         <Block name='cond_elif' blockTypes={['embedded','if_nesting']}/>
-        <p>Sino</p>
         <Block name='cond_else' blockTypes={['embedded','if_nesting']}/>
-        <p>Elegir</p>
+        <br/>
+        <p>Elegir ... caso</p>
         <Block name='switch' blockTypes={['block_with_embeddings']}/>
         <p>Caso</p>
         <Block name='switch_case' blockTypes={['switch']}/>
-        <p>Defecto</p>
+        <p>Casos por defecto</p>
         <Block name='switch_def' blockTypes={['switch']}/>
-        <p>Otro</p>
         <Block name='switch_other' blockTypes={['switch']}/>
         <p>Romper</p>
         <Block name='break' blockTypes={['block']}/>
+        <i>Tip: los bloques de casos y "romper" deben ir dentro de un bloque "elegir"</i>
+        <hr />
         <h3 id="bucles">Bucles</h3>
+        <p>Sentencia dentro de bucle</p>
         <Block name='op_assignation' blockTypes={['embedded',  'embedded_sentence']}/>
         <Block name='inc_dec' blockTypes={['embedded',  'embedded_sentence']}/>
+        <p>Declaración dentro de bucle</p>
+        <Block name='declaration' blockTypes={['block_with_embeddings','declaration','embedded']}/>
         <p>Desde</p>
         <Block name='for' blockTypes={['block_with_embeddings']}/>
         <p>Para ... en rango</p>
@@ -207,33 +219,55 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='while' blockTypes={['block_with_embeddings']}/>
         <p>Repetir ... hasta</p>
         <Block name='do_while' blockTypes={['block_with_embeddings']}/>
+        <hr />
         <h3 id="funciones">Funciones</h3>
+        <p>Argumentos</p>
+        <Block name='argumentList' blockTypes={['embedded', 'argument_list']}/>
+        <i>
+          Tip: en la ranura "argumento" debes encajar un bloque de variable
+          y de la misma manera, puedes encajar un bloque de variable en la
+          ranura "argumento(s)"
+        </i>
         <p>Función</p>
         <Block name='func' blockTypes={['block_with_embeddings']}/>
+        <i>Tip: en la ranura "nombre" para este bloque y el de llamado debes encajar un bloque de variable</i>
         <p>Función anónima</p>
         <Block name='func_anonymous' blockTypes={['embedded']}/>
-        <p>Lista de argumentos</p>
-        <Block name='argumentList' blockTypes={['embedded', 'argument_list']}/>
         <p>Retorno</p>
         <Block name='return' blockTypes={['block']}/>
-        <p>Llamado</p>
+        <p>Llamado a una función</p>
         <Block name='func_call' blockTypes={['embedded', 'function_call']}/>
         <Block name='func_call' blockTypes={['block_with_embeddings']} isSentence={true}/>
+        <hr />
         <h3 id="listas">Listas</h3>
         <p>Listas</p>
         <Block name='list' blockTypes={['embedded', 'list']}/>
+        <i>
+          Tip: puedes poner listas dentro de listas o de diccionarios.
+          Además, también puedes usar el bloque de múltiples valores
+          para crear una lista de varios elementos
+        </i>
         <p>Acceder a un elemento</p>
         <Block name='list_access' blockTypes={['embedded', 'variable']}/>
+        <i>Tip: el índice debe ser un número o una conversión a número</i>
+        <hr />
         <h3 id="diccionarios">Diccionarios</h3>
         <p>Diccionario</p>
         <Block name='dict' blockTypes={['embedded', 'dict']}/>
+        <i>
+          Tip: el diccionario es una estructura compuesta de parejas
+          clave valor, por lo que sólo puedes encajar estos bloques
+          dentro de la ranura entre llaves {'"{ }"'} del diccionario.
+        </i>
         <p>Clave - Valor</p>
         <Block name='dict_elem' blockTypes={['block_with_embeddings',  'key_value']}/>
-        <h3 id='auxiliares'>Bloques auxiliares</h3>
-        <p>Varios elementos</p>
-        <Block name='moreItems' blockTypes={['embedded', 'concat']}/>
-        <p>Acceder a las propiedades de un elemento</p>
+        <i>Tip: dentro de la ranura "clave" solo puedes encajar bloques de variable</i>
+        <p>Acceder a las claves de un diccionario</p>
         <Block name='properties' blockTypes={['embedded', 'variable']}/>
+        <i>
+          Tip: para acceder de esta manera a un diccionario, debes poner el bloque de
+          diccionario dentro de un bloque de asignación "variable = valor"
+        </i>
       </div>
     </section>
   );
