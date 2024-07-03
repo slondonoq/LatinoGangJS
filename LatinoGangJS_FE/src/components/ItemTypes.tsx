@@ -12,5 +12,12 @@ export const ItemTypes = {
   CONCAT: 'concat',
   DICT: 'dict',
   LIST: 'list',
-  EMBEDDED_SENTENCE: 'embedded_sentence'
+  EMBEDDED_SENTENCE: 'embedded_sentence',
+  NUMBER: 'number',
+  STRING: 'string',
+  BOOLEAN: 'boolean',
+  NULL: 'null',
+  ANUMERO: 'anumero',
+  ACADENA: 'acadena',
+  ALOGICO: 'alogico',
 };

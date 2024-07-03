@@ -29,20 +29,7 @@ const FunCall: FC<CodeBlockWithNestingAndEmbeddings> = ({
       {"("}
       {embeddedBlock2 ?? (
         <BlockPlaceholder
-          defaultContent={
-            <>
-              <input
-                type="text"
-                placeholder="valor"
-                defaultValue={inputs ? inputs[2] : undefined}
-                onBlur={
-                  handleInputs
-                    ? (event) => handleInputs(2, event.target.value)
-                    : (_) => defaultFunc2()
-                }
-              />
-            </>
-          }
+          placeholderText="argumentos"
           itemsTypes={[
             ItemTypes.EMBEDDED,
             ItemTypes.VARIABLE,

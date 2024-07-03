@@ -14,21 +14,13 @@ const Negation: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,
         {"!"}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            defaultContent={
-              <>
-                <input
-                  type="text"
-                  placeholder='valor'
-                  defaultValue={inputs ? inputs[0] : undefined}
-                  onBlur={handleInputs 
-                    ? (event) => handleInputs(0,event.target.value)
-                    : (_) => defaultFunc2()}/>
-              </>
-            }
+            placeholderText='valor'
             itemsTypes={[
               ItemTypes.VARIABLE,
               ItemTypes.EMBEDDED,
-              ItemTypes.COMPARISON
+              ItemTypes.COMPARISON,
+              ItemTypes.BOOLEAN,
+              ItemTypes.ALOGICO,
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'

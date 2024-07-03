@@ -5,7 +5,7 @@ const NumType = () => {
     return (
       <span className='block block__dataType block--embedded'>
         <input type="hidden" />
-        <input type="text" placeholder='número' />
+        <input type="number" placeholder='número' />
       </span>
     )
   }

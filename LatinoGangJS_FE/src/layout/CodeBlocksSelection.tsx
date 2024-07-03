@@ -141,20 +141,20 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='binary_logic-op' blockTypes={['embedded', 'comparison']}/>
         <h3 id='tipos de datos'>Tipos de datos</h3>
         <p>Número</p>
-        <Block name='numType' blockTypes={['embedded']}/>
+        <Block name='numType' blockTypes={['embedded','number']}/>
         <p>Cadena de texo</p>
-        <Block name='stringType' blockTypes={['embedded']}/>
+        <Block name='stringType' blockTypes={['embedded','string']}/>
         <p>Nulo</p>
-        <Block name='nullType' blockTypes={['embedded']}/>
+        <Block name='nullType' blockTypes={['embedded','null']}/>
         <p>Lógico</p>
-        <Block name='boolType' blockTypes={['embedded']}/>
+        <Block name='boolType' blockTypes={['embedded','boolean']}/>
         <h3 id='funciones built-in'>Funciones Built-in</h3>
         <p>Anumero</p>
-        <Block name='to_number' blockTypes={['embedded']}/>
+        <Block name='to_number' blockTypes={['embedded','anumero']}/>
         <p>Acadena</p>
-        <Block name='to_string' blockTypes={['embedded']}/>
+        <Block name='to_string' blockTypes={['embedded','acadena']}/>
         <p>Alogico</p>
-        <Block name='to_boolean' blockTypes={['embedded']}/>
+        <Block name='to_boolean' blockTypes={['embedded','alogico']}/>
         <p>Imprimirf</p>
         <Block name='print_f' blockTypes={['block_with_embeddings']}/>
         <p>Imprimir</p>

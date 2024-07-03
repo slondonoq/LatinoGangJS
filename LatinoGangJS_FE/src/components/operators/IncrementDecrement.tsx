@@ -14,20 +14,7 @@ const IncrementDecrement: FC<CodeBlockWithEmbeddings> = (
     <span className={`block block__incrementdecrement ${isSentence ? 'block__sentence' : 'block--embedded'}`}>
       {embeddedBlock1 ?? (
         <BlockPlaceholder
-          defaultContent={
-            <>
-              <input
-                type="text"
-                placeholder="valor"
-                defaultValue={inputs ? inputs[0] : undefined}
-                onBlur={
-                  handleInputs
-                    ? (event) => handleInputs(0, event.target.value)
-                    : (_) => defaultFunc2()
-                }
-              />
-            </>
-          }
+          placeholderText="variable"
           itemsTypes={[ItemTypes.VARIABLE]}
           onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
           embedding_spot="emb_child_1"

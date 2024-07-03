@@ -15,18 +15,14 @@ const Anumero: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop,h
         {"anumero ("}
         {embeddedBlock1 ?? (
           <BlockPlaceholder
-            defaultContent={
-              <>
-                <input
-                  type="text"
-                  placeholder='valor'
-                  defaultValue={inputs ? inputs[0] : undefined}
-                  onBlur={handleInputs 
-                    ? (event) => handleInputs(0,event.target.value)
-                    : (_) => defaultFunc2()}/>
-              </>
-            }
-            itemsTypes={[ItemTypes.VARIABLE]}
+            placeholderText='valor'
+            itemsTypes={[
+              ItemTypes.VARIABLE, 
+              ItemTypes.NUMBER,
+              ItemTypes.STRING,
+              ItemTypes.BOOLEAN,
+
+            ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot='emb_child_1'
           />

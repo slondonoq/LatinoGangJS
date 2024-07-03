@@ -20,21 +20,21 @@ const RangeBlock: React.FC<rangeBlock> = ({
       }
       {
         range_n_values == 2 && <>
-          <input type="text" placeholder='inicio' defaultValue={inputs?inputs[0]:undefined} onBlur={handleInputs?(event) => handleInputs(0,event.target.value):(_)=>defaultFunc2()}/>
+          <input type="number" placeholder='inicio' defaultValue={inputs?inputs[0]:undefined} onBlur={handleInputs?(event) => handleInputs(0,event.target.value):(_)=>defaultFunc2()}/>
           <input type="hidden" value="," />
           ,
-          <input type="text" placeholder='fin' defaultValue={inputs?inputs[1]:undefined} onBlur={handleInputs?(event) => handleInputs(1,event.target.value):(_)=>defaultFunc2()}/>
+          <input type="number" placeholder='fin' defaultValue={inputs?inputs[1]:undefined} onBlur={handleInputs?(event) => handleInputs(1,event.target.value):(_)=>defaultFunc2()}/>
         </>
       }
       {
         range_n_values == 3 && <>
-          <input type="text" placeholder='inicio' defaultValue={inputs?inputs[0]:undefined} onBlur={handleInputs?(event) => handleInputs(0,event.target.value):(_)=>defaultFunc2()}/>
+          <input type="number" placeholder='inicio' defaultValue={inputs?inputs[0]:undefined} onBlur={handleInputs?(event) => handleInputs(0,event.target.value):(_)=>defaultFunc2()}/>
           <input type="hidden" value="," />
           ,
-          <input type="text" placeholder='fin' defaultValue={inputs?inputs[1]:undefined} onBlur={handleInputs?(event) => handleInputs(1,event.target.value):(_)=>defaultFunc2()}/>
+          <input type="number" placeholder='fin' defaultValue={inputs?inputs[1]:undefined} onBlur={handleInputs?(event) => handleInputs(1,event.target.value):(_)=>defaultFunc2()}/>
           <input type="hidden" value="," />
           ,
-          <input type="text" placeholder='salto' defaultValue={inputs?inputs[2]:undefined} onBlur={handleInputs?(event) => handleInputs(2,event.target.value):(_)=>defaultFunc2()}/>
+          <input type="number" placeholder='salto' defaultValue={inputs?inputs[2]:undefined} onBlur={handleInputs?(event) => handleInputs(2,event.target.value):(_)=>defaultFunc2()}/>
         </>
       }
       <input type="hidden" value=")" />

@@ -37,7 +37,14 @@ const Playground: React.FC<PlaygroundInterface> = ({ codeData, elements, onDrop,
       ItemTypes.CONCAT,
       ItemTypes.DICT,
       ItemTypes.LIST,
-      ItemTypes.EMBEDDED_SENTENCE
+      ItemTypes.EMBEDDED_SENTENCE,
+      ItemTypes.NUMBER,
+      ItemTypes.STRING,
+      ItemTypes.BOOLEAN,
+      ItemTypes.NULL,
+      ItemTypes.ANUMERO,
+      ItemTypes.ACADENA,
+      ItemTypes.ALOGICO
     ],
     drop: (block: CodeBlock) => {
       if(isOver) {

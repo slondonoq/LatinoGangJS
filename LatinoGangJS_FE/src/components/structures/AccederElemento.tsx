@@ -3,7 +3,7 @@ import BlockPlaceholder from '@components/dragNdrop/BlockPlaceholder'
 import { CodeBlockWithNestingAndEmbeddings } from '@components/types'
 import { FC } from 'react'
 
-const AccederElemento: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embeddedOnDrop}) => {
+const AccederElemento: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1, embeddedBlock2, embeddedOnDrop}) => {
   const defaultFunc = () =>
     console.log("Oops, forgot to pass onDrop prop to block with embeddings");
     return (
@@ -18,7 +18,14 @@ const AccederElemento: FC<CodeBlockWithNestingAndEmbeddings> = ({ embeddedBlock1
         )}
         <input type="hidden" value="("/>
         {"["}
-        <input type="text" placeholder="valor" pattern='[0-9]+'/>
+        {embeddedBlock2 ?? (
+          <BlockPlaceholder
+            placeholderText='indice'
+            itemsTypes={[ItemTypes.NUMBER]}
+            onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
+            embedding_spot='emb_child_2'
+          />
+        )}
         <input type="hidden" value=")"/>
         {"]"}
       </span>
