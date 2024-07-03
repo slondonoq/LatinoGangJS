@@ -26,7 +26,7 @@ const Lists: FC<CodeBlockWithEmbeddings> = ({ embeddedBlock1, embeddedOnDrop }) 
               ItemTypes.ALOGICO,
               ItemTypes.NULL,
               ItemTypes.LIST,
-              ItemTypes.DICT
+              ItemTypes.DICT,
               ItemTypes.CONCAT
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
