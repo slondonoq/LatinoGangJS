@@ -187,12 +187,17 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <p>Condición Si</p>
         <Block name='cond_if' blockTypes={['block_with_embeddings']}/>
         <Block name='cond_if_alt' blockTypes={['block_with_embeddings']}/>
+        <i>
+          Tip: Las condiciones alternas se pueden seguir apilando dentro
+          del bloque "Si" con la ranura para condiciones alternas
+        </i>
         <p>Condiciones alternas</p>
         <Block name='cond_elif' blockTypes={['embedded','if_nesting']}/>
         <Block name='cond_else' blockTypes={['embedded','if_nesting']}/>
         <br/>
         <p>Elegir ... caso</p>
         <Block name='switch' blockTypes={['block_with_embeddings']}/>
+        <i>Tip: dentro de este bloque sólo se pueden insertar bloques "caso", "defecto" u "otro"</i>
         <p>Caso</p>
         <Block name='switch_case' blockTypes={['switch']}/>
         <p>Casos por defecto</p>
@@ -200,7 +205,7 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='switch_other' blockTypes={['switch']}/>
         <p>Romper</p>
         <Block name='break' blockTypes={['block']}/>
-        <i>Tip: los bloques de casos y "romper" deben ir dentro de un bloque "elegir"</i>
+        <i>Tip: el bloque "romper" debe ir dentro de algún bloque de caso</i>
         <hr />
         <h3 id="bucles">Bucles</h3>
         <p>Sentencia dentro de bucle</p>
