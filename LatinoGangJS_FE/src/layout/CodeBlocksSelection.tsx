@@ -212,6 +212,8 @@ const CodeBlockSelection: React.FC<CodeBlockSelectionProps> = ({ onDrop }) => {
         <Block name='func' blockTypes={['block_with_embeddings']}/>
         <p>Función anónima</p>
         <Block name='func_anonymous' blockTypes={['embedded']}/>
+        <p>Lista de argumentos</p>
+        <Block name='argumentList' blockTypes={['embedded', 'argument_list']}/>
         <p>Retorno</p>
         <Block name='return' blockTypes={['block']}/>
         <p>Llamado</p>

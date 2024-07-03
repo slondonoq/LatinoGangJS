@@ -20,4 +20,5 @@ export const ItemTypes = {
   ANUMERO: 'anumero',
   ACADENA: 'acadena',
   ALOGICO: 'alogico',
+  ARGUMENT_LIST: 'argument_list',
 };

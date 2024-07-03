@@ -112,6 +112,9 @@ const MoreItems = React.lazy(
 const Properties = React.lazy(
   () => import('@components/auxiliaryBlocks/Properties')
 );
+const ArgumentList = React.lazy(
+  () => import('@components/functions/ArgumentList')
+);
 
 const Block: React.FC<CodeBlock> = ({
   id,
@@ -169,6 +172,8 @@ const Block: React.FC<CodeBlock> = ({
       ? ItemTypes.COMPARISON
       : blockTypes.includes("declaration")
       ? ItemTypes.DECLARATION
+      : blockTypes.includes("argument_list")
+      ? ItemTypes.ARGUMENT_LIST
       : blockTypes.includes("embedded")
       ? ItemTypes.EMBEDDED
       : ItemTypes.BLOCK,
@@ -532,6 +537,13 @@ const Block: React.FC<CodeBlock> = ({
     }
     else if(name === 'properties') {
       return <Properties
+        embeddedBlock1={embeddedBlock1}
+        embeddedBlock2={embeddedBlock2}
+        embeddedOnDrop={embeddedOnDrop}
+      />
+    }
+    else if(name === 'argumentList') {
+      return <ArgumentList
         embeddedBlock1={embeddedBlock1}
         embeddedBlock2={embeddedBlock2}
         embeddedOnDrop={embeddedOnDrop}

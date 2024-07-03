@@ -39,7 +39,8 @@ const FunctionBlock: FC<CodeBlockWithNestingAndEmbeddings> = ({
               ItemTypes.FUNCTION_CALL,
               ItemTypes.DICT,
               ItemTypes.LIST,
-              ItemTypes.CONCAT
+              ItemTypes.CONCAT,
+              ItemTypes.ARGUMENT_LIST
             ]}
             onDrop={embeddedOnDrop ? embeddedOnDrop : defaultFunc}
             embedding_spot="emb_child_2"
