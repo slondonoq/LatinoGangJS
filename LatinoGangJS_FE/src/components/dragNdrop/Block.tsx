@@ -329,6 +329,17 @@ const Block: React.FC<CodeBlock> = ({
           nestedOnDrop={nestedOnDrop}
         />
       );
+    } else if (name === "cond_if_alt") {
+      return (
+        <CondIf
+          embeddedBlock1={embeddedBlock1}
+          embeddedBlock2={embeddedBlock2}
+          embeddedOnDrop={embeddedOnDrop}
+          nestedBlock={nestedBlock}
+          nestedOnDrop={nestedOnDrop}
+          has_alt_conds={true}
+        />
+      );
     } else if (name === "cond_elif") {
       return (
         <CondElseIf
